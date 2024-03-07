@@ -19,7 +19,12 @@
                 "ref_apa": "Hadlington, L., Binder, J., Gardner, S., Karanika-Murray, M., & Knight, S. (2023). The use of artificial intelligence in a military context: Development of the attitudes toward AI in defense (AAID) scale. Frontiers in Psychology, 14, 1164810. https://doi.org/10.3389/fpsyg.2023.1164810",
                 "ref_isbn": null,
                 "ref_doi": "10.3389/fpsyg.2023.1164810",
-                "scales": {},
+                "scales": {
+                    "attitude toward ai in defense": {
+                        "lower": ["AAID_01", "AAID_05", "AAID_09"],
+                        "upper": ["AAID_07", "AAID_12", "AAID_14"]
+                      }
+                },
                 "items": [
                     { "variable": "AAID_01", "item_text": "The use of AI in Defense could be used to spy on us"},
                     { "variable": "AAID_05", "item_text": "The use of AI in Defense could be used unethically by those in power"},
@@ -36,7 +41,16 @@
                 "ref_apa": "Watson, D., Clark, L. A., & Tellegen, A. (1988). Development and validation of brief measures of positive and negative affect: The PANAS scales. Journal of Personality and Social Psychology, 54(6), 1063–1070. https://doi.org/10.1037/0022-3514.54.6.1063",
                 "ref_isbn": null,
                 "ref_doi": "10.1037/0022-3514.54.6.1063",
-                "scales": {},
+                "scales": {
+                    "positive affect": {
+                        "lower": [],
+                        "upper": ["PANAS_09", "PANAS_14", "PANAS_10", "PANAS_05"]
+                      },
+                    "negative affect": {
+                        "lower": [],
+                        "upper": ["PANAS_08", "PANAS_06", "PANAS_04", "PANAS_18"]
+                      }
+                },
                 "items": [
                     { "variable": "PANAS_09", "item_text": "During the last two weeks, I have felt enthusiastic"},
                     { "variable": "PANAS_14", "item_text": "During the last two weeks, I have felt inspired"},
@@ -55,7 +69,20 @@
                 "ref_apa": "Demerouti, E., Mostert, K., & Bakker, A. B. (2010). Burnout and work engagement: A thorough investigation of the independency of both constructs. Journal of Occupational Health Psychology, 15(3), 209–222. https://doi.org/10.1037/a0019408",
                 "ref_isbn": null,
                 "ref_doi": "10.1037/a0019408",
-                "scales": {},
+                "scales": {
+                    "exhaustion": {
+                        "lower": ["OLBI_10", "OLBI_16"],
+                        "upper": ["OLBI_12", "OLBI_08"]
+                      },
+                    "disengagement": {
+                        "lower": ["OLBI_07", "OLBI_15"],
+                        "upper": ["OLBI_09", "OLBI_11"]
+                      },
+                    "burnout": {
+                        "lower": ["OLBI_07", "OLBI_10", "OLBI_15", "OLBI_16"],
+                        "upper": ["OLBI_08", "OLBI_09", "OLBI_11", "OLBI_12"]
+                      }
+                },
                 "items": [
                     { "variable": "OLBI_07", "item_text": "I ﬁnd my work to be a positive challenge."},
                     { "variable": "OLBI_08", "item_text": "During my work, I often feel emotionally drained."},
@@ -74,7 +101,24 @@
                 "ref_apa": "Schaufeli, W. B., Bakker, A. B., & Salanova, M. (2006). The Measurement of Work Engagement With a Short Questionnaire: A Cross-National Study. Educational and Psychological Measurement, 66(4), 701–716. https://doi.org/10.1177/0013164405282471",
                 "ref_isbn": null,
                 "ref_doi": "10.1177/0013164405282471",
-                "scales": {},
+                "scales": {
+                    "vigor": {
+                        "lower": [],
+                        "upper": ["UWES9_01", "UWES9_02", "UWES9_05"]
+                      },
+                    "dedication": {
+                        "lower": [],
+                        "upper": ["UWES9_03", "UWES9_04", "UWES9_07"]
+                      },
+                    "absorption": {
+                        "lower": [],
+                        "upper": ["UWES9_06", "UWES9_08", "UWES9_09"]
+                      },
+                    "engagement": {
+                        "lower": [],
+                        "upper": ["UWES9_01", "UWES9_02", "UWES9_03", "UWES9_04", "UWES9_05", "UWES9_06", "UWES9_07", "UWES9_08", "UWES9_09"]
+                      }
+                },
                 "items": [
                     { "variable": "UWES9_01", "item_text": "At my work, I feel bursting with energy."},
                     { "variable": "UWES9_02", "item_text": "At my job, I feel strong and vigorous."},
@@ -94,7 +138,32 @@
                 "ref_apa": "Preece, D., Becerra, R., Robinson, K., Dandy, J., & Allan, A. (2018). The psychometric assessment of alexithymia: Development and validation of the Perth Alexithymia Questionnaire. Personality and Individual Differences, 132, 32–44. https://doi.org/10.1016/j.paid.2018.05.011",
                 "ref_isbn": null,
                 "ref_doi": "10.1016/j.paid.2018.05.011",
-                "scales": {},
+                "scales": {
+                    "general-externally orientated thinking": {
+                        "lower": [],
+                        "upper": ["PAQ_03", "PAQ_15"]
+                    },
+                    "negative-difficulty describing feelings": {
+                        "lower": [],
+                        "upper": ["PAQ_13", "PAQ_07"]
+                    },
+                    "negative-difficulty identifying feelings": {
+                        "lower": [],
+                        "upper": ["PAQ_08", "PAQ_20"]
+                    },
+                    "positive-difficulty describing feelings": {
+                        "lower": [],
+                        "upper": ["PAQ_10", "PAQ_16"]
+                    },
+                    "positive-difficulty identifying feelings": {
+                        "lower": [],
+                        "upper": ["PAQ_05", "PAQ_17"]
+                    },
+                    "alexithymia": {
+                        "lower": [],
+                        "upper": ["PAQ_03", "PAQ_15", "PAQ_13", "PAQ_07", "PAQ_08", "PAQ_20", "PAQ_10", "PAQ_16", "PAQ_05", "PAQ_17"]
+                    }
+                },
                 "items": [
                     { "variable": "PAQ_08", "item_text": "When I'm feeling bad, I can't make sense of those feelings."},
                     { "variable": "PAQ_20", "item_text": "When I'm feeling bad, I'm puzzled by those feelings."},
@@ -115,7 +184,12 @@
                 "ref_apa": "Cohen, S., Kamarck, T., & Mermelstein, R. (1983). A Global Measure of Perceived Stress. Journal of Health and Social Behavior, 24(4), 385. https://doi.org/10.2307/2136404",
                 "ref_isbn": null,
                 "ref_doi": "10.2307/2136404",
-                "scales": {},
+                "scales": {
+                    "perceived stress": {
+                        "lower": ["PSS_04", "PSS_05", "PSS_06", "PSS_07", "PSS_09", "PSS_10", "PSS_13"],
+                        "upper": ["PSS_01", "PSS_02", "PSS_03", "PSS_08", "PSS_11", "PSS_12", "PSS_14"]
+                    }
+                },
                 "items": [
                     { "variable": "PSS_01", "item_text": "In the last month, how often have you been upset because of something that happened unexpectedly?"},
                     { "variable": "PSS_02", "item_text": "In the last month, how often have you felt that you were unable to control the important things in your life?"},
@@ -140,7 +214,28 @@
                 "ref_apa": "Dunlap, R. E., Van Liere, K. D., Mertig, A. G., & Jones, R. E. (2000). New Trends in Measuring Environmental Attitudes: Measuring Endorsement of the New Ecological Paradigm: A Revised NEP Scale. Journal of Social Issues, 56(3), 425–442. https://doi.org/10.1111/0022-4537.00176",
                 "ref_isbn": null,
                 "ref_doi": "10.1111/0022-4537.00176",
-                "scales": {},
+                "scales": {
+                    "antiexemptionalism": {
+                        "lower": ["NEPS_04"],
+                        "upper": ["NEPS_09"]
+                    },
+                    "balance of nature": {
+                        "lower": ["NEPS_08"],
+                        "upper": ["NEPS_13"]
+                    },
+                    "eco-crisis": {
+                        "lower": ["NEPS_10"],
+                        "upper": ["NEPS_05"]
+                    },
+                    "human domination": {
+                        "lower": ["NEPS_12"],
+                        "upper": ["NEPS_07"]
+                    },
+                    "limits to growth": {
+                        "lower": ["NEPS_06"],
+                        "upper": ["NEPS_01"]
+                    }
+                },
                 "items": [
                     { "variable": "NEPS_01", "item_text": "We are approaching the limit of the number of people the earth can support"},
                     { "variable": "NEPS_04", "item_text": "Human ingenuity will insure that we do NOT make the earth unlivable"},
@@ -161,7 +256,24 @@
                 "ref_apa": "Martin, R. A., Puhlik-Doris, P., Larsen, G., Gray, J., & Weir, K. (2012). Humor Styles Questionnaire [dataset]. https://doi.org/10.1037/t07239-000",
                 "ref_isbn": null,
                 "ref_doi": "10.1037/t07239-000",
-                "scales": {},
+                "scales": {
+                    "affiliative humor": {
+                        "lower": ["HSQ_09", "HSQ_29"],
+                        "upper": ["HSQ_21"]
+                    },
+                    "aggressive humor": {
+                        "lower": ["HSQ_07", "HSQ_23"],
+                        "upper": ["HSQ_03"]
+                    },
+                    "self-defeating humor": {
+                        "lower": ["HSQ_16"],
+                        "upper": ["HSQ_04", "HSQ_08"]
+                    },
+                    "self-enhancing humor": {
+                        "lower": ["HSQ_22"],
+                        "upper": ["HSQ_02", "HSQ_06"]
+                    }
+                },
                 "items": [
                     { "variable": "HSQ_02", "item_text": "If I am feeling depressed, I can usually cheer myself up with humor."},
                     { "variable": "HSQ_03", "item_text": "If someone makes a mistake, I will often tease them about it."},
@@ -184,7 +296,12 @@
                 "ref_apa": "Hays, R., & DiMatteo, M. R. (1987). A Short-Form Measure of Loneliness. Journal of Personality Assessment, 51(1), 69–81. https://doi.org/10.1207/s15327752jpa5101_6",
                 "ref_isbn": null,
                 "ref_doi": "10.1207/s15327752jpa5101_6",
-                "scales": {},
+                "scales": {
+                    "loneliness": {
+                        "lower": [],
+                        "upper": ["ULS8_01", "ULS8_02", "ULS8_03", "ULS8_04", "ULS8_05", "ULS8_06", "ULS8_07", "ULS8_08"]
+                    }
+                },
                 "items": [
                     { "variable": "ULS8_01", "item_text": "I lack companionship."},
                     { "variable": "ULS8_02", "item_text": "There is no one I can turn to."},
@@ -203,7 +320,12 @@
                 "ref_apa": "Chen, G., Gully, S. M., & Eden, D. (2001). Validation of a New General Self-Efficacy Scale. Organizational Research Methods, 4(1), 62–83. https://doi.org/10.1177/109442810141004",
                 "ref_isbn": null,
                 "ref_doi": "10.1177/109442810141004",
-                "scales": {},
+                "scales": {
+                    "general self-efficacy": {
+                        "lower": [],
+                        "upper": ["NGSE_01", "NGSE_02", "NGSE_03", "NGSE_04", "NGSE_05", "NGSE_06", "NGSE_07", "NGSE_08"]
+                    }
+                },
                 "items": [
                     { "variable": "NGSE_01", "item_text": "I will be able to achieve most of the goals that I have set for myself."},
                     { "variable": "NGSE_02", "item_text": "When facing difficult tasks, I am certain that I will accomplish them."},
@@ -222,7 +344,12 @@
                 "ref_apa": "Ahorsu, D. K., Lin, C.-Y., Imani, V., Saffari, M., Griffiths, M. D., & Pakpour, A. H. (2022). The Fear of COVID-19 Scale: Development and Initial Validation. International Journal of Mental Health and Addiction, 20(3), 1537–1545. https://doi.org/10.1007/s11469-020-00270-8",
                 "ref_isbn": null,
                 "ref_doi": "10.1007/s11469-020-00270-8",
-                "scales": {},
+                "scales": {
+                    "fear of covid-19": {
+                        "lower": [],
+                        "upper": ["FCV19S_01", "FCV19S_02", "FCV19S_03", "FCV19S_04", "FCV19S_05", "FCV19S_06", "FCV19S_07"]
+                    }
+                },
                 "items": [
                     { "variable": "FCV19S_01", "item_text": "I am most afraid of coronavirus-19"},
                     { "variable": "FCV19S_02", "item_text": "It makes me uncomfortable to think about coronavirus-19."},
@@ -240,7 +367,28 @@
                 "ref_apa": "Von Spreckelsen, P., Jonker, N. C., Vugteveen, J., Wessel, I., Glashouwer, K. A., & De Jong, P. J. (2021). Individual differences in avoiding feelings of disgust: Development and construct validity of the disgust avoidance questionnaire. PLOS ONE, 16(3), e0248219. https://doi.org/10.1371/journal.pone.0248219",
                 "ref_isbn": null,
                 "ref_doi": "10.1371/journal.pone.0248219",
-                "scales": {},
+                "scales": {
+                    "behavioral prevention": {
+                        "lower": [],
+                        "upper": ["DAQ_05", "DAQ_07", "DAQ_09", "DAQ_11", "DAQ_15"]
+                    },
+                    "cognitive prevention": {
+                        "lower": [],
+                        "upper": ["DAQ_19", "DAQ_21", "DAQ_23", "DAQ_25"]
+                    },
+                    "behavioral escape": {
+                        "lower": [],
+                        "upper": ["DAQ_02", "DAQ_06", "DAQ_08", "DAQ_10"]
+                    },
+                    "cognitive escape": {
+                        "lower": [],
+                        "upper": ["DAQ_12", "DAQ_14", "DAQ_16", "DAQ_24"]
+                    },
+                    "disgust avoidance": {
+                        "lower": [],
+                        "upper": ["DAQ_05", "DAQ_07", "DAQ_09", "DAQ_11", "DAQ_15", "DAQ_19", "DAQ_21", "DAQ_23", "DAQ_25", "DAQ_02", "DAQ_06", "DAQ_08", "DAQ_10", "DAQ_12", "DAQ_14", "DAQ_16", "DAQ_24"]
+                    }
+                },
                 "items": [
                     { "variable": "DAQ_05", "item_text": "I try to avoid activities that could make me feel disgusted."},
                     { "variable": "DAQ_07", "item_text": "I avoid actions that remind me of repulsive things."},
@@ -268,7 +416,24 @@
                 "ref_apa": "Youssef-Morgan, C. M., Van Zyl, L. E., & Ahrens, B. L. (2022). The Work Gratitude Scale: Development and Evaluation of a Multidimensional Measure. Frontiers in Psychology, 12, 795328. https://doi.org/10.3389/fpsyg.2021.795328",
                 "ref_isbn": null,
                 "ref_doi": "10.3389/fpsyg.2021.795328",
-                "scales": {},
+                "scales": {
+                    "grateful appraisals": {
+                        "lower": [],
+                        "upper": ["WGS_01", "WGS_02", "WGS_03"]
+                    },
+                    "gratitude toward others": {
+                        "lower": [],
+                        "upper": ["WGS_04", "WGS_05", "WGS_06", "WGS_07"]
+                    },
+                    "intentional attitude of gratitude": {
+                        "lower": [],
+                        "upper": ["WGS_08", "WGS_09", "WGS_10"]
+                    },
+                    "work gratitude scale": {
+                        "lower": [],
+                        "upper": ["WGS_01", "WGS_02", "WGS_03", "WGS_04", "WGS_05", "WGS_06", "WGS_07", "WGS_08", "WGS_09", "WGS_10"]
+                    }
+                },
                 "items": [
                     { "variable": "WGS_01", "item_text": "Right now, I have so much at work to be thankful for."},
                     { "variable": "WGS_02", "item_text": "At this present time, if I had to list everything that I felt grateful for at work, it would be a very long list."},
@@ -289,7 +454,12 @@
                 "ref_apa": "Hertzog, C., Van Alstine, J., Usala, P. D., Hultsch, D. F., & Dixon, R. (1990). Measurement properties of the Center for Epidemiological Studies Depression Scale (CES-D) in older populations. Psychological Assessment: A Journal of Consulting and Clinical Psychology, 2(1), 64–72. https://doi.org/10.1037/1040-3590.2.1.64",
                 "ref_isbn": null,
                 "ref_doi": "10.1037/1040-3590.2.1.64",
-                "scales": {},
+                "scales": {
+                    "depression": {
+                        "lower": [],
+                        "upper": ["CESD_01", "CESD_02", "CESD_03", "CESD_04", "CESD_05", "CESD_06", "CESD_07", "CESD_08", "CESD_09", "CESD_10", "CESD_11", "CESD_12", "CESD_13", "CESD_14", "CESD_15", "CESD_16", "CESD_17", "CESD_18", "CESD_19", "CESD_20"]
+                    }
+                },
                 "items": [
                     { "variable": "CESD_01", "item_text": "I was bothered by things that usually don’t bother me."},
                     { "variable": "CESD_02", "item_text": "I did not feel like eating; my appetite was poor."},
@@ -320,7 +490,49 @@
                 "ref_apa": "Ashton, M., & Lee, K. (2009). The HEXACO-60: A Short Measure of the Major Dimensions of Personality. Journal of Personality Assessment, 91(4), 340–345. https://doi.org/10.1080/00223890902935878",
                 "ref_isbn": null,
                 "ref_doi": "10.1080/00223890902935878",
-                "scales": {},
+                "scales": {
+                    "fairness": {
+                        "lower": ["HEXACO_04", "HEXACO_20"],
+                        "upper": ["HEXACO_12"]
+                    },
+                    "flexibility": {
+                        "lower": ["HEXACO_05", "HEXACO_19"],
+                        "upper": ["HEXACO_13"]
+                    },
+                    "forgiveness": {
+                        "lower": [],
+                        "upper": ["HEXACO_01", "HEXACO_09"]
+                    },
+                    "gentleness": {
+                        "lower": ["HEXACO_03"],
+                        "upper": ["HEXACO_11", "HEXACO_17"]
+                    },
+                    "greed-avoidance": {
+                        "lower": ["HEXACO_14"],
+                        "upper": ["HEXACO_06"]
+                    },
+                    "modesty": {
+                        "lower": ["HEXACO_08", "HEXACO_16"],
+                        "upper": []
+                    },
+                    "patience": {
+                        "lower": ["HEXACO_07"],
+                        "upper": ["HEXACO_15"]
+                    },
+                    "sincerity": {
+                        "lower": ["HEXACO_10"],
+                        "upper": ["HEXACO_02", "HEXACO_18"]
+                    },
+                    "honesty-humility": {
+                        "lower": ["HEXACO_04", "HEXACO_20", "HEXACO_14", "HEXACO_08", "HEXACO_16", "HEXACO_10"],
+                        "upper": ["HEXACO_12", "HEXACO_06", "HEXACO_02", "HEXACO_18"]
+                    },
+                    "agreeableness": {
+                        "lower": ["HEXACO_05", "HEXACO_19", "HEXACO_03", "HEXACO_07"],
+                        "upper": ["HEXACO_13", "HEXACO_01", "HEXACO_09", "HEXACO_11", "HEXACO_17", "HEXACO_15"]
+                    }
+
+                },
                 "items": [
                     { "variable": "HEXACO_01", "item_text": "I rarely hold a grudge, even against people who have badly wronged me."},
                     { "variable": "HEXACO_02", "item_text": "I wouldn't use flattery to get a raise or promotion at work, even if I thought it would succeed."},
@@ -351,7 +563,36 @@
                 "ref_apa": "Foa, E. B., Huppert, J. D., Leiberg, S., Langner, R., Kichic, R., Hajcak, G., & Salkovskis, P. M. (2002). The Obsessive-Compulsive Inventory: Development and validation of a short version. Psychological Assessment, 14(4), 485–496. https://doi.org/10.1037/1040-3590.14.4.485",
                 "ref_isbn": null,
                 "ref_doi": "10.1037//1040-3590.14.4.485",
-                "scales": {},
+                "scales": {
+                    "checking": {
+                        "lower": [],
+                        "upper": ["OCIR_02", "OCIR_08", "OCIR_14"]
+                    },
+                    "hoarding": {
+                        "lower": [],
+                        "upper": ["OCIR_01", "OCIR_07", "OCIR_13"]
+                    },
+                    "neutralizing": {
+                        "lower": [],
+                        "upper": ["OCIR_04", "OCIR_10", "OCIR_16"]
+                    },
+                    "obsessing": {
+                        "lower": [],
+                        "upper": ["OCIR_06", "OCIR_12", "OCIR_18"]
+                    },
+                    "ordering": {
+                        "lower": [],
+                        "upper": ["OCIR_03", "OCIR_09", "OCIR_15"]
+                    },
+                    "washing": {
+                        "lower": [],
+                        "upper": ["OCIR_05", "OCIR_11", "OCIR_17"]
+                    },
+                    "obsessive-compulsive": {
+                        "lower": [],
+                        "upper": ["OCIR_02", "OCIR_08", "OCIR_14", "OCIR_01", "OCIR_07", "OCIR_13", "OCIR_04", "OCIR_10", "OCIR_16", "OCIR_06", "OCIR_12", "OCIR_18", "OCIR_03", "OCIR_09", "OCIR_15", "OCIR_05", "OCIR_11", "OCIR_17"]
+                    }
+                },
                 "items": [
                     { "variable": "OCIR_01", "item_text": "I have saved up so many things that they get in the way."},
                     { "variable": "OCIR_02", "item_text": "I check things more often than necessary."},
@@ -380,7 +621,24 @@
                 "ref_apa": "Ehring, T., Zetsche, U., Weidacker, K., Wahl, K., Schönfeld, S., & Ehlers, A. (2011). The Perseverative Thinking Questionnaire (PTQ): Validation of a content-independent measure of repetitive negative thinking. Journal of Behavior Therapy and Experimental Psychiatry, 42(2), 225–232. https://doi.org/10.1016/j.jbtep.2010.12.003",
                 "ref_isbn": null,
                 "ref_doi": "10.1016/j.jbtep.2010.12.003",
-                "scales": {},
+                "scales": {
+                    "core characteristics of repetitive negative thinking": {
+                        "lower": [],
+                        "upper": ["PTQ_01", "PTQ_02", "PTQ_03", "PTQ_06", "PTQ_07", "PTQ_08", "PTQ_11", "PTQ_12", "PTQ_13"]
+                    },
+                    "repetitive negative thinking capturing mental capacity": {
+                        "lower": [],
+                        "upper": ["PTQ_05", "PTQ_10", "PTQ_15"]
+                    },
+                    "unproductiveness of repetitive negative thinking": {
+                        "lower": [],
+                        "upper": ["PTQ_04", "PTQ_09", "PTQ_14"]
+                    },
+                    "perseverative thinking": {
+                        "lower": [],
+                        "upper": ["PTQ_01", "PTQ_02", "PTQ_03", "PTQ_06", "PTQ_07", "PTQ_08", "PTQ_11", "PTQ_12", "PTQ_13", "PTQ_05", "PTQ_10", "PTQ_15", "PTQ_04", "PTQ_09", "PTQ_14"]
+                    }
+                },
                 "items": [
                     { "variable": "PTQ_01", "item_text": "The same thoughts keep going through my mind again and again."},
                     { "variable": "PTQ_02", "item_text": "Thoughts intrude into my mind."},
@@ -406,7 +664,20 @@
                 "ref_apa": "Collins, N. L. (2013). Revised Adult Attachment Scale [dataset]. https://doi.org/10.1037/t19162-000",
                 "ref_isbn": null,
                 "ref_doi": "10.1037/t19162-000",
-                "scales": {},
+                "scales": {
+                    "close": {
+                        "lower": ["RAAS_08", "RAAS_13", "RAAS_17"],
+                        "upper": ["RAAS_01", "RAAS_06", "RAAS_12"]
+                    },
+                    "depend": {
+                        "lower": ["RAAS_02", "RAAS_07", "RAAS_16"],
+                        "upper": ["RAAS_05", "RAAS_14"]
+                    },
+                    "attachment": {
+                        "lower": ["RAAS_08", "RAAS_13", "RAAS_17", "RAAS_02", "RAAS_07", "RAAS_16"],
+                        "upper": ["RAAS_01", "RAAS_06", "RAAS_12", "RAAS_05", "RAAS_14"]
+                    }
+                },
                 "items": [
                     { "variable": "RAAS_01", "item_text": "I find it relatively easy to get close to people."},
                     { "variable": "RAAS_02", "item_text": "I find it difficult to allow myself to depend on others."},
@@ -428,7 +699,24 @@
                 "ref_apa": "Nießen, D., Schmidt, I., Beierlein, C., & Lechner, C. M. (2019). Authoritarianism Short Scale (KSA-3). ZIS - The Collection of Items and Scales for the Social Sciences. https://doi.org/10.6102/ZIS272",
                 "ref_isbn": null,
                 "ref_doi": "10.6102/zis272",
-                "scales": {},
+                "scales": {
+                    "authoritarian aggression": {
+                        "lower": [],
+                        "upper": ["KSA3_01", "KSA3_02", "KSA3_03", "KSA3_04"]
+                    },
+                    "authoritarian submissiveness": {
+                        "lower": [],
+                        "upper": ["KSA3_05", "KSA3_06"]
+                    },
+                    "conventionalism": {
+                        "lower": [],
+                        "upper": ["KSA3_07", "KSA3_08", "KSA3_09"]
+                    },
+                    "authoritarianism": {
+                        "lower": [],
+                        "upper": ["KSA3_01", "KSA3_02", "KSA3_03", "KSA3_04", "KSA3_05", "KSA3_06", "KSA3_07", "KSA3_08", "KSA3_09"]
+                    }
+                },
                 "items": [
                     { "variable": "KSA3_01", "item_text": "We should take strong action against misfits and slackers in society."},
                     { "variable": "KSA3_02", "item_text": "Troublemakers should be made to feel that they are not welcome in society."},
@@ -448,7 +736,20 @@
                 "ref_apa": "De Leeuw, E., Hox, J., Silber, H., Struminskaya, B., & Vis, C. (2022). The Survey Attitude Scale. ZIS - The Collection of Items and Scales for the Social Sciences. https://doi.org/10.6102/ZIS325_EXZ",
                 "ref_isbn": null,
                 "ref_doi": "10.6102/zis325_exz",
-                "scales": {},
+                "scales": {
+                    "survey burden": {
+                        "lower": [],
+                        "upper": ["SAS_07", "SAS_08", "SAS_09"]
+                    },
+                    "survey enjoyment": {
+                        "lower": [],
+                        "upper": ["SAS_01", "SAS_02", "SAS_03"]
+                    },
+                    "survey value": {
+                        "lower": ["SAS_06"],
+                        "upper": ["SAS_04", "SAS_05"]
+                    }
+                },
                 "items": [
                     { "variable": "SAS_01", "item_text": "I really enjoy responding to questionnaires through the mail or Internet."},
                     { "variable": "SAS_02", "item_text": "I really enjoy being interviewed for a survey."},
@@ -468,7 +769,32 @@
                 "ref_apa": "Graham, J., Nosek, B. A., Haidt, J., Iyer, R., Spassena, K., & Ditto, P. H. (2011). Moral Foundations Questionnaire [dataset]. https://doi.org/10.1037/t05651-000",
                 "ref_isbn": null,
                 "ref_doi": "10.1037/t05651-000",
-                "scales": {},
+                "scales": {
+                    "authority": {
+                        "lower": [],
+                        "upper": ["MFQ_04", "MFQ_10"]
+                    },
+                    "fairness": {
+                        "lower": [],
+                        "upper": ["MFQ_02", "MFQ_08"]
+                    },
+                    "good": {
+                        "lower": [],
+                        "upper": ["MFQ_06"]
+                    },
+                    "harm": {
+                        "lower": [],
+                        "upper": ["MFQ_01", "MFQ_07"]
+                    },
+                    "ingroup": {
+                        "lower": [],
+                        "upper": ["MFQ_03", "MFQ_09"]
+                    },
+                    "purity": {
+                        "lower": [],
+                        "upper": ["MFQ_05", "MFQ_11"]
+                    }
+                },
                 "items": [
                     { "variable": "MFQ_01", "item_text": "Compassion for those who are suffering is the most crucial virtue."},
                     { "variable": "MFQ_02", "item_text": "When the government makes laws, the number one principle should be ensuring that everyone is treated fairly."},
