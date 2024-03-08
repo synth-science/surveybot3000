@@ -1,0 +1,14 @@
+base_model_path: '/nlp/models/pretrained/sentence-transformers/all-mpnet-base-v2'
+save_model_path: '/nlp/models/cache/surveybot3000/'
+polarity_calibration:
+  batch_size: 32
+  num_epochs: 2
+  evaluation_steps: 250
+  learning_rate: '3e-5'
+  weight_decay: '6.83E-03'
+domain_adaptation:
+  batch_size: 96
+  num_epochs: 8
+  evaluation_steps: 250
+  learning_rate: '5.0e-05'
+  weight_decay: 0.006076668653581469

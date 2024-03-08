@@ -1,0 +1,27 @@
+name: SurveyBot3000
+output_dir: docs
+navbar:
+  title: SurveyBot3000
+  left:
+  - text: Overview
+    href: index.html
+  - text: Vector to Cosine
+    href: 1_vector_to_cosine.html
+  - text: Precision simulations
+    href: 3_rr_precision_simulations.html
+  right:
+  - text: ''
+    icon: fa-github
+    href: https://github.com/rubenarslan/items_llm
+output:
+  html_document:
+    theme: paper
+    code_folding: hide
+    df_print: tibble
+    code_download: yes
+    highlight: zenburn
+    lib_dir: site_libs
+    self_contained: no
+exclude:
+- ignore
+

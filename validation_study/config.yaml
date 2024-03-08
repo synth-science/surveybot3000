@@ -1,0 +1,3 @@
+model_path: '/nlp/models/published/surveybot3000/'
+measures_path: 'measures.csv'
+batch_size: 1000

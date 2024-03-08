@@ -1,0 +1,264 @@
+---
+title: "Precision simulations"
+author: "Ruben Arslan"
+date: "2023-11-07"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+
+The following precision simulations all follow the same structure.
+
+- We randomly redraw from our holdout data to get realistic distributions
+  of empirical estimates. SEs are estimated based on our planned N of 400.
+- We repeat this random drawing process many times.
+- We adjust for sampling error/the standard error of the empirical estimate to get the semi-latent accuracy.
+- The target quantity is the average standard error of the semi-latent accuracy with which the synthetic estimates predicts the empirical estimates. We also report the maximal standard error across simulations.
+
+We begin with item correlations, then reliabilities, then scale correlations.
+
+```{r warning=F,message=F}
+knitr::opts_chunk$set(echo = TRUE, error = T, warning = F, message = F)
+
+# Libraries and Settings
+
+# Libs ---------------------------
+library(tidyverse)
+library(arrow)
+library(glue)
+library(psych)
+library(lavaan)
+library(ggplot2)
+library(plotly)
+library(gridExtra)
+library(semTools)
+library(semPlot)
+
+model_name = "ItemSimilarityTraining-20240502-trial12"
+#model_name = "item-similarity-20231018-122504"
+pretrained_model_name = "all-mpnet-base-v2"
+
+data_path = glue("./")
+pretrained_data_path = glue("./")
+
+set.seed(42)
+
+number_of_items <- 246
+number_of_scales <- 76
+number_of_scales_with_more_than_3_items <- 55
+combinations_items <- choose(number_of_items, 2)
+combinations_scales <- choose(number_of_scales, 2)
+combinations_scales <- 2811 # after eliminating scale-subscale pairs
+planned_N <- 400
+```
+
+
+## Precision simulation for synthetic inter-item correlations
+```{r}
+holdout <- arrow::read_feather(file = file.path(data_path, glue("ignore.{model_name}.raw.osf-bainbridge-2021-s2-0.item_correlations.feather")))
+
+holdout_mapping_data = arrow::read_feather(
+  file = file.path(data_path, glue("{model_name}.raw.osf-bainbridge-2021-s2-0.mapping2.feather"))
+) %>%
+  rename(scale_0 = scale0,
+         scale_1 = scale1)
+
+scales <- arrow::read_feather(file.path(data_path, glue("{model_name}.raw.osf-bainbridge-2021-s2-0.scales.feather"))
+)
+
+holdout_llm <- holdout %>%
+  left_join(holdout_mapping_data %>% select(variable_1 = variable, InstrumentA = instrument, ScaleA = scale_0, SubscaleA = scale_1)) %>%
+  left_join(holdout_mapping_data %>% select(variable_2 = variable, InstrumentA = instrument, ScaleA = scale_0, SubscaleA = scale_1))
+
+sim_results <- tibble()
+library(lavaan)
+
+for(i in 1:500) {
+  items <- holdout %>% select(variable_1) %>% distinct() %>% sample_n(number_of_items) %>% pull(variable_1)
+
+  subset <- holdout %>% filter(variable_1 %in% items, variable_2 %in% items)
+
+  N <- planned_N
+  subset <- subset %>% mutate(se = (1 - empirical_r^2)/sqrt(N - 3))
+  se2 <- mean(subset$se^2)
+
+  r <- broom::tidy(cor.test(subset$empirical_r, subset$synthetic_r))
+
+  model <- paste0('
+    # Latent variables
+    PearsonLatent =~ 1*empirical_r
+
+    # Fixing error variances based on known standard errors
+    empirical_r ~~ ',se2,'*empirical_r
+
+    # Relationship between latent variables
+    PearsonLatent ~~ synthetic_r
+  ')
+
+  fit <- sem(model, data = subset)
+
+  sim_results <- bind_rows(sim_results,
+    standardizedsolution(fit) %>% filter(lhs == "PearsonLatent", rhs ==  "synthetic_r")
+  )
+}
+
+sim_results %>% summarise(semi_latent_r = mean(est.std), mean_se = sqrt(mean(se^2)), max_se = max(se)) %>% 
+  knitr::kable()
+```
+
+
+## Precision simulation for synthetic reliabilities
+```{r}
+cors_llm <- holdout_llm %>%
+  select(x = variable_1, y = variable_2, r = synthetic_r) %>%
+  as.data.frame() |>
+  igraph::graph_from_data_frame(directed = FALSE) |>
+  igraph::as_adjacency_matrix(attr = "r", sparse = FALSE)
+diag(cors_llm) <- 1
+
+cors_real <- holdout_llm %>%
+  select(x = variable_1, y = variable_2, r = empirical_r) %>%
+  as.data.frame() |>
+  igraph::graph_from_data_frame(directed = FALSE) |>
+  igraph::as_adjacency_matrix(attr = "r", sparse = FALSE)
+diag(cors_real) <- 1
+
+mapping_data <- holdout_mapping_data
+items_by_scale <- bind_rows(
+  scales %>% filter(scale_1 == "") %>% left_join(mapping_data %>% select(-scale_1), by = c("instrument", "scale_0")),
+  scales %>% filter(scale_1 != "") %>% left_join(mapping_data, by = c("instrument", "scale_0", "scale_1"))
+)
+  
+n_distinct(scales$scale)
+
+scales <- items_by_scale %>%
+  group_by(keyed, scale) %>%
+  summarise(
+    items = list(variable),
+    number_of_items = n_distinct(variable),
+    lvn = paste(first(scale), " =~ ", paste(variable, collapse = " + "))) %>%
+  drop_na() %>% 
+  ungroup()
+
+random_scales <- list()
+for(i in 1:1000) {
+  n_items <- rpois(1, mean(scales$number_of_items))
+  n_items <- if_else(n_items < 3, 3, n_items)
+  random_scales[[i]] <- holdout_mapping_data %>%
+    sample_n(n_items) %>%
+    mutate(scale = paste0("random", i)) %>%
+    group_by(scale) %>%
+    summarise(
+      items = list(variable),
+      number_of_items = n_distinct(variable),
+      lvn = paste(first(scale), " =~ ", paste(variable, collapse = " + "))) %>%
+    drop_na() %>% 
+    mutate(keyed = 1)
+}
+
+random_scales <- bind_rows(random_scales)
+scales <- bind_rows(scales, random_scales)
+n_distinct(scales$scale)
+
+source("global_functions.R")
+
+scales <- scales %>% filter(number_of_items >= 3)
+
+scales <- scales %>%
+  rowwise() %>%
+  mutate(r_real = list(cors_real[items, items]),
+         r_llm = list(cors_llm[items, items])) %>%
+  mutate(reverse_items = list(find_reverse_items_by_first_item(r_real, keyed)),
+         r_real_rev = list(reverse_items(r_real, reverse_items)),
+         r_llm_rev = list(reverse_items(r_llm, reverse_items))) %>%
+  mutate(
+    rel_real = list(psych::alpha(r_real_rev, keys = F, n.obs = planned_N)$feldt)) %>%
+  mutate(
+    rel_llm = list(psych::alpha(r_llm_rev, keys = F, n.obs = planned_N)$feldt)) %>%
+  mutate(rel_real_alpha = rel_real$alpha$raw_alpha,
+         rel_llm_alpha = rel_llm$alpha$raw_alpha) %>%
+  mutate(
+    alpha_se = mean(diff(unlist(psychometric::alpha.CI(rel_real_alpha, k = number_of_items, N = planned_N, level = 0.95))))
+  )
+
+realistic_scales <- scales %>% ungroup()
+
+sim_results <- tibble()
+for(i in 1:500) {
+  picked_scales <- realistic_scales %>% filter(!str_detect(scale, "random")) %>% sample_n(number_of_scales_with_more_than_3_items)
+  subset <-
+    bind_rows(picked_scales,
+              realistic_scales %>% filter(str_detect(scale, "random")) %>% sample_n(200)
+  )
+
+  se2 <- mean(subset$alpha_se^2)
+
+  r <- broom::tidy(cor.test(subset$rel_real_alpha, subset$rel_llm_alpha))
+  (r$conf.high - r$conf.low)/2
+
+  model <- paste0('
+    # Latent variables
+    PearsonLatent =~ 1*rel_real_alpha
+
+    # Fixing error variances based on known standard errors
+    rel_real_alpha ~~ ',se2,'*rel_real_alpha
+
+    # Relationship between latent variables
+    PearsonLatent ~~ rel_llm_alpha
+  ')
+
+  fit <- sem(model, data = subset)
+
+  sim_results <- bind_rows(sim_results,
+                           standardizedsolution(fit) %>% filter(lhs == "PearsonLatent", rhs ==  "rel_llm_alpha")
+  )
+}
+sim_results %>% summarise(semi_latent_r = mean(est.std), mean_se = sqrt(mean(se^2)), max_se = max(se)) %>% 
+  knitr::kable()
+```
+
+
+## Precision simulation for synthetic scale correlations
+```{r}
+manifest_scores = arrow::read_feather(file = file.path(data_path, glue("ignore.{model_name}.raw.osf-bainbridge-2021-s2-0.scale_correlations.feather")))
+
+
+sim_results <- tibble()
+library(lavaan)
+
+for(i in 1:500) {
+  scales <- manifest_scores %>% select(scale_a) %>% distinct() %>% pull(scale_a)
+
+  subset <- manifest_scores %>% filter(scale_a %in% scales, scale_b %in% scales) %>% 
+    sample_n(combinations_scales)
+
+  N <- planned_N
+  subset <- subset %>% mutate(se = (1 - empirical_r^2)/sqrt(N - 3))
+  se2 <- mean(subset$se^2)
+
+  r <- broom::tidy(cor.test(subset$empirical_r, subset$synthetic_r))
+  (r$conf.high - r$conf.low)/2
+
+  model <- paste0('
+    # Latent variables
+    PearsonLatent =~ 1*empirical_r
+
+    # Fixing error variances based on known standard errors
+    empirical_r ~~ ',se2,'*empirical_r
+
+    # Relationship between latent variables
+    PearsonLatent ~~ synthetic_r
+  ')
+
+  fit <- sem(model, data = subset)
+
+  sim_results <- bind_rows(sim_results,
+                           standardizedsolution(fit) %>% filter(lhs == "PearsonLatent", rhs ==  "synthetic_r")
+  )
+}
+
+sim_results %>% summarise(semi_latent_r = mean(est.std), mean_se = sqrt(mean(se^2)), max_se = max(se)) %>% 
+  knitr::kable()
+```
