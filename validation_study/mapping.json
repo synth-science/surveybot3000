@@ -519,6 +519,22 @@
                         "lower": ["HEXACO_07"],
                         "upper": ["HEXACO_15"]
                     },
+                    "diligence": {
+                        "lower": ["HEXACO_26"],
+                        "upper": ["HEXACO_22"]
+                    },
+                    "organization": {
+                        "lower": ["HEXACO_25"],
+                        "upper": ["HEXACO_21"]
+                    },
+                    "perfectionism": {
+                        "lower": ["HEXACO_23"],
+                        "upper": ["HEXACO_27", "HEXACO_29"]
+                    },
+                    "prudence": {
+                        "lower": ["HEXACO_28", "HEXACO_30"],
+                        "upper": ["HEXACO_24"]
+                    },
                     "sincerity": {
                         "lower": ["HEXACO_10"],
                         "upper": ["HEXACO_02", "HEXACO_18"]
@@ -530,6 +546,10 @@
                     "agreeableness": {
                         "lower": ["HEXACO_05", "HEXACO_19", "HEXACO_03", "HEXACO_07"],
                         "upper": ["HEXACO_13", "HEXACO_01", "HEXACO_09", "HEXACO_11", "HEXACO_17", "HEXACO_15"]
+                    },
+                    "conscientiousness": {
+                        "lower": ["HEXACO_26", "HEXACO_25", "HEXACO_23", "HEXACO_28", "HEXACO_30"],
+                        "upper": ["HEXACO_22", "HEXACO_21", "HEXACO_27", "HEXACO_29", "HEXACO_24"]
                     }
 
                 },
@@ -553,7 +573,17 @@
                     { "variable": "HEXACO_17", "item_text": "Even when people make a lot of mistakes, I rarely say anything negative."},
                     { "variable": "HEXACO_18", "item_text": "I wouldn't pretend to like someone just to get that person to do favors for me."},
                     { "variable": "HEXACO_19", "item_text": "When people tell me that I'm wrong, my first reaction is to argue with them."},
-                    { "variable": "HEXACO_20", "item_text": "I'd be tempted to use counterfeit money, if I were sure I could get away with it."}
+                    { "variable": "HEXACO_20", "item_text": "I'd be tempted to use counterfeit money, if I were sure I could get away with it."},
+                    { "variable": "HEXACO_21", "item_text": "I plan ahead and organize things, to avoid scrambling at the last minute."},
+                    { "variable": "HEXACO_22", "item_text": "I often push myself very hard when trying to achieve a goal."},
+                    { "variable": "HEXACO_23", "item_text": "When working on something, I don't pay much attention to small details."},
+                    { "variable": "HEXACO_24", "item_text": "I make decisions based on the feeling of the moment rather than on careful thought."},
+                    { "variable": "HEXACO_25", "item_text": "When working, I sometimes have difficulties due to being disorganized."},
+                    { "variable": "HEXACO_26", "item_text": "I do only the minimum amount of work needed to get by."},
+                    { "variable": "HEXACO_27", "item_text": "I always try to be accurate in my work, even at the expense of time."},
+                    { "variable": "HEXACO_28", "item_text": "I make a lot of mistakes because I don’t think before I act."},
+                    { "variable": "HEXACO_29", "item_text": "People often call me a perfectionist."},
+                    { "variable": "HEXACO_30", "item_text": "I prefer to do whatever comes to mind, rather than stick to a plan."}
                 ]
             },
             {
@@ -807,6 +837,42 @@
                     { "variable": "MFQ_09", "item_text": "People should be loyal to their family members, even when they have done something wrong."},
                     { "variable": "MFQ_10", "item_text": "Men and women each have different roles to play in society."},
                     { "variable": "MFQ_11", "item_text": "I would call some acts wrong on the grounds that they are unnatural."}
+                ]
+            },
+            {
+                "name": "Chronotype Questionnaire",
+                "name_short": "CQ",
+                "language": "en",
+                "ref_apa": "Dosseville, F., Laborde, S., & Lericollais, R. (2013). Validation of a Chronotype Questionnaire Including an Amplitude Dimension. Chronobiology International, 30(5), 639–648. https://doi.org/10.3109/07420528.2012.763042",
+                "ref_isbn": null,
+                "ref_doi": "10.3109/07420528.2012.763042",
+                "scales": {
+                    "distinctness": {
+                        "lower": ["CQ_01", "CQ_06", "CQ_08", "CQ_10", "CQ_12"],
+                        "upper": ["CQ_03", "CQ_14", "CQ_15"]
+                    },
+                    "morningness-eveningness": {
+                        "lower": ["CQ_02", "CQ_07", "CQ_11", "CQ_13"],
+                        "upper": ["CQ_04", "CQ_05", "CQ_09", "CQ_16"]
+                    }
+                },
+                "items": [
+                    { "variable": "CQ_01", "item_text": "I can work efficiently at any time of the day"},
+                    { "variable": "CQ_02", "item_text": "I feel I can think the best in the morning."},
+                    { "variable": "CQ_03", "item_text": "There are moments during the day where I would prefer to avoid any work."},
+                    { "variable": "CQ_04", "item_text": "I feel drowsy for a long time after awakening."},
+                    { "variable": "CQ_05", "item_text": "If I were to study anything by myself, I would rather do it in the evening."},
+                    { "variable": "CQ_06", "item_text": "My mood stays the same throughout the day."},
+                    { "variable": "CQ_07", "item_text": "I like to get up earlier then necessary, e.g. in order to prepare things for the whole day."},
+                    { "variable": "CQ_08", "item_text": "I can focus at any time ofthe day."},
+                    { "variable": "CQ_09", "item_text": "My work goes better in the afternoon than be forenoon."},
+                    { "variable": "CQ_10", "item_text": "At any time ofthe day, my motivation is the same."},
+                    { "variable": "CQ_11", "item_text": "I am usually in an excellent mood in the morning."},
+                    { "variable": "CQ_12", "item_text": "If I need it, I’m able to concentrate at any time of the day."},
+                    { "variable": "CQ_13", "item_text": "I am in my best form in the morning, in the course ofthe day my energy runs out."},
+                    { "variable": "CQ_14", "item_text": "There are moments during the day where I feel unable to do anything."},
+                    { "variable": "CQ_15", "item_text": "There are moments during the day when it is harder for me to think."},
+                    { "variable": "CQ_16", "item_text": "I feel sluggish in the morning and I warm up slowly during the day."}
                 ]
             }
         ]
