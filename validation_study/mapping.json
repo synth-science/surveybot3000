@@ -248,47 +248,7 @@
                     { "variable": "NEPS_12", "item_text": "Humans were meant to rule over the rest of nature"},
                     { "variable": "NEPS_13", "item_text": "The balance of nature is very delicate and easily upset"}
                 ]
-            },
-            {
-                "name": "Humor Styles Questionnaire",
-                "name_short": "HSQ",
-                "language": "en",
-                "ref_apa": "Martin, R. A., Puhlik-Doris, P., Larsen, G., Gray, J., & Weir, K. (2012). Humor Styles Questionnaire [dataset]. https://doi.org/10.1037/t07239-000",
-                "ref_isbn": null,
-                "ref_doi": "10.1037/t07239-000",
-                "scales": {
-                    "affiliative humor": {
-                        "lower": ["HSQ_09", "HSQ_29"],
-                        "upper": ["HSQ_21"]
-                    },
-                    "aggressive humor": {
-                        "lower": ["HSQ_07", "HSQ_23"],
-                        "upper": ["HSQ_03"]
-                    },
-                    "self-defeating humor": {
-                        "lower": ["HSQ_16"],
-                        "upper": ["HSQ_04", "HSQ_08"]
-                    },
-                    "self-enhancing humor": {
-                        "lower": ["HSQ_22"],
-                        "upper": ["HSQ_02", "HSQ_06"]
-                    }
-                },
-                "items": [
-                    { "variable": "HSQ_02", "item_text": "If I am feeling depressed, I can usually cheer myself up with humor."},
-                    { "variable": "HSQ_03", "item_text": "If someone makes a mistake, I will often tease them about it."},
-                    { "variable": "HSQ_04", "item_text": "I let people laugh at me or make fun at my expense more than I should."},
-                    { "variable": "HSQ_06", "item_text": "Even when I’m by myself, I’m often amused by the absurdities of life."},
-                    { "variable": "HSQ_07", "item_text": "People are never offended or hurt by my sense of humor."},
-                    { "variable": "HSQ_08", "item_text": "I will often get carried away in putting myself down if it makes my family or friends laugh."},
-                    { "variable": "HSQ_09", "item_text": "I rarely make other people laugh by telling funny stories about myself."},
-                    { "variable": "HSQ_16", "item_text": "I don’t often say funny things to put myself down."},
-                    { "variable": "HSQ_21", "item_text": "I enjoy making people laugh."},
-                    { "variable": "HSQ_22", "item_text": "If I am feeling sad or upset, I usually lose my sense of humor."},
-                    { "variable": "HSQ_23", "item_text": "I never participate in laughing at others even if all my friends are doing it."},
-                    { "variable": "HSQ_29", "item_text": "I usually can't think of witty things to say when I'm with other people."}
-                ]
-            },
+            },        
             {
                 "name": "UCLA Loneliness Scale (Short Form)",
                 "name_short": "ULS-8",
@@ -311,30 +271,6 @@
                     { "variable": "ULS8_06", "item_text": "I can find companionship when I want it."},
                     { "variable": "ULS8_07", "item_text": "I am unhappy being so withdrawn."},
                     { "variable": "ULS8_08", "item_text": "People are around me but not with me."}
-                ]
-            },
-            {
-                "name": "General Self-Efficacy Scale",
-                "name_short": "NGSE",
-                "language": "en",
-                "ref_apa": "Chen, G., Gully, S. M., & Eden, D. (2001). Validation of a New General Self-Efficacy Scale. Organizational Research Methods, 4(1), 62–83. https://doi.org/10.1177/109442810141004",
-                "ref_isbn": null,
-                "ref_doi": "10.1177/109442810141004",
-                "scales": {
-                    "general self-efficacy": {
-                        "lower": [],
-                        "upper": ["NGSE_01", "NGSE_02", "NGSE_03", "NGSE_04", "NGSE_05", "NGSE_06", "NGSE_07", "NGSE_08"]
-                    }
-                },
-                "items": [
-                    { "variable": "NGSE_01", "item_text": "I will be able to achieve most of the goals that I have set for myself."},
-                    { "variable": "NGSE_02", "item_text": "When facing difficult tasks, I am certain that I will accomplish them."},
-                    { "variable": "NGSE_03", "item_text": "In general, I think that I can obtain outcomes that are important to me."},
-                    { "variable": "NGSE_04", "item_text": "I believe I can succeed at most any endeavor to which I set my mind."},
-                    { "variable": "NGSE_05", "item_text": "I will be able to successfully overcome many challenges."},
-                    { "variable": "NGSE_06", "item_text": "I am confident that I can perform effectively on many different tasks."},
-                    { "variable": "NGSE_07", "item_text": "Compared to other people, I can do most tasks very well."},
-                    { "variable": "NGSE_08", "item_text": "Even when things are tough, I can perform quite well."}
                 ]
             },
             {
