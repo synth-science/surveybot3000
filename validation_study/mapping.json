@@ -1,816 +1,1456 @@
 {
-    "dataset": {
-        "ref_url": "https://docs.google.com/spreadsheets/d/16QcRLP5BUn1Cmtr0e_XRdjr1Wg-EHSMSGmgZO1M3tNM/edit#gid=0",
-        "ref_doi": null,
-        "ref_apa": null,
-        "source_path": "/nlp/data/datasets/osf-bainbridge-2021-s2-0.zip",
-        "path_in_archive": null,
-        "delimiter": null,
-        "preprocessing": {
-            "na_value": null,
-            "filters": null,
-            "mutations": null
-        },
-        "instruments": [
-            {
-                "name": "Attitudes Toward AI in Defense Scale",
-                "name_short": "AAID",
-                "language": "en",
-                "ref_apa": "Hadlington, L., Binder, J., Gardner, S., Karanika-Murray, M., & Knight, S. (2023). The use of artificial intelligence in a military context: Development of the attitudes toward AI in defense (AAID) scale. Frontiers in Psychology, 14, 1164810. https://doi.org/10.3389/fpsyg.2023.1164810",
-                "ref_isbn": null,
-                "ref_doi": "10.3389/fpsyg.2023.1164810",
-                "scales": {
-                    "attitude toward ai in defense": {
-                        "lower": ["AAID_01", "AAID_05", "AAID_09"],
-                        "upper": ["AAID_07", "AAID_12", "AAID_14"]
-                      }
-                },
-                "items": [
-                    { "variable": "AAID_01", "item_text": "The use of AI in Defense could be used to spy on us"},
-                    { "variable": "AAID_05", "item_text": "The use of AI in Defense could be used unethically by those in power"},
-                    { "variable": "AAID_07", "item_text": "The use of AI in Defense could be used to maintain peace"},
-                    { "variable": "AAID_09", "item_text": "The use of AI in Defense could lead to unforeseen consequences"},
-                    { "variable": "AAID_12", "item_text": "The use of AI in Defense could save lives"},
-                    { "variable": "AAID_14", "item_text": "The use of AI in Defense could protect critical national infrastructure"}
-                ]
-            },
-            {
-                "name": "Positive and Negative Affect Schedule",
-                "name_short": "PANAS",
-                "language": "en",
-                "ref_apa": "Watson, D., Clark, L. A., & Tellegen, A. (1988). Development and validation of brief measures of positive and negative affect: The PANAS scales. Journal of Personality and Social Psychology, 54(6), 1063–1070. https://doi.org/10.1037/0022-3514.54.6.1063",
-                "ref_isbn": null,
-                "ref_doi": "10.1037/0022-3514.54.6.1063",
-                "scales": {
-                    "positive affect": {
-                        "lower": [],
-                        "upper": ["PANAS_09", "PANAS_14", "PANAS_10", "PANAS_05"]
-                      },
-                    "negative affect": {
-                        "lower": [],
-                        "upper": ["PANAS_08", "PANAS_06", "PANAS_04", "PANAS_18"]
-                      }
-                },
-                "items": [
-                    { "variable": "PANAS_09", "item_text": "During the last two weeks, I have felt enthusiastic"},
-                    { "variable": "PANAS_14", "item_text": "During the last two weeks, I have felt inspired"},
-                    { "variable": "PANAS_10", "item_text": "During the last two weeks, I have felt proud"},
-                    { "variable": "PANAS_05", "item_text": "During the last two weeks, I have felt strong"},
-                    { "variable": "PANAS_08", "item_text": "During the last two weeks, I have felt hostile"},
-                    { "variable": "PANAS_06", "item_text": "During the last two weeks, I have felt guilty"},
-                    { "variable": "PANAS_04", "item_text": "During the last two weeks, I have felt upset"},
-                    { "variable": "PANAS_18", "item_text": "During the last two weeks, I have felt jittery"}
-                ]
-            },
-            {
-                "name": "Oldenburg Burnout Inventory (English Translation)",
-                "name_short": "OLBI-EN",
-                "language": "en",
-                "ref_apa": "Demerouti, E., Mostert, K., & Bakker, A. B. (2010). Burnout and work engagement: A thorough investigation of the independency of both constructs. Journal of Occupational Health Psychology, 15(3), 209–222. https://doi.org/10.1037/a0019408",
-                "ref_isbn": null,
-                "ref_doi": "10.1037/a0019408",
-                "scales": {
-                    "exhaustion": {
-                        "lower": ["OLBI_10", "OLBI_16"],
-                        "upper": ["OLBI_12", "OLBI_08"]
-                      },
-                    "disengagement": {
-                        "lower": ["OLBI_07", "OLBI_15"],
-                        "upper": ["OLBI_09", "OLBI_11"]
-                      },
-                    "burnout": {
-                        "lower": ["OLBI_07", "OLBI_10", "OLBI_15", "OLBI_16"],
-                        "upper": ["OLBI_08", "OLBI_09", "OLBI_11", "OLBI_12"]
-                      }
-                },
-                "items": [
-                    { "variable": "OLBI_07", "item_text": "I ﬁnd my work to be a positive challenge."},
-                    { "variable": "OLBI_08", "item_text": "During my work, I often feel emotionally drained."},
-                    { "variable": "OLBI_09", "item_text": "Over time, one can become disconnected from this type of work."},
-                    { "variable": "OLBI_10", "item_text": "After working, I have enough energy for my leisure activities."},
-                    { "variable": "OLBI_11", "item_text": "Sometimes I feel sickened by my work tasks."},
-                    { "variable": "OLBI_12", "item_text": "After my work, I usually feel worn out and weary."},
-                    { "variable": "OLBI_15", "item_text": "I feel more and more engaged in my work."},
-                    { "variable": "OLBI_16", "item_text": "When I work, I usually feel energized."}
-                ]
-            },
-            {
-                "name": "Utrecht Work Engagement Scale (Short Version)",
-                "name_short": "UWES-9",
-                "language": "en",
-                "ref_apa": "Schaufeli, W. B., Bakker, A. B., & Salanova, M. (2006). The Measurement of Work Engagement With a Short Questionnaire: A Cross-National Study. Educational and Psychological Measurement, 66(4), 701–716. https://doi.org/10.1177/0013164405282471",
-                "ref_isbn": null,
-                "ref_doi": "10.1177/0013164405282471",
-                "scales": {
-                    "vigor": {
-                        "lower": [],
-                        "upper": ["UWES9_01", "UWES9_02", "UWES9_05"]
-                      },
-                    "dedication": {
-                        "lower": [],
-                        "upper": ["UWES9_03", "UWES9_04", "UWES9_07"]
-                      },
-                    "absorption": {
-                        "lower": [],
-                        "upper": ["UWES9_06", "UWES9_08", "UWES9_09"]
-                      },
-                    "engagement": {
-                        "lower": [],
-                        "upper": ["UWES9_01", "UWES9_02", "UWES9_03", "UWES9_04", "UWES9_05", "UWES9_06", "UWES9_07", "UWES9_08", "UWES9_09"]
-                      }
-                },
-                "items": [
-                    { "variable": "UWES9_01", "item_text": "At my work, I feel bursting with energy."},
-                    { "variable": "UWES9_02", "item_text": "At my job, I feel strong and vigorous."},
-                    { "variable": "UWES9_03", "item_text": "I am enthusiastic about my job."},
-                    { "variable": "UWES9_04", "item_text": "My job inspires me."},
-                    { "variable": "UWES9_05", "item_text": "When I get up in the morning, I feel like going to work."},
-                    { "variable": "UWES9_06", "item_text": "I feel happy when I am working intensely."},
-                    { "variable": "UWES9_07", "item_text": "I am proud of the work that I do."},
-                    { "variable": "UWES9_08", "item_text": "I am immersed in my work."},
-                    { "variable": "UWES9_09", "item_text": "I get carried away when I am working."}
-                ]
-            },
-            {
-                "name": "Perth Alexithymia Questionnaire",
-                "name_short": "PAQ",
-                "language": "en",
-                "ref_apa": "Preece, D., Becerra, R., Robinson, K., Dandy, J., & Allan, A. (2018). The psychometric assessment of alexithymia: Development and validation of the Perth Alexithymia Questionnaire. Personality and Individual Differences, 132, 32–44. https://doi.org/10.1016/j.paid.2018.05.011",
-                "ref_isbn": null,
-                "ref_doi": "10.1016/j.paid.2018.05.011",
-                "scales": {
-                    "general-externally orientated thinking": {
-                        "lower": [],
-                        "upper": ["PAQ_03", "PAQ_15"]
-                    },
-                    "negative-difficulty describing feelings": {
-                        "lower": [],
-                        "upper": ["PAQ_13", "PAQ_07"]
-                    },
-                    "negative-difficulty identifying feelings": {
-                        "lower": [],
-                        "upper": ["PAQ_08", "PAQ_20"]
-                    },
-                    "positive-difficulty describing feelings": {
-                        "lower": [],
-                        "upper": ["PAQ_10", "PAQ_16"]
-                    },
-                    "positive-difficulty identifying feelings": {
-                        "lower": [],
-                        "upper": ["PAQ_05", "PAQ_17"]
-                    },
-                    "alexithymia": {
-                        "lower": [],
-                        "upper": ["PAQ_03", "PAQ_15", "PAQ_13", "PAQ_07", "PAQ_08", "PAQ_20", "PAQ_10", "PAQ_16", "PAQ_05", "PAQ_17"]
-                    }
-                },
-                "items": [
-                    { "variable": "PAQ_08", "item_text": "When I'm feeling bad, I can't make sense of those feelings."},
-                    { "variable": "PAQ_20", "item_text": "When I'm feeling bad, I'm puzzled by those feelings."},
-                    { "variable": "PAQ_05", "item_text": "When I'm feeling good, I can't tell whether I'm happy, excited, or amused."},
-                    { "variable": "PAQ_17", "item_text": "When I'm feeling good, I get confused about what emotion it is."},
-                    { "variable": "PAQ_13", "item_text": "When something bad happens, it's hard for me to put into words how I'm feeling."},
-                    { "variable": "PAQ_07", "item_text": "When I'm feeling bad, I can't talk about those feelings in much depth or detail."},
-                    { "variable": "PAQ_10", "item_text": "When I'm feeling good, I can't talk about those feelings in much depth or detail."},
-                    { "variable": "PAQ_16", "item_text": "When something good happens, it's hard for me to put into words how I'm feeling."},
-                    { "variable": "PAQ_03", "item_text": "I tend to ignore how I feel."},
-                    { "variable": "PAQ_15", "item_text": "I prefer to focus on things I can actually see or touch, rather than my emotions."}
-                ]
-            },
-            {
-                "name": "Perceived Stress Scale",
-                "name_short": "PSS",
-                "language": "en",
-                "ref_apa": "Cohen, S., Kamarck, T., & Mermelstein, R. (1983). A Global Measure of Perceived Stress. Journal of Health and Social Behavior, 24(4), 385. https://doi.org/10.2307/2136404",
-                "ref_isbn": null,
-                "ref_doi": "10.2307/2136404",
-                "scales": {
-                    "perceived stress": {
-                        "lower": ["PSS_04", "PSS_05", "PSS_06", "PSS_07", "PSS_09", "PSS_10", "PSS_13"],
-                        "upper": ["PSS_01", "PSS_02", "PSS_03", "PSS_08", "PSS_11", "PSS_12", "PSS_14"]
-                    }
-                },
-                "items": [
-                    { "variable": "PSS_01", "item_text": "In the last month, how often have you been upset because of something that happened unexpectedly?"},
-                    { "variable": "PSS_02", "item_text": "In the last month, how often have you felt that you were unable to control the important things in your life?"},
-                    { "variable": "PSS_03", "item_text": "In the last month, how often have you felt nervous and \"stressed\"?"},
-                    { "variable": "PSS_04", "item_text": "In the last month, how often have you dealt successfully with irritating life hassles?"},
-                    { "variable": "PSS_05", "item_text": "In the last month, how often have you felt that you were effectively coping with important changes that were occurring in your life?"},
-                    { "variable": "PSS_06", "item_text": "In the last month, how often have you felt confident about your ability to handle your personal problems?"},
-                    { "variable": "PSS_07", "item_text": "In the last month, how often have you felt that things were going your way?"},
-                    { "variable": "PSS_08", "item_text": "In the last month, how often have you found that you could not cope with all the things that you had to do?"},
-                    { "variable": "PSS_09", "item_text": "In the last month, how often have you been able to control irritations in your life?"},
-                    { "variable": "PSS_10", "item_text": "In the last month, how often have you felt that you were on top of things?"},
-                    { "variable": "PSS_11", "item_text": "In the last month, how often have you been angered because of things that happened that were outside of your control?"},
-                    { "variable": "PSS_12", "item_text": "In the last month, how often have you found yourself thinking about things that you have to accomplish?"},
-                    { "variable": "PSS_13", "item_text": "In the last month, how often have you been able to control the way you spend your time?"},
-                    { "variable": "PSS_14", "item_text": "In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?"}
-                ]
-            },
-            {
-                "name": "New Ecological Paradigm Scale",
-                "name_short": "NEPS",
-                "language": "en",
-                "ref_apa": "Dunlap, R. E., Van Liere, K. D., Mertig, A. G., & Jones, R. E. (2000). New Trends in Measuring Environmental Attitudes: Measuring Endorsement of the New Ecological Paradigm: A Revised NEP Scale. Journal of Social Issues, 56(3), 425–442. https://doi.org/10.1111/0022-4537.00176",
-                "ref_isbn": null,
-                "ref_doi": "10.1111/0022-4537.00176",
-                "scales": {
-                    "antiexemptionalism": {
-                        "lower": ["NEPS_04"],
-                        "upper": ["NEPS_09"]
-                    },
-                    "balance of nature": {
-                        "lower": ["NEPS_08"],
-                        "upper": ["NEPS_13"]
-                    },
-                    "eco-crisis": {
-                        "lower": ["NEPS_10"],
-                        "upper": ["NEPS_05"]
-                    },
-                    "human domination": {
-                        "lower": ["NEPS_12"],
-                        "upper": ["NEPS_07"]
-                    },
-                    "limits to growth": {
-                        "lower": ["NEPS_06"],
-                        "upper": ["NEPS_01"]
-                    }
-                },
-                "items": [
-                    { "variable": "NEPS_01", "item_text": "We are approaching the limit of the number of people the earth can support"},
-                    { "variable": "NEPS_04", "item_text": "Human ingenuity will insure that we do NOT make the earth unlivable"},
-                    { "variable": "NEPS_05", "item_text": "Humans are severely abusing the environment"},
-                    { "variable": "NEPS_06", "item_text": "The earth has plenty of natural resources if we just learn how to develop them"},
-                    { "variable": "NEPS_07", "item_text": "Plants and animals have as much right as humans to exist"},
-                    { "variable": "NEPS_08", "item_text": "The balance of nature is strong enough to cope with the impacts of modern industrial nations"},
-                    { "variable": "NEPS_09", "item_text": "Despite our special abilities humans are still subject to the laws of nature"},
-                    { "variable": "NEPS_10", "item_text": "The so-called \"ecological crisis\" facing humankind has been greatly exaggerated"},
-                    { "variable": "NEPS_12", "item_text": "Humans were meant to rule over the rest of nature"},
-                    { "variable": "NEPS_13", "item_text": "The balance of nature is very delicate and easily upset"}
-                ]
-            },        
-            {
-                "name": "UCLA Loneliness Scale (Short Form)",
-                "name_short": "ULS-8",
-                "language": "en",
-                "ref_apa": "Hays, R., & DiMatteo, M. R. (1987). A Short-Form Measure of Loneliness. Journal of Personality Assessment, 51(1), 69–81. https://doi.org/10.1207/s15327752jpa5101_6",
-                "ref_isbn": null,
-                "ref_doi": "10.1207/s15327752jpa5101_6",
-                "scales": {
-                    "loneliness": {
-                        "lower": [],
-                        "upper": ["ULS8_01", "ULS8_02", "ULS8_03", "ULS8_04", "ULS8_05", "ULS8_06", "ULS8_07", "ULS8_08"]
-                    }
-                },
-                "items": [
-                    { "variable": "ULS8_01", "item_text": "I lack companionship."},
-                    { "variable": "ULS8_02", "item_text": "There is no one I can turn to."},
-                    { "variable": "ULS8_03", "item_text": "I am an outgoing person."},
-                    { "variable": "ULS8_04", "item_text": "I feel left out."},
-                    { "variable": "ULS8_05", "item_text": "I feel isolated from others."},
-                    { "variable": "ULS8_06", "item_text": "I can find companionship when I want it."},
-                    { "variable": "ULS8_07", "item_text": "I am unhappy being so withdrawn."},
-                    { "variable": "ULS8_08", "item_text": "People are around me but not with me."}
-                ]
-            },
-            {
-                "name": "Fear of COVID-19 Scale",
-                "name_short": "FCV-19S",
-                "language": "en",
-                "ref_apa": "Ahorsu, D. K., Lin, C.-Y., Imani, V., Saffari, M., Griffiths, M. D., & Pakpour, A. H. (2022). The Fear of COVID-19 Scale: Development and Initial Validation. International Journal of Mental Health and Addiction, 20(3), 1537–1545. https://doi.org/10.1007/s11469-020-00270-8",
-                "ref_isbn": null,
-                "ref_doi": "10.1007/s11469-020-00270-8",
-                "scales": {
-                    "fear of covid-19": {
-                        "lower": [],
-                        "upper": ["FCV19S_01", "FCV19S_02", "FCV19S_03", "FCV19S_04", "FCV19S_05", "FCV19S_06", "FCV19S_07"]
-                    }
-                },
-                "items": [
-                    { "variable": "FCV19S_01", "item_text": "I am most afraid of coronavirus-19"},
-                    { "variable": "FCV19S_02", "item_text": "It makes me uncomfortable to think about coronavirus-19."},
-                    { "variable": "FCV19S_03", "item_text": "My hands become clammy when I think about coronavirus-19."},
-                    { "variable": "FCV19S_04", "item_text": "I am afraid of losing my life because of coronavirus-19."},
-                    { "variable": "FCV19S_05", "item_text": "When watching news and stories about coronavirus-19 on social media, I become nervous or anxious."},
-                    { "variable": "FCV19S_06", "item_text": "I cannot sleep because I’m worrying about getting coronavirus-19."},
-                    { "variable": "FCV19S_07", "item_text": "My heart races or palpitates when I think about getting coronavirus-19."}
-                ]
-            },
-            {
-                "name": "Disgust Avoidance Questionnaire",
-                "name_short": "DAQ",
-                "language": "en",
-                "ref_apa": "Von Spreckelsen, P., Jonker, N. C., Vugteveen, J., Wessel, I., Glashouwer, K. A., & De Jong, P. J. (2021). Individual differences in avoiding feelings of disgust: Development and construct validity of the disgust avoidance questionnaire. PLOS ONE, 16(3), e0248219. https://doi.org/10.1371/journal.pone.0248219",
-                "ref_isbn": null,
-                "ref_doi": "10.1371/journal.pone.0248219",
-                "scales": {
-                    "behavioral prevention": {
-                        "lower": [],
-                        "upper": ["DAQ_05", "DAQ_07", "DAQ_09", "DAQ_11", "DAQ_15"]
-                    },
-                    "cognitive prevention": {
-                        "lower": [],
-                        "upper": ["DAQ_19", "DAQ_21", "DAQ_23", "DAQ_25"]
-                    },
-                    "behavioral escape": {
-                        "lower": [],
-                        "upper": ["DAQ_02", "DAQ_06", "DAQ_08", "DAQ_10"]
-                    },
-                    "cognitive escape": {
-                        "lower": [],
-                        "upper": ["DAQ_12", "DAQ_14", "DAQ_16", "DAQ_24"]
-                    },
-                    "disgust avoidance": {
-                        "lower": [],
-                        "upper": ["DAQ_05", "DAQ_07", "DAQ_09", "DAQ_11", "DAQ_15", "DAQ_19", "DAQ_21", "DAQ_23", "DAQ_25", "DAQ_02", "DAQ_06", "DAQ_08", "DAQ_10", "DAQ_12", "DAQ_14", "DAQ_16", "DAQ_24"]
-                    }
-                },
-                "items": [
-                    { "variable": "DAQ_05", "item_text": "I try to avoid activities that could make me feel disgusted."},
-                    { "variable": "DAQ_07", "item_text": "I avoid actions that remind me of repulsive things."},
-                    { "variable": "DAQ_09", "item_text": "I try hard to avoid situations that might bring up feelings of repulsion in me."},
-                    { "variable": "DAQ_11", "item_text": "I avoid certain situations that make me pay attention to disgusting things."},
-                    { "variable": "DAQ_15", "item_text": "I avoid objects that can trigger feelings of disgust."},
-                    { "variable": "DAQ_19", "item_text": "I try not to think about gross situations."},
-                    { "variable": "DAQ_21", "item_text": "I try hard to avoid thinking about a repulsive past situation."},
-                    { "variable": "DAQ_23", "item_text": "I distract myself to avoid thinking about things that disgust me."},
-                    { "variable": "DAQ_25", "item_text": "To avoid thinking about things that revolt me, I force myself to think about something else."},
-                    { "variable": "DAQ_02", "item_text": "I am quick to stop any activity that makes me feel disgusted."},
-                    { "variable": "DAQ_06", "item_text": "If I start feeling strong disgust, I prefer to leave the situation."},
-                    { "variable": "DAQ_08", "item_text": "If I am in a situation in which I feel revolted, I leave the situation immediately."},
-                    { "variable": "DAQ_10", "item_text": "I am quick to leave any situation that makes me feel disgusted."},
-                    { "variable": "DAQ_12", "item_text": "When I think about something gross, I push those thoughts out of my mind."},
-                    { "variable": "DAQ_14", "item_text": "When thoughts about repulsive things come up, I try very hard to stop thinking about them."},
-                    { "variable": "DAQ_16", "item_text": "If thoughts about disgusting things cross my mind, I try to push them away as much as possible."},
-                    { "variable": "DAQ_24", "item_text": "When thoughts about revolting things come up, I try to fill my head with something else."}
-                ]
-            },
-            {
-                "name": "Work Gratitude Scale",
-                "name_short": "WGS",
-                "language": "en",
-                "ref_apa": "Youssef-Morgan, C. M., Van Zyl, L. E., & Ahrens, B. L. (2022). The Work Gratitude Scale: Development and Evaluation of a Multidimensional Measure. Frontiers in Psychology, 12, 795328. https://doi.org/10.3389/fpsyg.2021.795328",
-                "ref_isbn": null,
-                "ref_doi": "10.3389/fpsyg.2021.795328",
-                "scales": {
-                    "grateful appraisals": {
-                        "lower": [],
-                        "upper": ["WGS_01", "WGS_02", "WGS_03"]
-                    },
-                    "gratitude toward others": {
-                        "lower": [],
-                        "upper": ["WGS_04", "WGS_05", "WGS_06", "WGS_07"]
-                    },
-                    "intentional attitude of gratitude": {
-                        "lower": [],
-                        "upper": ["WGS_08", "WGS_09", "WGS_10"]
-                    },
-                    "work gratitude scale": {
-                        "lower": [],
-                        "upper": ["WGS_01", "WGS_02", "WGS_03", "WGS_04", "WGS_05", "WGS_06", "WGS_07", "WGS_08", "WGS_09", "WGS_10"]
-                    }
-                },
-                "items": [
-                    { "variable": "WGS_01", "item_text": "Right now, I have so much at work to be thankful for."},
-                    { "variable": "WGS_02", "item_text": "At this present time, if I had to list everything that I felt grateful for at work, it would be a very long list."},
-                    { "variable": "WGS_03", "item_text": "At the present time, life has been good to me at work."},
-                    { "variable": "WGS_04", "item_text": "Currently, I couldn’t have gotten where I am today at work without the help of many people."},
-                    { "variable": "WGS_05", "item_text": "Although I think it’s important to feel good about my current work accomplishments, I think that it’s also important to remember how others have contributed to my accomplishments."},
-                    { "variable": "WGS_06", "item_text": "Although I’m basically in control of my work at the present time, I can’t help but think about all those who have supported me and helped me along the way."},
-                    { "variable": "WGS_07", "item_text": "Right now, I feel deeply appreciative for the things others have done for me at work."},
-                    { "variable": "WGS_08", "item_text": "Currently, I think that it’s important to \"Stop and smell the roses\" as it pertains to my work."},
-                    { "variable": "WGS_09", "item_text": "Currently, I believe that it’s important to pause often to \"count my blessings\" at work."},
-                    { "variable": "WGS_10", "item_text": "Right now, I think it’s important to enjoy the simple things that pertain to my work."}
-                ]
-            },
-            {
-                "name": "Center for Epidemiological Studies Depression Scale",
-                "name_short": "CES-D",
-                "language": "en",
-                "ref_apa": "Hertzog, C., Van Alstine, J., Usala, P. D., Hultsch, D. F., & Dixon, R. (1990). Measurement properties of the Center for Epidemiological Studies Depression Scale (CES-D) in older populations. Psychological Assessment: A Journal of Consulting and Clinical Psychology, 2(1), 64–72. https://doi.org/10.1037/1040-3590.2.1.64",
-                "ref_isbn": null,
-                "ref_doi": "10.1037/1040-3590.2.1.64",
-                "scales": {
-                    "depression": {
-                        "lower": [],
-                        "upper": ["CESD_01", "CESD_02", "CESD_03", "CESD_04", "CESD_05", "CESD_06", "CESD_07", "CESD_08", "CESD_09", "CESD_10", "CESD_11", "CESD_12", "CESD_13", "CESD_14", "CESD_15", "CESD_16", "CESD_17", "CESD_18", "CESD_19", "CESD_20"]
-                    }
-                },
-                "items": [
-                    { "variable": "CESD_01", "item_text": "I was bothered by things that usually don’t bother me."},
-                    { "variable": "CESD_02", "item_text": "I did not feel like eating; my appetite was poor."},
-                    { "variable": "CESD_03", "item_text": "I felt that I could not shake off the blues even with help from my family or friends."},
-                    { "variable": "CESD_04", "item_text": "I felt that I was just as good as other people."},
-                    { "variable": "CESD_05", "item_text": "I had trouble keeping my mind on what I was doing."},
-                    { "variable": "CESD_06", "item_text": "I felt depressed."},
-                    { "variable": "CESD_07", "item_text": "I felt that everything I did was an effort."},
-                    { "variable": "CESD_08", "item_text": "I felt hopeful about the future."},
-                    { "variable": "CESD_09", "item_text": "I thought my life had been a failure."},
-                    { "variable": "CESD_10", "item_text": "I felt fearful."},
-                    { "variable": "CESD_11", "item_text": "My sleep was restless."},
-                    { "variable": "CESD_12", "item_text": "I was happy."},
-                    { "variable": "CESD_13", "item_text": "I talked less than usual."},
-                    { "variable": "CESD_14", "item_text": "I felt lonely."},
-                    { "variable": "CESD_15", "item_text": "People were unfriendly."},
-                    { "variable": "CESD_16", "item_text": "I enjoyed life."},
-                    { "variable": "CESD_17", "item_text": "I had crying spells."},
-                    { "variable": "CESD_18", "item_text": "I felt sad."},
-                    { "variable": "CESD_19", "item_text": "I felt that people dislike me."},
-                    { "variable": "CESD_20", "item_text": "I could not get \"going\"."}
-                ]
-            },
-            {
-                "name": "HEXACO-60",
-                "name_short": "HEXACO-60",
-                "language": "en",
-                "ref_apa": "Ashton, M., & Lee, K. (2009). The HEXACO-60: A Short Measure of the Major Dimensions of Personality. Journal of Personality Assessment, 91(4), 340–345. https://doi.org/10.1080/00223890902935878",
-                "ref_isbn": null,
-                "ref_doi": "10.1080/00223890902935878",
-                "scales": {
-                    "fairness": {
-                        "lower": ["HEXACO_04", "HEXACO_20"],
-                        "upper": ["HEXACO_12"]
-                    },
-                    "flexibility": {
-                        "lower": ["HEXACO_05", "HEXACO_19"],
-                        "upper": ["HEXACO_13"]
-                    },
-                    "forgiveness": {
-                        "lower": [],
-                        "upper": ["HEXACO_01", "HEXACO_09"]
-                    },
-                    "gentleness": {
-                        "lower": ["HEXACO_03"],
-                        "upper": ["HEXACO_11", "HEXACO_17"]
-                    },
-                    "greed-avoidance": {
-                        "lower": ["HEXACO_14"],
-                        "upper": ["HEXACO_06"]
-                    },
-                    "modesty": {
-                        "lower": ["HEXACO_08", "HEXACO_16"],
-                        "upper": []
-                    },
-                    "patience": {
-                        "lower": ["HEXACO_07"],
-                        "upper": ["HEXACO_15"]
-                    },
-                    "diligence": {
-                        "lower": ["HEXACO_26"],
-                        "upper": ["HEXACO_22"]
-                    },
-                    "organization": {
-                        "lower": ["HEXACO_25"],
-                        "upper": ["HEXACO_21"]
-                    },
-                    "perfectionism": {
-                        "lower": ["HEXACO_23"],
-                        "upper": ["HEXACO_27", "HEXACO_29"]
-                    },
-                    "prudence": {
-                        "lower": ["HEXACO_28", "HEXACO_30"],
-                        "upper": ["HEXACO_24"]
-                    },
-                    "sincerity": {
-                        "lower": ["HEXACO_10"],
-                        "upper": ["HEXACO_02", "HEXACO_18"]
-                    },
-                    "honesty-humility": {
-                        "lower": ["HEXACO_04", "HEXACO_20", "HEXACO_14", "HEXACO_08", "HEXACO_16", "HEXACO_10"],
-                        "upper": ["HEXACO_12", "HEXACO_06", "HEXACO_02", "HEXACO_18"]
-                    },
-                    "agreeableness": {
-                        "lower": ["HEXACO_05", "HEXACO_19", "HEXACO_03", "HEXACO_07"],
-                        "upper": ["HEXACO_13", "HEXACO_01", "HEXACO_09", "HEXACO_11", "HEXACO_17", "HEXACO_15"]
-                    },
-                    "conscientiousness": {
-                        "lower": ["HEXACO_26", "HEXACO_25", "HEXACO_23", "HEXACO_28", "HEXACO_30"],
-                        "upper": ["HEXACO_22", "HEXACO_21", "HEXACO_27", "HEXACO_29", "HEXACO_24"]
-                    }
-
-                },
-                "items": [
-                    { "variable": "HEXACO_01", "item_text": "I rarely hold a grudge, even against people who have badly wronged me."},
-                    { "variable": "HEXACO_02", "item_text": "I wouldn't use flattery to get a raise or promotion at work, even if I thought it would succeed."},
-                    { "variable": "HEXACO_03", "item_text": "People sometimes tell me that I am too critical of others."},
-                    { "variable": "HEXACO_04", "item_text": "If I knew that I could never get caught, I would be willing to steal a million dollars."},
-                    { "variable": "HEXACO_05", "item_text": "People sometimes tell me that I'm too stubborn."},
-                    { "variable": "HEXACO_06", "item_text": "Having a lot of money is not especially important to me."},
-                    { "variable": "HEXACO_07", "item_text": "People think of me as someone who has a quick temper."},
-                    { "variable": "HEXACO_08", "item_text": "I think that I am entitled to more respect than the average person is."},
-                    { "variable": "HEXACO_09", "item_text": "My attitude toward people who have treated me badly is “forgive and forget”."},
-                    { "variable": "HEXACO_10", "item_text": "If I want something from someone, I will laugh at that person's worst jokes."},
-                    { "variable": "HEXACO_11", "item_text": "I tend to be lenient in judging other people."},
-                    { "variable": "HEXACO_12", "item_text": "I would never accept a bribe, even if it were very large."},
-                    { "variable": "HEXACO_13", "item_text": "I am usually quite flexible in my opinions when people disagree with me."},
-                    { "variable": "HEXACO_14", "item_text": "I would get a lot of pleasure from owning expensive luxury goods."},
-                    { "variable": "HEXACO_15", "item_text": "Most people tend to get angry more quickly than I do."},
-                    { "variable": "HEXACO_16", "item_text": "I want people to know that I am an important person of high status."},
-                    { "variable": "HEXACO_17", "item_text": "Even when people make a lot of mistakes, I rarely say anything negative."},
-                    { "variable": "HEXACO_18", "item_text": "I wouldn't pretend to like someone just to get that person to do favors for me."},
-                    { "variable": "HEXACO_19", "item_text": "When people tell me that I'm wrong, my first reaction is to argue with them."},
-                    { "variable": "HEXACO_20", "item_text": "I'd be tempted to use counterfeit money, if I were sure I could get away with it."},
-                    { "variable": "HEXACO_21", "item_text": "I plan ahead and organize things, to avoid scrambling at the last minute."},
-                    { "variable": "HEXACO_22", "item_text": "I often push myself very hard when trying to achieve a goal."},
-                    { "variable": "HEXACO_23", "item_text": "When working on something, I don't pay much attention to small details."},
-                    { "variable": "HEXACO_24", "item_text": "I make decisions based on the feeling of the moment rather than on careful thought."},
-                    { "variable": "HEXACO_25", "item_text": "When working, I sometimes have difficulties due to being disorganized."},
-                    { "variable": "HEXACO_26", "item_text": "I do only the minimum amount of work needed to get by."},
-                    { "variable": "HEXACO_27", "item_text": "I always try to be accurate in my work, even at the expense of time."},
-                    { "variable": "HEXACO_28", "item_text": "I make a lot of mistakes because I don’t think before I act."},
-                    { "variable": "HEXACO_29", "item_text": "People often call me a perfectionist."},
-                    { "variable": "HEXACO_30", "item_text": "I prefer to do whatever comes to mind, rather than stick to a plan."}
-                ]
-            },
-            {
-                "name": "Obsessive–Compulsive Inventory (Revised)",
-                "name_short": "OCI-R",
-                "language": "en",
-                "ref_apa": "Foa, E. B., Huppert, J. D., Leiberg, S., Langner, R., Kichic, R., Hajcak, G., & Salkovskis, P. M. (2002). The Obsessive-Compulsive Inventory: Development and validation of a short version. Psychological Assessment, 14(4), 485–496. https://doi.org/10.1037/1040-3590.14.4.485",
-                "ref_isbn": null,
-                "ref_doi": "10.1037//1040-3590.14.4.485",
-                "scales": {
-                    "checking": {
-                        "lower": [],
-                        "upper": ["OCIR_02", "OCIR_08", "OCIR_14"]
-                    },
-                    "hoarding": {
-                        "lower": [],
-                        "upper": ["OCIR_01", "OCIR_07", "OCIR_13"]
-                    },
-                    "neutralizing": {
-                        "lower": [],
-                        "upper": ["OCIR_04", "OCIR_10", "OCIR_16"]
-                    },
-                    "obsessing": {
-                        "lower": [],
-                        "upper": ["OCIR_06", "OCIR_12", "OCIR_18"]
-                    },
-                    "ordering": {
-                        "lower": [],
-                        "upper": ["OCIR_03", "OCIR_09", "OCIR_15"]
-                    },
-                    "washing": {
-                        "lower": [],
-                        "upper": ["OCIR_05", "OCIR_11", "OCIR_17"]
-                    },
-                    "obsessive-compulsive": {
-                        "lower": [],
-                        "upper": ["OCIR_02", "OCIR_08", "OCIR_14", "OCIR_01", "OCIR_07", "OCIR_13", "OCIR_04", "OCIR_10", "OCIR_16", "OCIR_06", "OCIR_12", "OCIR_18", "OCIR_03", "OCIR_09", "OCIR_15", "OCIR_05", "OCIR_11", "OCIR_17"]
-                    }
-                },
-                "items": [
-                    { "variable": "OCIR_01", "item_text": "I have saved up so many things that they get in the way."},
-                    { "variable": "OCIR_02", "item_text": "I check things more often than necessary."},
-                    { "variable": "OCIR_03", "item_text": "I get upset if objects are not arranged properly."},
-                    { "variable": "OCIR_04", "item_text": "I feel compelled to count while I am doing things."},
-                    { "variable": "OCIR_05", "item_text": "I find it difficult to touch an object when I know it has been touched by strangers or certain people."},
-                    { "variable": "OCIR_06", "item_text": "I find it difficult to control my own thoughts."},
-                    { "variable": "OCIR_07", "item_text": "I collect things I don’t need."},
-                    { "variable": "OCIR_08", "item_text": "I repeatedly check doors, windows, drawers, etc."},
-                    { "variable": "OCIR_09", "item_text": "I get upset if others change the way I have arranged things."},
-                    { "variable": "OCIR_10", "item_text": "I feel I have to repeat certain numbers."},
-                    { "variable": "OCIR_11", "item_text": "I sometimes have to wash or clean myself simply because I feel contaminated."},
-                    { "variable": "OCIR_12", "item_text": "I am upset by unpleasant thoughts that come into my mind against my will."},
-                    { "variable": "OCIR_13", "item_text": "I avoid throwing things away because I am afraid I might need them later."},
-                    { "variable": "OCIR_14", "item_text": "I repeatedly check gas and water taps and light switches after turning them off."},
-                    { "variable": "OCIR_15", "item_text": "I need things to be arranged in a particular order."},
-                    { "variable": "OCIR_16", "item_text": "I feel that there are good and bad numbers."},
-                    { "variable": "OCIR_17", "item_text": "I wash my hands more often and longer than necessary."},
-                    { "variable": "OCIR_18", "item_text": "I frequently get nasty thoughts and have difficulty in getting rid of them."}
-                ]
-            },
-            {
-                "name": "Perseverative Thinking Questionnaire",
-                "name_short": "PTQ",
-                "language": "en",
-                "ref_apa": "Ehring, T., Zetsche, U., Weidacker, K., Wahl, K., Schönfeld, S., & Ehlers, A. (2011). The Perseverative Thinking Questionnaire (PTQ): Validation of a content-independent measure of repetitive negative thinking. Journal of Behavior Therapy and Experimental Psychiatry, 42(2), 225–232. https://doi.org/10.1016/j.jbtep.2010.12.003",
-                "ref_isbn": null,
-                "ref_doi": "10.1016/j.jbtep.2010.12.003",
-                "scales": {
-                    "core characteristics of repetitive negative thinking": {
-                        "lower": [],
-                        "upper": ["PTQ_01", "PTQ_02", "PTQ_03", "PTQ_06", "PTQ_07", "PTQ_08", "PTQ_11", "PTQ_12", "PTQ_13"]
-                    },
-                    "repetitive negative thinking capturing mental capacity": {
-                        "lower": [],
-                        "upper": ["PTQ_05", "PTQ_10", "PTQ_15"]
-                    },
-                    "unproductiveness of repetitive negative thinking": {
-                        "lower": [],
-                        "upper": ["PTQ_04", "PTQ_09", "PTQ_14"]
-                    },
-                    "perseverative thinking": {
-                        "lower": [],
-                        "upper": ["PTQ_01", "PTQ_02", "PTQ_03", "PTQ_06", "PTQ_07", "PTQ_08", "PTQ_11", "PTQ_12", "PTQ_13", "PTQ_05", "PTQ_10", "PTQ_15", "PTQ_04", "PTQ_09", "PTQ_14"]
-                    }
-                },
-                "items": [
-                    { "variable": "PTQ_01", "item_text": "The same thoughts keep going through my mind again and again."},
-                    { "variable": "PTQ_02", "item_text": "Thoughts intrude into my mind."},
-                    { "variable": "PTQ_03", "item_text": "I can’t stop dwelling on negative experiences or problems."},
-                    { "variable": "PTQ_04", "item_text": "I think about many problems without solving any of them."},
-                    { "variable": "PTQ_05", "item_text": "I can’t do anything else while thinking about my problems."},
-                    { "variable": "PTQ_06", "item_text": "My thoughts repeat themselves."},
-                    { "variable": "PTQ_07", "item_text": "Thoughts come to my mind without me wanting them to."},
-                    { "variable": "PTQ_08", "item_text": "I get stuck on certain issues and can’t move on."},
-                    { "variable": "PTQ_09", "item_text": "I keep asking myself questions without finding an answer."},
-                    { "variable": "PTQ_10", "item_text": "My thoughts prevent me from focusing on other things."},
-                    { "variable": "PTQ_11", "item_text": "I keep thinking about the same issue all the time."},
-                    { "variable": "PTQ_12", "item_text": "Thoughts just pop into my mind."},
-                    { "variable": "PTQ_13", "item_text": "I feel driven to continue dwelling on the same issue."},
-                    { "variable": "PTQ_14", "item_text": "My thoughts are not much help to me."},
-                    { "variable": "PTQ_15", "item_text": "My thoughts take up all my attention."}
-                ]
-            },
-            {
-                "name": "Revised Adult Attachment Scale",
-                "name_short": "RAAS",
-                "language": "en",
-                "ref_apa": "Collins, N. L. (2013). Revised Adult Attachment Scale [dataset]. https://doi.org/10.1037/t19162-000",
-                "ref_isbn": null,
-                "ref_doi": "10.1037/t19162-000",
-                "scales": {
-                    "close": {
-                        "lower": ["RAAS_08", "RAAS_13", "RAAS_17"],
-                        "upper": ["RAAS_01", "RAAS_06", "RAAS_12"]
-                    },
-                    "depend": {
-                        "lower": ["RAAS_02", "RAAS_07", "RAAS_16"],
-                        "upper": ["RAAS_05", "RAAS_14"]
-                    },
-                    "attachment": {
-                        "lower": ["RAAS_08", "RAAS_13", "RAAS_17", "RAAS_02", "RAAS_07", "RAAS_16"],
-                        "upper": ["RAAS_01", "RAAS_06", "RAAS_12", "RAAS_05", "RAAS_14"]
-                    }
-                },
-                "items": [
-                    { "variable": "RAAS_01", "item_text": "I find it relatively easy to get close to people."},
-                    { "variable": "RAAS_02", "item_text": "I find it difficult to allow myself to depend on others."},
-                    { "variable": "RAAS_05", "item_text": "I am comfortable depending on others."},
-                    { "variable": "RAAS_06", "item_text": "I don’t worry about people getting too close to me."},
-                    { "variable": "RAAS_07", "item_text": "I find that people are never there when you need them."},
-                    { "variable": "RAAS_08", "item_text": "I am somewhat uncomfortable being close to others."},
-                    { "variable": "RAAS_12", "item_text": "I am comfortable developing close relationships with others."},
-                    { "variable": "RAAS_13", "item_text": "I am uncomfortable when anyone gets too emotionally close to me."},
-                    { "variable": "RAAS_14", "item_text": "I know that people will be there when I need them."},
-                    { "variable": "RAAS_16", "item_text": "I find it difficult to trust others completely."},
-                    { "variable": "RAAS_17", "item_text": "Romantic partners often want me to be emotionally closer than I feel comfortable being."}
-                ]
-            },
-            {
-                "name": "Authoritarianism Short Scale",
-                "name_short": "KSA-3",
-                "language": "en",
-                "ref_apa": "Nießen, D., Schmidt, I., Beierlein, C., & Lechner, C. M. (2019). Authoritarianism Short Scale (KSA-3). ZIS - The Collection of Items and Scales for the Social Sciences. https://doi.org/10.6102/ZIS272",
-                "ref_isbn": null,
-                "ref_doi": "10.6102/zis272",
-                "scales": {
-                    "authoritarian aggression": {
-                        "lower": [],
-                        "upper": ["KSA3_01", "KSA3_02", "KSA3_03", "KSA3_04"]
-                    },
-                    "authoritarian submissiveness": {
-                        "lower": [],
-                        "upper": ["KSA3_05", "KSA3_06"]
-                    },
-                    "conventionalism": {
-                        "lower": [],
-                        "upper": ["KSA3_07", "KSA3_08", "KSA3_09"]
-                    },
-                    "authoritarianism": {
-                        "lower": [],
-                        "upper": ["KSA3_01", "KSA3_02", "KSA3_03", "KSA3_04", "KSA3_05", "KSA3_06", "KSA3_07", "KSA3_08", "KSA3_09"]
-                    }
-                },
-                "items": [
-                    { "variable": "KSA3_01", "item_text": "We should take strong action against misfits and slackers in society."},
-                    { "variable": "KSA3_02", "item_text": "Troublemakers should be made to feel that they are not welcome in society."},
-                    { "variable": "KSA3_03", "item_text": "Rules in society should be enforced without pity."},
-                    { "variable": "KSA3_04", "item_text": "We need strong leaders so that we can live safely in society."},
-                    { "variable": "KSA3_05", "item_text": "People should leave important decisions in society to their leaders."},
-                    { "variable": "KSA3_06", "item_text": "We should be grateful for leaders telling us exactly what to do."},
-                    { "variable": "KSA3_07", "item_text": "Traditions should definitely be carried on and kept alive."},
-                    { "variable": "KSA3_08", "item_text": "Well-established behavior should not be questioned."},
-                    { "variable": "KSA3_09", "item_text": "It's always best to do things in the usual way."}
-                ]
-            },
-            {
-                "name": "Survey Attitude Scale",
-                "name_short": "SAS",
-                "language": "en",
-                "ref_apa": "De Leeuw, E., Hox, J., Silber, H., Struminskaya, B., & Vis, C. (2022). The Survey Attitude Scale. ZIS - The Collection of Items and Scales for the Social Sciences. https://doi.org/10.6102/ZIS325_EXZ",
-                "ref_isbn": null,
-                "ref_doi": "10.6102/zis325_exz",
-                "scales": {
-                    "survey burden": {
-                        "lower": [],
-                        "upper": ["SAS_07", "SAS_08", "SAS_09"]
-                    },
-                    "survey enjoyment": {
-                        "lower": [],
-                        "upper": ["SAS_01", "SAS_02", "SAS_03"]
-                    },
-                    "survey value": {
-                        "lower": ["SAS_06"],
-                        "upper": ["SAS_04", "SAS_05"]
-                    }
-                },
-                "items": [
-                    { "variable": "SAS_01", "item_text": "I really enjoy responding to questionnaires through the mail or Internet."},
-                    { "variable": "SAS_02", "item_text": "I really enjoy being interviewed for a survey."},
-                    { "variable": "SAS_03", "item_text": "Surveys are interesting in themselves."},
-                    { "variable": "SAS_04", "item_text": "Surveys are important for society."},
-                    { "variable": "SAS_05", "item_text": "A lot can be learned from information collected through surveys."},
-                    { "variable": "SAS_06", "item_text": "Completing surveys is a waste of time."},
-                    { "variable": "SAS_07", "item_text": "I receive far too many requests to participate in surveys."},
-                    { "variable": "SAS_08", "item_text": "Opinion polls are an invasion of privacy."},
-                    { "variable": "SAS_09", "item_text": "It is exhaustive to answer so many questions in a survey."}
-                ]
-            },
-            {
-                "name": "Moral Foundations Questionnaire",
-                "name_short": "MFQ",
-                "language": "en",
-                "ref_apa": "Graham, J., Nosek, B. A., Haidt, J., Iyer, R., Spassena, K., & Ditto, P. H. (2011). Moral Foundations Questionnaire [dataset]. https://doi.org/10.1037/t05651-000",
-                "ref_isbn": null,
-                "ref_doi": "10.1037/t05651-000",
-                "scales": {
-                    "authority": {
-                        "lower": [],
-                        "upper": ["MFQ_04", "MFQ_10"]
-                    },
-                    "fairness": {
-                        "lower": [],
-                        "upper": ["MFQ_02", "MFQ_08"]
-                    },
-                    "good": {
-                        "lower": [],
-                        "upper": ["MFQ_06"]
-                    },
-                    "harm": {
-                        "lower": [],
-                        "upper": ["MFQ_01", "MFQ_07"]
-                    },
-                    "ingroup": {
-                        "lower": [],
-                        "upper": ["MFQ_03", "MFQ_09"]
-                    },
-                    "purity": {
-                        "lower": [],
-                        "upper": ["MFQ_05", "MFQ_11"]
-                    }
-                },
-                "items": [
-                    { "variable": "MFQ_01", "item_text": "Compassion for those who are suffering is the most crucial virtue."},
-                    { "variable": "MFQ_02", "item_text": "When the government makes laws, the number one principle should be ensuring that everyone is treated fairly."},
-                    { "variable": "MFQ_03", "item_text": "I am proud of my country’s history."},
-                    { "variable": "MFQ_04", "item_text": "Respect for authority is something all children need to learn."},
-                    { "variable": "MFQ_05", "item_text": "People should not do things that are disgusting, even if no one is harmed."},
-                    { "variable": "MFQ_06", "item_text": "It is better to do good than to do bad."},
-                    { "variable": "MFQ_07", "item_text": "One of the worst things a person could do is hurt a defenseless animal."},
-                    { "variable": "MFQ_08", "item_text": "Justice is the most important requirement for a society."},
-                    { "variable": "MFQ_09", "item_text": "People should be loyal to their family members, even when they have done something wrong."},
-                    { "variable": "MFQ_10", "item_text": "Men and women each have different roles to play in society."},
-                    { "variable": "MFQ_11", "item_text": "I would call some acts wrong on the grounds that they are unnatural."}
-                ]
-            },
-            {
-                "name": "Chronotype Questionnaire",
-                "name_short": "CQ",
-                "language": "en",
-                "ref_apa": "Dosseville, F., Laborde, S., & Lericollais, R. (2013). Validation of a Chronotype Questionnaire Including an Amplitude Dimension. Chronobiology International, 30(5), 639–648. https://doi.org/10.3109/07420528.2012.763042",
-                "ref_isbn": null,
-                "ref_doi": "10.3109/07420528.2012.763042",
-                "scales": {
-                    "distinctness": {
-                        "lower": ["CQ_01", "CQ_06", "CQ_08", "CQ_10", "CQ_12"],
-                        "upper": ["CQ_03", "CQ_14", "CQ_15"]
-                    },
-                    "morningness-eveningness": {
-                        "lower": ["CQ_02", "CQ_07", "CQ_11", "CQ_13"],
-                        "upper": ["CQ_04", "CQ_05", "CQ_09", "CQ_16"]
-                    }
-                },
-                "items": [
-                    { "variable": "CQ_01", "item_text": "I can work efficiently at any time of the day"},
-                    { "variable": "CQ_02", "item_text": "I feel I can think the best in the morning."},
-                    { "variable": "CQ_03", "item_text": "There are moments during the day where I would prefer to avoid any work."},
-                    { "variable": "CQ_04", "item_text": "I feel drowsy for a long time after awakening."},
-                    { "variable": "CQ_05", "item_text": "If I were to study anything by myself, I would rather do it in the evening."},
-                    { "variable": "CQ_06", "item_text": "My mood stays the same throughout the day."},
-                    { "variable": "CQ_07", "item_text": "I like to get up earlier then necessary, e.g. in order to prepare things for the whole day."},
-                    { "variable": "CQ_08", "item_text": "I can focus at any time ofthe day."},
-                    { "variable": "CQ_09", "item_text": "My work goes better in the afternoon than be forenoon."},
-                    { "variable": "CQ_10", "item_text": "At any time ofthe day, my motivation is the same."},
-                    { "variable": "CQ_11", "item_text": "I am usually in an excellent mood in the morning."},
-                    { "variable": "CQ_12", "item_text": "If I need it, I’m able to concentrate at any time of the day."},
-                    { "variable": "CQ_13", "item_text": "I am in my best form in the morning, in the course ofthe day my energy runs out."},
-                    { "variable": "CQ_14", "item_text": "There are moments during the day where I feel unable to do anything."},
-                    { "variable": "CQ_15", "item_text": "There are moments during the day when it is harder for me to think."},
-                    { "variable": "CQ_16", "item_text": "I feel sluggish in the morning and I warm up slowly during the day."}
-                ]
+    "_comment": null,
+    "contentType": null,
+    "datasetFilename": null,
+    "datasetUrl": null,
+    "datasetIsbn": null,
+    "datasetDoi": null,
+    "datasetApaReference": null,
+    "datasetApaCitation": null,
+    "responseFormats": [
+        {
+            "responseFormatId": "RF1",
+            "responseFormatType": "rating scale",
+            "responseFormatDataType": "integer",
+            "responseFormatMinValue": 1,
+            "responseFormatMaxValue": 6,
+            "responseFormatIncrementValue": 1,
+            "responseFormatLabels": {
+                "1": "strongly disagree",
+                "2": "disagree",
+                "3": "slightly disagree",
+                "4": "neither agree nor disagree",
+                "5": "slightly agree",
+                "6": "agree",
+                "7": "strongly agree"
             }
-        ]
-    }
+        },
+        {
+            "responseFormatId": "RF2",
+            "responseFormatType": "rating scale",
+            "responseFormatDataType": "integer",
+            "responseFormatMinValue": 1,
+            "responseFormatMaxValue": 6,
+            "responseFormatIncrementValue": 1,
+            "responseFormatLabels": {
+                "1": "never",
+                "2": "rarely",
+                "3": "occasionally",
+                "4": "sometimes",
+                "5": "often",
+                "6": "very often",
+                "7": "most of the time"
+            }
+        }
+    ],
+    "instruments": [
+        {
+            "instrumentName": "Attitudes Toward AI in Defense Scale",
+            "instrumentNameShort": "AAID",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.3389/fpsyg.2023.1164810",
+            "instrumentApaReference": "Hadlington, L., Binder, J., Gardner, S., Karanika-Murray, M., & Knight, S. (2023). The use of artificial intelligence in a military context: Development of the attitudes toward AI in defense (AAID) scale. Frontiers in Psychology, 14, 1164810. https://doi.org/10.3389/fpsyg.2023.1164810",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "attitude toward ai in defense",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "AAID_01", "AAID_05", "AAID_09" ],
+                    "upperItemIds": [ "AAID_07", "AAID_12", "AAID_14" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "AAID_01", "itemStemText": "The use of AI in Defense could be used to spy on us", "responseFormatId": "RF1" },
+                { "itemId": "AAID_05", "itemStemText": "The use of AI in Defense could be used unethically by those in power", "responseFormatId": "RF1" },
+                { "itemId": "AAID_07", "itemStemText": "The use of AI in Defense could be used to maintain peace", "responseFormatId": "RF1" },
+                { "itemId": "AAID_09", "itemStemText": "The use of AI in Defense could lead to unforeseen consequences", "responseFormatId": "RF1" },
+                { "itemId": "AAID_12", "itemStemText": "The use of AI in Defense could save lives", "responseFormatId": "RF1" },
+                { "itemId": "AAID_14", "itemStemText": "The use of AI in Defense could protect critical national infrastructure", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Positive and Negative Affect Schedule",
+            "instrumentNameShort": "PANAS",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1037/0022-3514.54.6.1063",
+            "instrumentApaReference": "Watson, D., Clark, L. A., & Tellegen, A. (1988). Development and validation of brief measures of positive and negative affect: The PANAS scales. Journal of Personality and Social Psychology, 54(6), 1063–1070. https://doi.org/10.1037/0022-3514.54.6.1063",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "positive affect",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "PANAS_09", "PANAS_14", "PANAS_10", "PANAS_05" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "negative affect",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "PANAS_08", "PANAS_06", "PANAS_04", "PANAS_18" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "PANAS_09", "itemStemText": "During the last two weeks, I have felt enthusiastic", "responseFormatId": "RF2" },
+                { "itemId": "PANAS_14", "itemStemText": "During the last two weeks, I have felt inspired", "responseFormatId": "RF2" },
+                { "itemId": "PANAS_10", "itemStemText": "During the last two weeks, I have felt proud", "responseFormatId": "RF2" },
+                { "itemId": "PANAS_05", "itemStemText": "During the last two weeks, I have felt strong", "responseFormatId": "RF2" },
+                { "itemId": "PANAS_08", "itemStemText": "During the last two weeks, I have felt hostile", "responseFormatId": "RF2" },
+                { "itemId": "PANAS_06", "itemStemText": "During the last two weeks, I have felt guilty", "responseFormatId": "RF2" },
+                { "itemId": "PANAS_04", "itemStemText": "During the last two weeks, I have felt upset", "responseFormatId": "RF2" },
+                { "itemId": "PANAS_18", "itemStemText": "During the last two weeks, I have felt jittery", "responseFormatId": "RF2" }
+            ]
+        },
+        {
+            "instrumentName": "Oldenburg Burnout Inventory (English Translation)",
+            "instrumentNameShort": "OLBI-EN",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1037/a0019408",
+            "instrumentApaReference": "Demerouti, E., Mostert, K., & Bakker, A. B. (2010). Burnout and work engagement: A thorough investigation of the independency of both constructs. Journal of Occupational Health Psychology, 15(3), 209–222. https://doi.org/10.1037/a0019408",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "exhaustion",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "OLBI_10", "OLBI_16" ],
+                    "upperItemIds": [ "OLBI_12", "OLBI_08" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "disengagement",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "OLBI_07", "OLBI_15" ],
+                    "upperItemIds": [ "OLBI_09", "OLBI_11" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "burnout",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "OLBI_07", "OLBI_10", "OLBI_15", "OLBI_16" ],
+                    "upperItemIds": [ "OLBI_08", "OLBI_09", "OLBI_11", "OLBI_12" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "OLBI_07", "itemStemText": "I ﬁnd my work to be a positive challenge.", "responseFormatId": "RF1" },
+                { "itemId": "OLBI_08", "itemStemText": "During my work, I often feel emotionally drained.", "responseFormatId": "RF1" },
+                { "itemId": "OLBI_09", "itemStemText": "Over time, one can become disconnected from this type of work.", "responseFormatId": "RF1" },
+                { "itemId": "OLBI_10", "itemStemText": "After working, I have enough energy for my leisure activities.", "responseFormatId": "RF1" },
+                { "itemId": "OLBI_11", "itemStemText": "Sometimes I feel sickened by my work tasks.", "responseFormatId": "RF1" },
+                { "itemId": "OLBI_12", "itemStemText": "After my work, I usually feel worn out and weary.", "responseFormatId": "RF1" },
+                { "itemId": "OLBI_15", "itemStemText": "I feel more and more engaged in my work.", "responseFormatId": "RF1" },
+                { "itemId": "OLBI_16", "itemStemText": "When I work, I usually feel energized.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Utrecht Work Engagement Scale (Short Version)",
+            "instrumentNameShort": "UWES-9",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1177/0013164405282471",
+            "instrumentApaReference": "Schaufeli, W. B., Bakker, A. B., & Salanova, M. (2006). The Measurement of Work Engagement With a Short Questionnaire: A Cross-National Study. Educational and Psychological Measurement, 66(4), 701–716. https://doi.org/10.1177/0013164405282471",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "vigor",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "UWES9_01", "UWES9_02", "UWES9_05" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "dedication",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "UWES9_03", "UWES9_04", "UWES9_07" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "absorption",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "UWES9_06", "UWES9_08", "UWES9_09" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "engagement",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "UWES9_01", "UWES9_02", "UWES9_03", "UWES9_04", "UWES9_05", "UWES9_06", "UWES9_07", "UWES9_08", "UWES9_09" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "UWES9_01", "itemStemText": "At my work, I feel bursting with energy.", "responseFormatId": "RF1" },
+                { "itemId": "UWES9_02", "itemStemText": "At my job, I feel strong and vigorous.", "responseFormatId": "RF1" },
+                { "itemId": "UWES9_03", "itemStemText": "I am enthusiastic about my job.", "responseFormatId": "RF1" },
+                { "itemId": "UWES9_04", "itemStemText": "My job inspires me.", "responseFormatId": "RF1" },
+                { "itemId": "UWES9_05", "itemStemText": "When I get up in the morning, I feel like going to work.", "responseFormatId": "RF1" },
+                { "itemId": "UWES9_06", "itemStemText": "I feel happy when I am working intensely.", "responseFormatId": "RF1" },
+                { "itemId": "UWES9_07", "itemStemText": "I am proud of the work that I do.", "responseFormatId": "RF1" },
+                { "itemId": "UWES9_08", "itemStemText": "I am immersed in my work.", "responseFormatId": "RF1" },
+                { "itemId": "UWES9_09", "itemStemText": "I get carried away when I am working.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Perth Alexithymia Questionnaire",
+            "instrumentNameShort": "PAQ",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1016/j.paid.2018.05.011",
+            "instrumentApaReference": "Preece, D., Becerra, R., Robinson, K., Dandy, J., & Allan, A. (2018). The psychometric assessment of alexithymia: Development and validation of the Perth Alexithymia Questionnaire. Personality and Individual Differences, 132, 32–44. https://doi.org/10.1016/j.paid.2018.05.011",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "general-externally orientated thinking",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "PAQ_03", "PAQ_15" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "negative-difficulty describing feelings",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "PAQ_13", "PAQ_07" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "negative-difficulty identifying feelings",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "PAQ_08", "PAQ_20" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "positive-difficulty describing feelings",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "PAQ_10", "PAQ_16" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "positive-difficulty identifying feelings",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "PAQ_05", "PAQ_17" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "alexithymia",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "PAQ_03", "PAQ_15", "PAQ_13", "PAQ_07", "PAQ_08", "PAQ_20", "PAQ_10", "PAQ_16", "PAQ_05", "PAQ_17" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "PAQ_08", "itemStemText": "When I'm feeling bad, I can't make sense of those feelings.", "responseFormatId": "RF1" },
+                { "itemId": "PAQ_20", "itemStemText": "When I'm feeling bad, I'm puzzled by those feelings.", "responseFormatId": "RF1" },
+                { "itemId": "PAQ_05", "itemStemText": "When I'm feeling good, I can't tell whether I'm happy, excited, or amused.", "responseFormatId": "RF1" },
+                { "itemId": "PAQ_17", "itemStemText": "When I'm feeling good, I get confused about what emotion it is.", "responseFormatId": "RF1" },
+                { "itemId": "PAQ_13", "itemStemText": "When something bad happens, it's hard for me to put into words how I'm feeling.", "responseFormatId": "RF1" },
+                { "itemId": "PAQ_07", "itemStemText": "When I'm feeling bad, I can't talk about those feelings in much depth or detail.", "responseFormatId": "RF1" },
+                { "itemId": "PAQ_10", "itemStemText": "When I'm feeling good, I can't talk about those feelings in much depth or detail.", "responseFormatId": "RF1" },
+                { "itemId": "PAQ_16", "itemStemText": "When something good happens, it's hard for me to put into words how I'm feeling.", "responseFormatId": "RF1" },
+                { "itemId": "PAQ_03", "itemStemText": "I tend to ignore how I feel.", "responseFormatId": "RF1" },
+                { "itemId": "PAQ_15", "itemStemText": "I prefer to focus on things I can actually see or touch, rather than my emotions.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Perceived Stress Scale",
+            "instrumentNameShort": "PSS",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.2307/2136404",
+            "instrumentApaReference": "Cohen, S., Kamarck, T., & Mermelstein, R. (1983). A Global Measure of Perceived Stress. Journal of Health and Social Behavior, 24(4), 385. https://doi.org/10.2307/2136404",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "perceived stress",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "PSS_04", "PSS_05", "PSS_06", "PSS_07", "PSS_09", "PSS_10", "PSS_13" ],
+                    "upperItemIds": [ "PSS_01", "PSS_02", "PSS_03", "PSS_08", "PSS_11", "PSS_12", "PSS_14" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "PSS_01", "itemStemText": "In the last month, how often have you been upset because of something that happened unexpectedly?", "responseFormatId": "RF2" },
+                { "itemId": "PSS_02", "itemStemText": "In the last month, how often have you felt that you were unable to control the important things in your life?", "responseFormatId": "RF2" },
+                { "itemId": "PSS_03", "itemStemText": "In the last month, how often have you felt nervous and \"stressed\"?", "responseFormatId": "RF2" },
+                { "itemId": "PSS_04", "itemStemText": "In the last month, how often have you dealt successfully with irritating life hassles?", "responseFormatId": "RF2" },
+                { "itemId": "PSS_05", "itemStemText": "In the last month, how often have you felt that you were effectively coping with important changes that were occurring in your life?", "responseFormatId": "RF2" },
+                { "itemId": "PSS_06", "itemStemText": "In the last month, how often have you felt confident about your ability to handle your personal problems?", "responseFormatId": "RF2" },
+                { "itemId": "PSS_07", "itemStemText": "In the last month, how often have you felt that things were going your way?", "responseFormatId": "RF2" },
+                { "itemId": "PSS_08", "itemStemText": "In the last month, how often have you found that you could not cope with all the things that you had to do?", "responseFormatId": "RF2" },
+                { "itemId": "PSS_09", "itemStemText": "In the last month, how often have you been able to control irritations in your life?", "responseFormatId": "RF2" },
+                { "itemId": "PSS_10", "itemStemText": "In the last month, how often have you felt that you were on top of things?", "responseFormatId": "RF2" },
+                { "itemId": "PSS_11", "itemStemText": "In the last month, how often have you been angered because of things that happened that were outside of your control?", "responseFormatId": "RF2" },
+                { "itemId": "PSS_12", "itemStemText": "In the last month, how often have you found yourself thinking about things that you have to accomplish?", "responseFormatId": "RF2" },
+                { "itemId": "PSS_13", "itemStemText": "In the last month, how often have you been able to control the way you spend your time?", "responseFormatId": "RF2" },
+                { "itemId": "PSS_14", "itemStemText": "In the last month, how often have you felt difficulties were piling up so high that you could not overcome them?", "responseFormatId": "RF2" }
+            ]
+        },
+        {
+            "instrumentName": "New Ecological Paradigm Scale",
+            "instrumentNameShort": "NEPS",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1111/0022-4537.00176",
+            "instrumentApaReference": "Dunlap, R. E., Van Liere, K. D., Mertig, A. G., & Jones, R. E. (2000). New Trends in Measuring Environmental Attitudes: Measuring Endorsement of the New Ecological Paradigm: A Revised NEP Scale. Journal of Social Issues, 56(3), 425–442. https://doi.org/10.1111/0022-4537.00176",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "antiexemptionalism",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "NEPS_04" ],
+                    "upperItemIds": [ "NEPS_09" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "balance of nature",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "NEPS_08" ],
+                    "upperItemIds": [ "NEPS_13" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "eco-crisis",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "NEPS_10" ],
+                    "upperItemIds": [ "NEPS_05" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "human domination",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "NEPS_12" ],
+                    "upperItemIds": [ "NEPS_07" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "limits to growth",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "NEPS_06" ],
+                    "upperItemIds": [ "NEPS_01" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "NEPS_01", "itemStemText": "We are approaching the limit of the number of people the earth can support", "responseFormatId": "RF1" },
+                { "itemId": "NEPS_04", "itemStemText": "Human ingenuity will insure that we do NOT make the earth unlivable", "responseFormatId": "RF1" },
+                { "itemId": "NEPS_05", "itemStemText": "Humans are severely abusing the environment", "responseFormatId": "RF1" },
+                { "itemId": "NEPS_06", "itemStemText": "The earth has plenty of natural resources if we just learn how to develop them", "responseFormatId": "RF1" },
+                { "itemId": "NEPS_07", "itemStemText": "Plants and animals have as much right as humans to exist", "responseFormatId": "RF1" },
+                { "itemId": "NEPS_08", "itemStemText": "The balance of nature is strong enough to cope with the impacts of modern industrial nations", "responseFormatId": "RF1" },
+                { "itemId": "NEPS_09", "itemStemText": "Despite our special abilities humans are still subject to the laws of nature", "responseFormatId": "RF1" },
+                { "itemId": "NEPS_10", "itemStemText": "The so-called \"ecological crisis\" facing humankind has been greatly exaggerated", "responseFormatId": "RF1" },
+                { "itemId": "NEPS_12", "itemStemText": "Humans were meant to rule over the rest of nature", "responseFormatId": "RF1" },
+                { "itemId": "NEPS_13", "itemStemText": "The balance of nature is very delicate and easily upset", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "UCLA Loneliness Scale (Short Form)",
+            "instrumentNameShort": "ULS-8",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1207/s15327752jpa5101_6",
+            "instrumentApaReference": "Hays, R., & DiMatteo, M. R. (1987). A Short-Form Measure of Loneliness. Journal of Personality Assessment, 51(1), 69–81. https://doi.org/10.1207/s15327752jpa5101_6",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "loneliness",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "ULS8_01", "ULS8_02", "ULS8_03", "ULS8_04", "ULS8_05", "ULS8_06", "ULS8_07", "ULS8_08" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "ULS8_01", "itemStemText": "I lack companionship.", "responseFormatId": "RF1" },
+                { "itemId": "ULS8_02", "itemStemText": "There is no one I can turn to.", "responseFormatId": "RF1" },
+                { "itemId": "ULS8_03", "itemStemText": "I am an outgoing person.", "responseFormatId": "RF1" },
+                { "itemId": "ULS8_04", "itemStemText": "I feel left out.", "responseFormatId": "RF1" },
+                { "itemId": "ULS8_05", "itemStemText": "I feel isolated from others.", "responseFormatId": "RF1" },
+                { "itemId": "ULS8_06", "itemStemText": "I can find companionship when I want it.", "responseFormatId": "RF1" },
+                { "itemId": "ULS8_07", "itemStemText": "I am unhappy being so withdrawn.", "responseFormatId": "RF1" },
+                { "itemId": "ULS8_08", "itemStemText": "People are around me but not with me.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Fear of COVID-19 Scale",
+            "instrumentNameShort": "FCV-19S",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1007/s11469-020-00270-8",
+            "instrumentApaReference": "Ahorsu, D. K., Lin, C.-Y., Imani, V., Saffari, M., Griffiths, M. D., & Pakpour, A. H. (2022). The Fear of COVID-19 Scale: Development and Initial Validation. International Journal of Mental Health and Addiction, 20(3), 1537–1545. https://doi.org/10.1007/s11469-020-00270-8",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "fear of covid-19",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "FCV19S_01", "FCV19S_02", "FCV19S_03", "FCV19S_04", "FCV19S_05", "FCV19S_06", "FCV19S_07" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "FCV19S_01", "itemStemText": "I am most afraid of coronavirus-19", "responseFormatId": "RF1" },
+                { "itemId": "FCV19S_02", "itemStemText": "It makes me uncomfortable to think about coronavirus-19.", "responseFormatId": "RF1" },
+                { "itemId": "FCV19S_03", "itemStemText": "My hands become clammy when I think about coronavirus-19.", "responseFormatId": "RF1" },
+                { "itemId": "FCV19S_04", "itemStemText": "I am afraid of losing my life because of coronavirus-19.", "responseFormatId": "RF1" },
+                { "itemId": "FCV19S_05", "itemStemText": "When watching news and stories about coronavirus-19 on social media, I become nervous or anxious.", "responseFormatId": "RF1" },
+                { "itemId": "FCV19S_06", "itemStemText": "I cannot sleep because I’m worrying about getting coronavirus-19.", "responseFormatId": "RF1" },
+                { "itemId": "FCV19S_07", "itemStemText": "My heart races or palpitates when I think about getting coronavirus-19.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Disgust Avoidance Questionnaire",
+            "instrumentNameShort": "DAQ",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1371/journal.pone.0248219",
+            "instrumentApaReference": "Von Spreckelsen, P., Jonker, N. C., Vugteveen, J., Wessel, I., Glashouwer, K. A., & De Jong, P. J. (2021). Individual differences in avoiding feelings of disgust: Development and construct validity of the disgust avoidance questionnaire. PLOS ONE, 16(3), e0248219. https://doi.org/10.1371/journal.pone.0248219",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "behavioral prevention",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "DAQ_05", "DAQ_07", "DAQ_09", "DAQ_11", "DAQ_15" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "cognitive prevention",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "DAQ_19", "DAQ_21", "DAQ_23", "DAQ_25" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "behavioral escape",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "DAQ_02", "DAQ_06", "DAQ_08", "DAQ_10" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "cognitive escape",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "DAQ_12", "DAQ_14", "DAQ_16", "DAQ_24" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "disgust avoidance",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "DAQ_05", "DAQ_07", "DAQ_09", "DAQ_11", "DAQ_15", "DAQ_19", "DAQ_21", "DAQ_23", "DAQ_25", "DAQ_02", "DAQ_06", "DAQ_08", "DAQ_10", "DAQ_12", "DAQ_14", "DAQ_16", "DAQ_24" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "DAQ_05", "itemStemText": "I try to avoid activities that could make me feel disgusted.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_07", "itemStemText": "I avoid actions that remind me of repulsive things.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_09", "itemStemText": "I try hard to avoid situations that might bring up feelings of repulsion in me.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_11", "itemStemText": "I avoid certain situations that make me pay attention to disgusting things.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_15", "itemStemText": "I avoid objects that can trigger feelings of disgust.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_19", "itemStemText": "I try not to think about gross situations.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_21", "itemStemText": "I try hard to avoid thinking about a repulsive past situation.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_23", "itemStemText": "I distract myself to avoid thinking about things that disgust me.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_25", "itemStemText": "To avoid thinking about things that revolt me, I force myself to think about something else.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_02", "itemStemText": "I am quick to stop any activity that makes me feel disgusted.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_06", "itemStemText": "If I start feeling strong disgust, I prefer to leave the situation.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_08", "itemStemText": "If I am in a situation in which I feel revolted, I leave the situation immediately.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_10", "itemStemText": "I am quick to leave any situation that makes me feel disgusted.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_12", "itemStemText": "When I think about something gross, I push those thoughts out of my mind.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_14", "itemStemText": "When thoughts about repulsive things come up, I try very hard to stop thinking about them.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_16", "itemStemText": "If thoughts about disgusting things cross my mind, I try to push them away as much as possible.", "responseFormatId": "RF1" },
+                { "itemId": "DAQ_24", "itemStemText": "When thoughts about revolting things come up, I try to fill my head with something else.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Work Gratitude Scale",
+            "instrumentNameShort": "WGS",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.3389/fpsyg.2021.795328",
+            "instrumentApaReference": "Youssef-Morgan, C. M., Van Zyl, L. E., & Ahrens, B. L. (2022). The Work Gratitude Scale: Development and Evaluation of a Multidimensional Measure. Frontiers in Psychology, 12, 795328. https://doi.org/10.3389/fpsyg.2021.795328",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "grateful appraisals",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "WGS_01", "WGS_02", "WGS_03" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "gratitude toward others",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "WGS_04", "WGS_05", "WGS_06", "WGS_07" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "intentional attitude of gratitude",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "WGS_08", "WGS_09", "WGS_10" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "work gratitude scale",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "WGS_01", "WGS_02", "WGS_03", "WGS_04", "WGS_05", "WGS_06", "WGS_07", "WGS_08", "WGS_09", "WGS_10" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "WGS_01", "itemStemText": "Right now, I have so much at work to be thankful for.", "responseFormatId": "RF1" },
+                { "itemId": "WGS_02", "itemStemText": "At this present time, if I had to list everything that I felt grateful for at work, it would be a very long list.", "responseFormatId": "RF1" },
+                { "itemId": "WGS_03", "itemStemText": "At the present time, life has been good to me at work.", "responseFormatId": "RF1" },
+                { "itemId": "WGS_04", "itemStemText": "Currently, I couldn’t have gotten where I am today at work without the help of many people.", "responseFormatId": "RF1" },
+                { "itemId": "WGS_05", "itemStemText": "Although I think it’s important to feel good about my current work accomplishments, I think that it’s also important to remember how others have contributed to my accomplishments.", "responseFormatId": "RF1" },
+                { "itemId": "WGS_06", "itemStemText": "Although I’m basically in control of my work at the present time, I can’t help but think about all those who have supported me and helped me along the way.", "responseFormatId": "RF1" },
+                { "itemId": "WGS_07", "itemStemText": "Right now, I feel deeply appreciative for the things others have done for me at work.", "responseFormatId": "RF1" },
+                { "itemId": "WGS_08", "itemStemText": "Currently, I think that it’s important to \"Stop and smell the roses\" as it pertains to my work.", "responseFormatId": "RF1" },
+                { "itemId": "WGS_09", "itemStemText": "Currently, I believe that it’s important to pause often to \"count my blessings\" at work.", "responseFormatId": "RF1" },
+                { "itemId": "WGS_10", "itemStemText": "Right now, I think it’s important to enjoy the simple things that pertain to my work.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Center for Epidemiological Studies Depression Scale",
+            "instrumentNameShort": "CES-D",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1037/1040-3590.2.1.64",
+            "instrumentApaReference": "Hertzog, C., Van Alstine, J., Usala, P. D., Hultsch, D. F., & Dixon, R. (1990). Measurement properties of the Center for Epidemiological Studies Depression Scale (CES-D) in older populations. Psychological Assessment: A Journal of Consulting and Clinical Psychology, 2(1), 64–72. https://doi.org/10.1037/1040-3590.2.1.64",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "depression",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "CESD_01", "CESD_02", "CESD_03", "CESD_04", "CESD_05", "CESD_06", "CESD_07", "CESD_08", "CESD_09", "CESD_10", "CESD_11", "CESD_12", "CESD_13", "CESD_14", "CESD_15", "CESD_16", "CESD_17", "CESD_18", "CESD_19", "CESD_20" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "CESD_01", "itemStemText": "I was bothered by things that usually don’t bother me.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_02", "itemStemText": "I did not feel like eating; my appetite was poor.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_03", "itemStemText": "I felt that I could not shake off the blues even with help from my family or friends.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_04", "itemStemText": "I felt that I was just as good as other people.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_05", "itemStemText": "I had trouble keeping my mind on what I was doing.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_06", "itemStemText": "I felt depressed.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_07", "itemStemText": "I felt that everything I did was an effort.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_08", "itemStemText": "I felt hopeful about the future.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_09", "itemStemText": "I thought my life had been a failure.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_10", "itemStemText": "I felt fearful.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_11", "itemStemText": "My sleep was restless.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_12", "itemStemText": "I was happy.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_13", "itemStemText": "I talked less than usual.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_14", "itemStemText": "I felt lonely.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_15", "itemStemText": "People were unfriendly.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_16", "itemStemText": "I enjoyed life.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_17", "itemStemText": "I had crying spells.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_18", "itemStemText": "I felt sad.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_19", "itemStemText": "I felt that people dislike me.", "responseFormatId": "RF2" },
+                { "itemId": "CESD_20", "itemStemText": "I could not get \"going\".", "responseFormatId": "RF2" }
+            ]
+        },
+        {
+            "instrumentName": "HEXACO-60",
+            "instrumentNameShort": "HEXACO-60",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1080/00223890902935878",
+            "instrumentApaReference": "Ashton, M., & Lee, K. (2009). The HEXACO-60: A Short Measure of the Major Dimensions of Personality. Journal of Personality Assessment, 91(4), 340–345. https://doi.org/10.1080/00223890902935878",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "fairness",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_04", "HEXACO_20" ],
+                    "upperItemIds": [ "HEXACO_12" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "flexibility",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_05", "HEXACO_19" ],
+                    "upperItemIds": [ "HEXACO_13" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "forgiveness",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "HEXACO_01", "HEXACO_09" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "gentleness",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_03" ],
+                    "upperItemIds": [ "HEXACO_11", "HEXACO_17" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "greed-avoidance",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_14" ],
+                    "upperItemIds": [ "HEXACO_06" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "modesty",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_08", "HEXACO_16" ],
+                    "upperItemIds": [],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "patience",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_07" ],
+                    "upperItemIds": [ "HEXACO_15" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "diligence",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_26" ],
+                    "upperItemIds": [ "HEXACO_22" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "organization",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_25" ],
+                    "upperItemIds": [ "HEXACO_21" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "perfectionism",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_23" ],
+                    "upperItemIds": [ "HEXACO_27", "HEXACO_29" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "prudence",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_28", "HEXACO_30" ],
+                    "upperItemIds": [ "HEXACO_24" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "sincerity",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_10" ],
+                    "upperItemIds": [ "HEXACO_02", "HEXACO_18" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "honesty-humility",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_04", "HEXACO_20", "HEXACO_14", "HEXACO_08", "HEXACO_16", "HEXACO_10" ],
+                    "upperItemIds": [ "HEXACO_12", "HEXACO_06", "HEXACO_02", "HEXACO_18" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "agreeableness",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_05", "HEXACO_19", "HEXACO_03", "HEXACO_07" ],
+                    "upperItemIds": [ "HEXACO_13", "HEXACO_01", "HEXACO_09", "HEXACO_11", "HEXACO_17", "HEXACO_15" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "conscientiousness",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "HEXACO_26", "HEXACO_25", "HEXACO_23", "HEXACO_28", "HEXACO_30" ],
+                    "upperItemIds": [ "HEXACO_22", "HEXACO_21", "HEXACO_27", "HEXACO_29", "HEXACO_24" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "HEXACO_01", "itemStemText": "I rarely hold a grudge, even against people who have badly wronged me.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_02", "itemStemText": "I wouldn't use flattery to get a raise or promotion at work, even if I thought it would succeed.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_03", "itemStemText": "People sometimes tell me that I am too critical of others.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_04", "itemStemText": "If I knew that I could never get caught, I would be willing to steal a million dollars.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_05", "itemStemText": "People sometimes tell me that I'm too stubborn.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_06", "itemStemText": "Having a lot of money is not especially important to me.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_07", "itemStemText": "People think of me as someone who has a quick temper.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_08", "itemStemText": "I think that I am entitled to more respect than the average person is.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_09", "itemStemText": "My attitude toward people who have treated me badly is “forgive and forget”.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_10", "itemStemText": "If I want something from someone, I will laugh at that person's worst jokes.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_11", "itemStemText": "I tend to be lenient in judging other people.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_12", "itemStemText": "I would never accept a bribe, even if it were very large.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_13", "itemStemText": "I am usually quite flexible in my opinions when people disagree with me.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_14", "itemStemText": "I would get a lot of pleasure from owning expensive luxury goods.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_15", "itemStemText": "Most people tend to get angry more quickly than I do.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_16", "itemStemText": "I want people to know that I am an important person of high status.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_17", "itemStemText": "Even when people make a lot of mistakes, I rarely say anything negative.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_18", "itemStemText": "I wouldn't pretend to like someone just to get that person to do favors for me.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_19", "itemStemText": "When people tell me that I'm wrong, my first reaction is to argue with them.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_20", "itemStemText": "I'd be tempted to use counterfeit money, if I were sure I could get away with it.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_21", "itemStemText": "I plan ahead and organize things, to avoid scrambling at the last minute.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_22", "itemStemText": "I often push myself very hard when trying to achieve a goal.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_23", "itemStemText": "When working on something, I don't pay much attention to small details.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_24", "itemStemText": "I make decisions based on the feeling of the moment rather than on careful thought.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_25", "itemStemText": "When working, I sometimes have difficulties due to being disorganized.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_26", "itemStemText": "I do only the minimum amount of work needed to get by.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_27", "itemStemText": "I always try to be accurate in my work, even at the expense of time.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_28", "itemStemText": "I make a lot of mistakes because I don’t think before I act.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_29", "itemStemText": "People often call me a perfectionist.", "responseFormatId": "RF1" },
+                { "itemId": "HEXACO_30", "itemStemText": "I prefer to do whatever comes to mind, rather than stick to a plan.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Obsessive–Compulsive Inventory (Revised)",
+            "instrumentNameShort": "OCI-R",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1037//1040-3590.14.4.485",
+            "instrumentApaReference": "Foa, E. B., Huppert, J. D., Leiberg, S., Langner, R., Kichic, R., Hajcak, G., & Salkovskis, P. M. (2002). The Obsessive-Compulsive Inventory: Development and validation of a short version. Psychological Assessment, 14(4), 485–496. https://doi.org/10.1037/1040-3590.14.4.485",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "checking",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "OCIR_02", "OCIR_08", "OCIR_14" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "hoarding",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "OCIR_01", "OCIR_07", "OCIR_13" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "neutralizing",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "OCIR_04", "OCIR_10", "OCIR_16" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "obsessing",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "OCIR_06", "OCIR_12", "OCIR_18" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "ordering",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "OCIR_03", "OCIR_09", "OCIR_15" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "washing",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "OCIR_05", "OCIR_11", "OCIR_17" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "obsessive-compulsive",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "OCIR_02", "OCIR_08", "OCIR_14", "OCIR_01", "OCIR_07", "OCIR_13", "OCIR_04", "OCIR_10", "OCIR_16", "OCIR_06", "OCIR_12", "OCIR_18", "OCIR_03", "OCIR_09", "OCIR_15", "OCIR_05", "OCIR_11", "OCIR_17" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "OCIR_01", "itemStemText": "I have saved up so many things that they get in the way.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_02", "itemStemText": "I check things more often than necessary.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_03", "itemStemText": "I get upset if objects are not arranged properly.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_04", "itemStemText": "I feel compelled to count while I am doing things.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_05", "itemStemText": "I find it difficult to touch an object when I know it has been touched by strangers or certain people.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_06", "itemStemText": "I find it difficult to control my own thoughts.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_07", "itemStemText": "I collect things I don’t need.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_08", "itemStemText": "I repeatedly check doors, windows, drawers, etc.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_09", "itemStemText": "I get upset if others change the way I have arranged things.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_10", "itemStemText": "I feel I have to repeat certain numbers.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_11", "itemStemText": "I sometimes have to wash or clean myself simply because I feel contaminated.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_12", "itemStemText": "I am upset by unpleasant thoughts that come into my mind against my will.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_13", "itemStemText": "I avoid throwing things away because I am afraid I might need them later.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_14", "itemStemText": "I repeatedly check gas and water taps and light switches after turning them off.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_15", "itemStemText": "I need things to be arranged in a particular order.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_16", "itemStemText": "I feel that there are good and bad numbers.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_17", "itemStemText": "I wash my hands more often and longer than necessary.", "responseFormatId": "RF1" },
+                { "itemId": "OCIR_18", "itemStemText": "I frequently get nasty thoughts and have difficulty in getting rid of them.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Perseverative Thinking Questionnaire",
+            "instrumentNameShort": "PTQ",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1016/j.jbtep.2010.12.003",
+            "instrumentApaReference": "Ehring, T., Zetsche, U., Weidacker, K., Wahl, K., Schönfeld, S., & Ehlers, A. (2011). The Perseverative Thinking Questionnaire (PTQ): Validation of a content-independent measure of repetitive negative thinking. Journal of Behavior Therapy and Experimental Psychiatry, 42(2), 225–232. https://doi.org/10.1016/j.jbtep.2010.12.003",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "core characteristics of repetitive negative thinking",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "PTQ_01", "PTQ_02", "PTQ_03", "PTQ_06", "PTQ_07", "PTQ_08", "PTQ_11", "PTQ_12", "PTQ_13" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "repetitive negative thinking capturing mental capacity",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "PTQ_05", "PTQ_10", "PTQ_15" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "unproductiveness of repetitive negative thinking",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "PTQ_04", "PTQ_09", "PTQ_14" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "perseverative thinking",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "PTQ_01", "PTQ_02", "PTQ_03", "PTQ_06", "PTQ_07", "PTQ_08", "PTQ_11", "PTQ_12", "PTQ_13", "PTQ_05", "PTQ_10", "PTQ_15", "PTQ_04", "PTQ_09", "PTQ_14" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "PTQ_01", "itemStemText": "The same thoughts keep going through my mind again and again.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_02", "itemStemText": "Thoughts intrude into my mind.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_03", "itemStemText": "I can’t stop dwelling on negative experiences or problems.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_04", "itemStemText": "I think about many problems without solving any of them.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_05", "itemStemText": "I can’t do anything else while thinking about my problems.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_06", "itemStemText": "My thoughts repeat themselves.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_07", "itemStemText": "Thoughts come to my mind without me wanting them to.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_08", "itemStemText": "I get stuck on certain issues and can’t move on.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_09", "itemStemText": "I keep asking myself questions without finding an answer.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_10", "itemStemText": "My thoughts prevent me from focusing on other things.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_11", "itemStemText": "I keep thinking about the same issue all the time.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_12", "itemStemText": "Thoughts just pop into my mind.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_13", "itemStemText": "I feel driven to continue dwelling on the same issue.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_14", "itemStemText": "My thoughts are not much help to me.", "responseFormatId": "RF1" },
+                { "itemId": "PTQ_15", "itemStemText": "My thoughts take up all my attention.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Revised Adult Attachment Scale",
+            "instrumentNameShort": "RAAS",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1037/t19162-000",
+            "instrumentApaReference": "Collins, N. L. (2013). Revised Adult Attachment Scale [dataset]. https://doi.org/10.1037/t19162-000",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "close",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "RAAS_08", "RAAS_13", "RAAS_17" ],
+                    "upperItemIds": [ "RAAS_01", "RAAS_06", "RAAS_12" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "depend",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "RAAS_02", "RAAS_07", "RAAS_16" ],
+                    "upperItemIds": [ "RAAS_05", "RAAS_14" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "attachment",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "RAAS_08", "RAAS_13", "RAAS_17", "RAAS_02", "RAAS_07", "RAAS_16" ],
+                    "upperItemIds": [ "RAAS_01", "RAAS_06", "RAAS_12", "RAAS_05", "RAAS_14" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "RAAS_01", "itemStemText": "I find it relatively easy to get close to people.", "responseFormatId": "RF1" },
+                { "itemId": "RAAS_02", "itemStemText": "I find it difficult to allow myself to depend on others.", "responseFormatId": "RF1" },
+                { "itemId": "RAAS_05", "itemStemText": "I am comfortable depending on others.", "responseFormatId": "RF1" },
+                { "itemId": "RAAS_06", "itemStemText": "I don’t worry about people getting too close to me.", "responseFormatId": "RF1" },
+                { "itemId": "RAAS_07", "itemStemText": "I find that people are never there when you need them.", "responseFormatId": "RF1" },
+                { "itemId": "RAAS_08", "itemStemText": "I am somewhat uncomfortable being close to others.", "responseFormatId": "RF1" },
+                { "itemId": "RAAS_12", "itemStemText": "I am comfortable developing close relationships with others.", "responseFormatId": "RF1" },
+                { "itemId": "RAAS_13", "itemStemText": "I am uncomfortable when anyone gets too emotionally close to me.", "responseFormatId": "RF1" },
+                { "itemId": "RAAS_14", "itemStemText": "I know that people will be there when I need them.", "responseFormatId": "RF1" },
+                { "itemId": "RAAS_16", "itemStemText": "I find it difficult to trust others completely.", "responseFormatId": "RF1" },
+                { "itemId": "RAAS_17", "itemStemText": "Romantic partners often want me to be emotionally closer than I feel comfortable being.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Authoritarianism Short Scale",
+            "instrumentNameShort": "KSA-3",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.6102/zis272",
+            "instrumentApaReference": "Nießen, D., Schmidt, I., Beierlein, C., & Lechner, C. M. (2019). Authoritarianism Short Scale (KSA-3). ZIS - The Collection of Items and Scales for the Social Sciences. https://doi.org/10.6102/ZIS272",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "authoritarian aggression",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "KSA3_01", "KSA3_02", "KSA3_03", "KSA3_04" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "authoritarian submissiveness",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "KSA3_05", "KSA3_06" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "conventionalism",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "KSA3_07", "KSA3_08", "KSA3_09" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "authoritarianism",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "KSA3_01", "KSA3_02", "KSA3_03", "KSA3_04", "KSA3_05", "KSA3_06", "KSA3_07", "KSA3_08", "KSA3_09" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "KSA3_01", "itemStemText": "We should take strong action against misfits and slackers in society.", "responseFormatId": "RF1" },
+                { "itemId": "KSA3_02", "itemStemText": "Troublemakers should be made to feel that they are not welcome in society.", "responseFormatId": "RF1" },
+                { "itemId": "KSA3_03", "itemStemText": "Rules in society should be enforced without pity.", "responseFormatId": "RF1" },
+                { "itemId": "KSA3_04", "itemStemText": "We need strong leaders so that we can live safely in society.", "responseFormatId": "RF1" },
+                { "itemId": "KSA3_05", "itemStemText": "People should leave important decisions in society to their leaders.", "responseFormatId": "RF1" },
+                { "itemId": "KSA3_06", "itemStemText": "We should be grateful for leaders telling us exactly what to do.", "responseFormatId": "RF1" },
+                { "itemId": "KSA3_07", "itemStemText": "Traditions should definitely be carried on and kept alive.", "responseFormatId": "RF1" },
+                { "itemId": "KSA3_08", "itemStemText": "Well-established behavior should not be questioned.", "responseFormatId": "RF1" },
+                { "itemId": "KSA3_09", "itemStemText": "It's always best to do things in the usual way.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Survey Attitude Scale",
+            "instrumentNameShort": "SAS",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.6102/zis325_exz",
+            "instrumentApaReference": "De Leeuw, E., Hox, J., Silber, H., Struminskaya, B., & Vis, C. (2022). The Survey Attitude Scale. ZIS - The Collection of Items and Scales for the Social Sciences. https://doi.org/10.6102/ZIS325_EXZ",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "survey burden",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "SAS_07", "SAS_08", "SAS_09" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "survey enjoyment",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "SAS_01", "SAS_02", "SAS_03" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "survey value",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "SAS_06" ],
+                    "upperItemIds": [ "SAS_04", "SAS_05" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "SAS_01", "itemStemText": "I really enjoy responding to questionnaires through the mail or Internet.", "responseFormatId": "RF1" },
+                { "itemId": "SAS_02", "itemStemText": "I really enjoy being interviewed for a survey.", "responseFormatId": "RF1" },
+                { "itemId": "SAS_03", "itemStemText": "Surveys are interesting in themselves.", "responseFormatId": "RF1" },
+                { "itemId": "SAS_04", "itemStemText": "Surveys are important for society.", "responseFormatId": "RF1" },
+                { "itemId": "SAS_05", "itemStemText": "A lot can be learned from information collected through surveys.", "responseFormatId": "RF1" },
+                { "itemId": "SAS_06", "itemStemText": "Completing surveys is a waste of time.", "responseFormatId": "RF1" },
+                { "itemId": "SAS_07", "itemStemText": "I receive far too many requests to participate in surveys.", "responseFormatId": "RF1" },
+                { "itemId": "SAS_08", "itemStemText": "Opinion polls are an invasion of privacy.", "responseFormatId": "RF1" },
+                { "itemId": "SAS_09", "itemStemText": "It is exhaustive to answer so many questions in a survey.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Moral Foundations Questionnaire",
+            "instrumentNameShort": "MFQ",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.1037/t05651-000",
+            "instrumentApaReference": "Graham, J., Nosek, B. A., Haidt, J., Iyer, R., Spassena, K., & Ditto, P. H. (2011). Moral Foundations Questionnaire [dataset]. https://doi.org/10.1037/t05651-000",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "authority",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "MFQ_04", "MFQ_10" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "fairness",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "MFQ_02", "MFQ_08" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "good",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "MFQ_06" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "harm",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "MFQ_01", "MFQ_07" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "ingroup",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "MFQ_03", "MFQ_09" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "purity",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [],
+                    "upperItemIds": [ "MFQ_05", "MFQ_11" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "MFQ_01", "itemStemText": "Compassion for those who are suffering is the most crucial virtue.", "responseFormatId": "RF1" },
+                { "itemId": "MFQ_02", "itemStemText": "When the government makes laws, the number one principle should be ensuring that everyone is treated fairly.", "responseFormatId": "RF1" },
+                { "itemId": "MFQ_03", "itemStemText": "I am proud of my country’s history.", "responseFormatId": "RF1" },
+                { "itemId": "MFQ_04", "itemStemText": "Respect for authority is something all children need to learn.", "responseFormatId": "RF1" },
+                { "itemId": "MFQ_05", "itemStemText": "People should not do things that are disgusting, even if no one is harmed.", "responseFormatId": "RF1" },
+                { "itemId": "MFQ_06", "itemStemText": "It is better to do good than to do bad.", "responseFormatId": "RF1" },
+                { "itemId": "MFQ_07", "itemStemText": "One of the worst things a person could do is hurt a defenseless animal.", "responseFormatId": "RF1" },
+                { "itemId": "MFQ_08", "itemStemText": "Justice is the most important requirement for a society.", "responseFormatId": "RF1" },
+                { "itemId": "MFQ_09", "itemStemText": "People should be loyal to their family members, even when they have done something wrong.", "responseFormatId": "RF1" },
+                { "itemId": "MFQ_10", "itemStemText": "Men and women each have different roles to play in society.", "responseFormatId": "RF1" },
+                { "itemId": "MFQ_11", "itemStemText": "I would call some acts wrong on the grounds that they are unnatural.", "responseFormatId": "RF1" }
+            ]
+        },
+        {
+            "instrumentName": "Chronotype Questionnaire",
+            "instrumentNameShort": "CQ",
+            "instrumentLanguage": "en",
+            "instrumentUrl": null,
+            "instrumentIsbn": null,
+            "instrumentDoi": "10.3109/07420528.2012.763042",
+            "instrumentApaReference": "Dosseville, F., Laborde, S., & Lericollais, R. (2013). Validation of a Chronotype Questionnaire Including an Amplitude Dimension. Chronobiology International, 30(5), 639–648. https://doi.org/10.3109/07420528.2012.763042",
+            "instrumentApaCitation": null,
+            "instrumentIsProprietary": null,
+            "scales": [
+                {
+                    "scaleName": "distinctness",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "CQ_01", "CQ_06", "CQ_08", "CQ_10", "CQ_12" ],
+                    "upperItemIds": [ "CQ_03", "CQ_14", "CQ_15" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                },
+                {
+                    "scaleName": "morningness-eveningness",
+                    "scaleDefinitionText": null,
+                    "lowerItemIds": [ "CQ_02", "CQ_07", "CQ_11", "CQ_13" ],
+                    "upperItemIds": [ "CQ_04", "CQ_05", "CQ_09", "CQ_16" ],
+                    "scaleLowerFeedbackText": null,
+                    "scaleUpperFeedbackText": null,
+                    "scaleFeedbackTexts": null
+                }
+            ],
+            "subsets": [
+                {
+                    "subsetName": "Standard Version",
+                    "subsetDescription": null,
+                    "subsetItemIds": "*",
+                    "scaleStatistics": null
+                }
+            ],
+            "items": [
+                { "itemId": "CQ_01", "itemStemText": "I can work efficiently at any time of the day", "responseFormatId": "RF1" },
+                { "itemId": "CQ_02", "itemStemText": "I feel I can think the best in the morning.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_03", "itemStemText": "There are moments during the day where I would prefer to avoid any work.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_04", "itemStemText": "I feel drowsy for a long time after awakening.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_05", "itemStemText": "If I were to study anything by myself, I would rather do it in the evening.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_06", "itemStemText": "My mood stays the same throughout the day.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_07", "itemStemText": "I like to get up earlier then necessary, e.g. in order to prepare things for the whole day.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_08", "itemStemText": "I can focus at any time of the day.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_09", "itemStemText": "My work goes better in the afternoon than before noon.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_10", "itemStemText": "At any time of the day, my motivation is the same.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_11", "itemStemText": "I am usually in an excellent mood in the morning.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_12", "itemStemText": "If I need it, I’m able to concentrate at any time of the day.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_13", "itemStemText": "I am in my best form in the morning, in the course of the day my energy runs out.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_14", "itemStemText": "There are moments during the day where I feel unable to do anything.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_15", "itemStemText": "There are moments during the day when it is harder for me to think.", "responseFormatId": "RF1" },
+                { "itemId": "CQ_16", "itemStemText": "I feel sluggish in the morning and I warm up slowly during the day.", "responseFormatId": "RF1" }
+            ]
+        }
+    ]
 }

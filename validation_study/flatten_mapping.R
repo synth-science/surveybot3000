@@ -7,27 +7,29 @@ setwd(this_dir)
 
 mapping = jsonlite::fromJSON(txt = "../validation_study/mapping.json")
 
-df = mapping$dataset$instruments$scales %>% 
-  sapply(unlist) %>% 
-  bind_rows() %>% 
-  dplyr::mutate(
-    scale = mapping$dataset$instruments$scales %>%
-      names()
-  )  %>% 
-  tidyr::pivot_longer(cols = -scale, values_to = "variable") %>% 
-  dplyr::select(-name) %>% 
-  dplyr::filter(!is.na(variable)) %>% 
+df = mapping$instruments$scales %>% 
+	dplyr::bind_rows() %>% 
+	dplyr::select(scaleName, lowerItemIds, upperItemIds) %>% 
+	tidyr::pivot_longer(cols = c("lowerItemIds", "upperItemIds")) %>% 
+	dplyr::filter(lengths(value) > 0) %>% 
+	tidyr::unnest(value) %>% 
+	dplyr::select(-name) %>% 
   dplyr::left_join(
-    y = mapping$dataset$instruments %>% 
-      bind_rows() %>% 
-      dplyr::select(name, items) %>% 
-      tidyr::unnest(items), 
-    by = "variable"
+    y = mapping$instruments %>%
+      bind_rows() %>%
+      dplyr::select(instrumentName, items) %>%
+      tidyr::unnest(items),
+    by = c(value = "itemId")
   ) %>% 
-  dplyr::select(variable, name, item_text, scale) %>%
-  dplyr::rename("instrument" = "name")
+	dplyr::select(value, instrumentName, itemStemText, scaleName) %>% 
+	dplyr::rename(
+		"variable" = "value", 
+		"instrument" = "instrumentName", 
+		"item_text" = "itemStemText",
+		"scale" = "scaleName",
+	)
 
-df_wide = df %>% 
+df_wide = df %>%
   dplyr::group_by(variable, instrument, item_text) %>%
   dplyr::mutate(
     scale_number = row_number() - 1
@@ -39,5 +41,5 @@ df_wide = df %>%
     values_from = scale
   )
 
-df_wide %>% 
+df_wide %>%
   arrow::write_feather("../validation_study/mapping.feather")
