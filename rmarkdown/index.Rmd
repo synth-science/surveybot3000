@@ -1,0 +1,34 @@
+---
+title: "Language models accurately infer correlations between psychological items and scales from text alone"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    css: style.css 
+---
+
+## Table of contents
+
+### Pilot Study
+- [Import and prepare data](1_vector_to_cosine.html)
+- [Pilot Study Results](validation_study.html)
+  - [Interactive Item Plot](2_interactive_item_plot.html)
+
+![Main results pilot](Figure_pilot.png)
+
+### Registered Report Stage 1
+- [Registered Report Precision Simulations](3_rr_precision_simulations.html)
+ 
+### Registered Report Stage 2: Validation Study
+- [Import and prepare data](1_import_validation_study.html)
+- [Codebook](codebook.html)
+  - [Data in CSV format](rr_data.csv)
+  - [Data in SAV format](rr_data.sav)
+  - [Data in RDS format](rr_data.rds)
+- [Validation Study Results](validation_study.html)
+  - [Interactive Item Plot (Registered Report)](2_interactive_item_plot_rr.html)
+  - [Margin of error comparison](se_sample_size.html)
+
+
+![Main results validation](Figure_rr.png)
