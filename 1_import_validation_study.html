@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+<meta name="date" content="2024-02-09" />
+
+<title>Vector representations to cosine similarities</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">SurveyBot3000</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Overview</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Pilot Study
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="1_vector_to_cosine.html">Import and prepare data</a>
+    </li>
+    <li>
+      <a href="pilot_study.html">Pilot Study Results</a>
+    </li>
+    <li>
+      <a href="2_interactive_item_plot.html">Interactive Item Plot</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="3_rr_precision_simulations.html">RR Precision Simulations</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Validation Study
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="1_import_validation_study.html">Import and prepare data</a>
+    </li>
+    <li>
+      <a href="codebook.html">Codebook</a>
+    </li>
+    <li>
+      <a href="validation_study.html">Validation Study Results</a>
+    </li>
+    <li>
+      <a href="2_interactive_item_plot_rr.html">Interactive Item Plot (RR)</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/synth-science/surveybot3000">
+    <span class="fa fa-github"></span>
+
+
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+<li role="separator" class="divider"></li>
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Vector representations to cosine
+similarities</h1>
+<h4 class="date">2024-02-09</h4>
+
+</div>
+
+
+<div id="load-data" class="section level2">
+<h2>Load data</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>rr_validation_mapping_data <span class="ot">=</span> arrow<span class="sc">::</span><span class="fu">read_feather</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">&quot;https://github.com/synth-science/surveybot3000/raw/refs/heads/main/validation_study/mapping.feather&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>items <span class="ot">&lt;-</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;https://docs.google.com/spreadsheets/d/16QcRLP5BUn1Cmtr0e_XRdjr1Wg-EHSMSGmgZO1M3tNM/edit?gid=0#gid=0&quot;</span>, <span class="at">which =</span> <span class="dv">2</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co"># compare &lt;- rr_validation_mapping_data %&gt;% full_join(items %&gt;% filter(in_survey) %&gt;% select(id, scale, subscale, item), by = c(&quot;variable&quot; = &quot;id&quot;)) %&gt;% mutate(subscale = if_else(subscale == &quot;#N/A&quot;, NA_character_, subscale))</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co"># compare %&gt;% filter(item_text != item) %&gt;% View()</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co"># compare %&gt;% filter((scale0 != scale | scale1 != subscale)) %&gt;% View()</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co"># compare %&gt;% filter((scale0 != scale | scale1 != subscale) &amp; !(scale1 == scale &amp; scale0 == subscale)) %&gt;% View()</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co"># rr_validation_mapping_data %&gt;% anti_join(items, by = c(&quot;scale0&quot; = &quot;scale&quot;, &quot;scale1&quot; = &quot;subscale&quot;)) %&gt;% View</span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>scales <span class="ot">&lt;-</span> rr_validation_mapping_data <span class="sc">%&gt;%</span> </span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>scale0, <span class="sc">-</span>scale1) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>  <span class="fu">left_join</span>(items <span class="sc">%&gt;%</span> </span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>              <span class="fu">filter</span>(in_survey) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>              <span class="fu">mutate</span>(<span class="at">keyed =</span> <span class="fu">if_else</span>(reversed, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>              <span class="fu">select</span>(id, keyed, scale, subscale), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;variable&quot;</span> <span class="ot">=</span> <span class="st">&quot;id&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">scale_0 =</span> scale, <span class="at">scale_1 =</span> subscale) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">scale_1 =</span> <span class="fu">if_else</span>(scale_1 <span class="sc">==</span> <span class="st">&quot;#N/A&quot;</span>, <span class="st">&quot;&quot;</span>, scale_1))</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>rr_validation_mapping_data <span class="ot">&lt;-</span> scales <span class="sc">%&gt;%</span> </span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">scale0 =</span> scale_0, <span class="at">scale1 =</span> scale_1)</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>scales <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>  scales <span class="sc">%&gt;%</span> </span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>      <span class="fu">mutate</span>(</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>        <span class="at">scale_1 =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>         <span class="at">scale =</span> <span class="fu">str_replace_all</span>(<span class="fu">str_trim</span>(<span class="fu">paste0</span>(instrument, <span class="st">&quot;_&quot;</span>, scale_0, scale_1)), <span class="st">&quot;[^a-zA-Z_0-9]&quot;</span>, <span class="st">&quot;_&quot;</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>    <span class="fu">group_by</span>(scale) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">number_of_items =</span> <span class="fu">n</span>()),</span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a>  scales <span class="sc">%&gt;%</span> </span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a>      <span class="at">scale_1 =</span> <span class="fu">coalesce</span>(scale_1, <span class="st">&quot;&quot;</span>),</span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a>      <span class="at">scale =</span> <span class="fu">str_replace_all</span>(<span class="fu">str_trim</span>(<span class="fu">paste0</span>(instrument, <span class="st">&quot;_&quot;</span>, scale_0, scale_1)), <span class="st">&quot;[^a-zA-Z_0-9]&quot;</span>, <span class="st">&quot;_&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a>    <span class="fu">group_by</span>(scale) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">number_of_items =</span> <span class="fu">n</span>())</span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a>  <span class="fu">group_by</span>(scale) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">row_number</span>() <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>variable, <span class="sc">-</span>item_text) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a>  <span class="fu">filter</span>(number_of_items <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a>arrow<span class="sc">::</span><span class="fu">write_feather</span>(scales, <span class="at">sink =</span> <span class="fu">file.path</span>(data_path, <span class="fu">glue</span>(<span class="st">&quot;{model_name}.raw.validation-study-2024-11-01.scales.feather&quot;</span>))</span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a>)</span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a>arrow<span class="sc">::</span><span class="fu">write_feather</span>(rr_validation_mapping_data, <span class="at">sink =</span> <span class="fu">file.path</span>(data_path, <span class="fu">glue</span>(<span class="st">&quot;{model_name}.raw.validation-study-2024-11-01.mapping2.feather&quot;</span>))</span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a>)</span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a></span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a><span class="co"># pre-trained model</span></span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a>pt_rr_validation_machine_data <span class="ot">=</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;https://github.com/synth-science/surveybot3000/raw/refs/heads/main/validation_study/embeddings_all-mpnet-base-v2.feather&quot;</span>)</span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a>pt_rr_validation_machine_data <span class="ot">&lt;-</span> pt_rr_validation_machine_data <span class="sc">%&gt;%</span> </span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">embed_id =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(embeddings))) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-58"><a href="#cb1-58" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(embeddings, embed_id)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-59"><a href="#cb1-59" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>item) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-60"><a href="#cb1-60" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> id, <span class="at">values_from =</span> embeddings) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-61"><a href="#cb1-61" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>embed_id)</span>
+<span id="cb1-62"><a href="#cb1-62" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" tabindex="-1"></a><span class="co"># fine-tuned model</span></span>
+<span id="cb1-64"><a href="#cb1-64" tabindex="-1"></a>rr_validation_machine_data <span class="ot">=</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;https://github.com/synth-science/surveybot3000/raw/refs/heads/main/validation_study/embeddings_surveybot3000.feather&quot;</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" tabindex="-1"></a>rr_validation_machine_data <span class="ot">&lt;-</span> rr_validation_machine_data <span class="sc">%&gt;%</span> </span>
+<span id="cb1-66"><a href="#cb1-66" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb1-67"><a href="#cb1-67" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">embed_id =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(embeddings))) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-68"><a href="#cb1-68" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(embeddings, embed_id)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-69"><a href="#cb1-69" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>item) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-70"><a href="#cb1-70" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> id, <span class="at">values_from =</span> embeddings) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-71"><a href="#cb1-71" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>embed_id)</span>
+<span id="cb1-72"><a href="#cb1-72" tabindex="-1"></a>  </span>
+<span id="cb1-73"><a href="#cb1-73" tabindex="-1"></a>main_qs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;AAID&quot;</span>, <span class="st">&quot;PANAS&quot;</span>, <span class="st">&quot;PAQ&quot;</span>, <span class="st">&quot;PSS&quot;</span>, <span class="st">&quot;NEPS&quot;</span>, <span class="st">&quot;ULS&quot;</span>, <span class="st">&quot;FCV&quot;</span>, <span class="st">&quot;DAQ&quot;</span>, <span class="st">&quot;CESD&quot;</span>, <span class="st">&quot;HEXACO&quot;</span>, <span class="st">&quot;OCIR&quot;</span>, <span class="st">&quot;PTQ&quot;</span>, <span class="st">&quot;RAAS&quot;</span>, <span class="st">&quot;KSA&quot;</span>, <span class="st">&quot;SAS&quot;</span>, <span class="st">&quot;MFQ&quot;</span>, <span class="st">&quot;CQ&quot;</span>, <span class="st">&quot;OLBI&quot;</span>, <span class="st">&quot;UWES&quot;</span>, <span class="st">&quot;WGS&quot;</span>)</span>
+<span id="cb1-74"><a href="#cb1-74" tabindex="-1"></a>rr_validation_human_data <span class="ot">=</span> rio<span class="sc">::</span><span class="fu">import</span>(<span class="st">&quot;data/processed/sosci_labelled_with_exclusion_criteria.rds&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(included) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-75"><a href="#cb1-75" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">starts_with</span>(main_qs)) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-76"><a href="#cb1-76" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">ends_with</span>(<span class="st">&quot;_R&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning: Missing `trust` will be set to FALSE by default for RDS in 2.0.0.</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>rio<span class="sc">::</span><span class="fu">export</span>(rr_validation_human_data, <span class="at">file =</span> <span class="fu">file.path</span>(data_path, <span class="fu">glue</span>(<span class="st">&quot;{model_name}.raw.validation-study-2024-11-01.human.feather&quot;</span>))</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">setdiff</span>(<span class="fu">colnames</span>(rr_validation_human_data), rr_validation_mapping_data<span class="sc">$</span>variable)</span></code></pre></div>
+<pre><code>## character(0)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">setdiff</span>(rr_validation_mapping_data<span class="sc">$</span>variable, <span class="fu">colnames</span>(rr_validation_human_data))</span></code></pre></div>
+<pre><code>## character(0)</code></pre>
+</div>
+<div id="description" class="section level2">
+<h2>Description</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">nrow</span>(rr_validation_human_data) <span class="co"># respondents</span></span></code></pre></div>
+<pre><code>## [1] 387</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">ncol</span>(rr_validation_human_data) <span class="co"># items</span></span></code></pre></div>
+<pre><code>## [1] 246</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">nrow</span>(rr_validation_machine_data) <span class="co"># vector dimensions</span></span></code></pre></div>
+<pre><code>## [1] 768</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">ncol</span>(rr_validation_machine_data) <span class="co"># items</span></span></code></pre></div>
+<pre><code>## [1] 246</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">n_distinct</span>(rr_validation_mapping_data<span class="sc">$</span>instrument) <span class="co"># instruments</span></span></code></pre></div>
+<pre><code>## [1] 20</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">n_distinct</span>(rr_validation_mapping_data<span class="sc">$</span>scale0) <span class="co"># constructs</span></span></code></pre></div>
+<pre><code>## [1] 40</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">n_distinct</span>(rr_validation_mapping_data<span class="sc">$</span>instrument, rr_validation_mapping_data<span class="sc">$</span>scale0) <span class="co"># scales</span></span></code></pre></div>
+<pre><code>## [1] 40</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">n_distinct</span>(<span class="fu">str_c</span>(rr_validation_mapping_data<span class="sc">$</span>instrument, rr_validation_mapping_data<span class="sc">$</span>scale0, rr_validation_mapping_data<span class="sc">$</span>scale1)) <span class="co"># subscales</span></span></code></pre></div>
+<pre><code>## [1] 70</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>scales <span class="sc">%&gt;%</span> <span class="fu">tally</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##       n
+##   &lt;int&gt;
+## 1    80</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a>scales <span class="sc">%&gt;%</span> <span class="fu">filter</span>(number_of_items <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">tally</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##       n
+##   &lt;int&gt;
+## 1    57</code></pre>
+</div>
+<div id="join-pairwise-item-correlations" class="section level2">
+<h2>Join pairwise item correlations</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>rr_validation_item_pairs <span class="ot">=</span> <span class="fu">join_pairwise_correlation</span>(rr_validation_human_data, rr_validation_machine_data)</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a>arrow<span class="sc">::</span><span class="fu">write_feather</span>(rr_validation_item_pairs, <span class="at">sink =</span> <span class="fu">file.path</span>(data_path, <span class="fu">glue</span>(<span class="st">&quot;data/intermediate/{model_name}.raw.validation-study-2024-11-01.item_correlations.feather&quot;</span>)))</span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a>pt_rr_validation_item_pairs <span class="ot">=</span> <span class="fu">join_pairwise_correlation</span>(rr_validation_human_data, pt_rr_validation_machine_data)</span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" tabindex="-1"></a>arrow<span class="sc">::</span><span class="fu">write_feather</span>(pt_rr_validation_item_pairs, <span class="at">sink =</span> <span class="fu">file.path</span>(data_path, <span class="fu">glue</span>(<span class="st">&quot;data/intermediate/{pretrained_model_name}.raw.validation-study-2024-11-01.item_correlations.feather&quot;</span>)))</span></code></pre></div>
+</div>
+<div id="join-pairwise-scale-correlations" class="section level2">
+<h2>Join pairwise scale correlations</h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>manifest_scores <span class="ot">=</span> <span class="fu">predict_manifest_scores</span>(rr_validation_human_data, rr_validation_machine_data, rr_validation_mapping_data, scales)</span></code></pre></div>
+<pre><code>## Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if
+## `.name_repair` is omitted as of tibble 2.0.0.
+## ℹ Using compatibility `.name_repair`.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a>arrow<span class="sc">::</span><span class="fu">write_feather</span>(manifest_scores, <span class="at">sink =</span> <span class="fu">file.path</span>(data_path, <span class="fu">glue</span>(<span class="st">&quot;data/intermediate/{model_name}.raw.validation-study-2024-11-01.scale_correlations.feather&quot;</span>)))</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>pt_manifest_scores <span class="ot">=</span> <span class="fu">predict_manifest_scores</span>(rr_validation_human_data, pt_rr_validation_machine_data, rr_validation_mapping_data, scales)</span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>arrow<span class="sc">::</span><span class="fu">write_feather</span>(pt_manifest_scores, <span class="at">sink =</span> <span class="fu">file.path</span>(data_path, <span class="fu">glue</span>(<span class="st">&quot;data/intermediate/{pretrained_model_name}.raw.validation-study-2024-11-01.scale_correlations.feather&quot;</span>)))</span></code></pre></div>
+</div>
+<div id="create-random-scales" class="section level2">
+<h2>Create random scales</h2>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a>mapping_data <span class="ot">&lt;-</span> rr_validation_mapping_data <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">scale_0 =</span> scale0,</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>         <span class="at">scale_1 =</span> scale1)</span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" tabindex="-1"></a>items_by_scale <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb31-6"><a href="#cb31-6" tabindex="-1"></a>  scales <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>keyed) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(scale_1 <span class="sc">==</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(mapping_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>scale_1), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;instrument&quot;</span>, <span class="st">&quot;scale_0&quot;</span>)),</span>
+<span id="cb31-7"><a href="#cb31-7" tabindex="-1"></a>  scales <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>keyed) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(scale_1 <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(mapping_data, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;instrument&quot;</span>, <span class="st">&quot;scale_0&quot;</span>, <span class="st">&quot;scale_1&quot;</span>))</span>
+<span id="cb31-8"><a href="#cb31-8" tabindex="-1"></a>)</span>
+<span id="cb31-9"><a href="#cb31-9" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" tabindex="-1"></a>random_scales <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb31-11"><a href="#cb31-11" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>) {</span>
+<span id="cb31-12"><a href="#cb31-12" tabindex="-1"></a>  n_items <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">1</span>, <span class="dv">6</span>)</span>
+<span id="cb31-13"><a href="#cb31-13" tabindex="-1"></a>  n_items <span class="ot">&lt;-</span> <span class="fu">if_else</span>(n_items <span class="sc">&lt;</span> <span class="dv">3</span>, <span class="dv">3</span>, n_items)</span>
+<span id="cb31-14"><a href="#cb31-14" tabindex="-1"></a>  random_scales[[i]] <span class="ot">&lt;-</span> rr_validation_mapping_data <span class="sc">%&gt;%</span></span>
+<span id="cb31-15"><a href="#cb31-15" tabindex="-1"></a>    <span class="fu">sample_n</span>(n_items) <span class="sc">%&gt;%</span></span>
+<span id="cb31-16"><a href="#cb31-16" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">scale =</span> <span class="fu">paste0</span>(<span class="st">&quot;random&quot;</span>, i)) <span class="sc">%&gt;%</span></span>
+<span id="cb31-17"><a href="#cb31-17" tabindex="-1"></a>    <span class="fu">group_by</span>(scale) <span class="sc">%&gt;%</span></span>
+<span id="cb31-18"><a href="#cb31-18" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb31-19"><a href="#cb31-19" tabindex="-1"></a>      <span class="at">items =</span> <span class="fu">list</span>(variable),</span>
+<span id="cb31-20"><a href="#cb31-20" tabindex="-1"></a>      <span class="at">number_of_items =</span> <span class="fu">n_distinct</span>(variable),</span>
+<span id="cb31-21"><a href="#cb31-21" tabindex="-1"></a>      <span class="at">lvn =</span> <span class="fu">paste</span>(<span class="fu">first</span>(scale), <span class="st">&quot; =~ &quot;</span>, <span class="fu">paste</span>(variable, <span class="at">collapse =</span> <span class="st">&quot; + &quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb31-22"><a href="#cb31-22" tabindex="-1"></a>    <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb31-23"><a href="#cb31-23" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">keyed =</span> <span class="dv">1</span>)</span>
+<span id="cb31-24"><a href="#cb31-24" tabindex="-1"></a>}</span>
+<span id="cb31-25"><a href="#cb31-25" tabindex="-1"></a></span>
+<span id="cb31-26"><a href="#cb31-26" tabindex="-1"></a>random_scales <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(random_scales) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-27"><a href="#cb31-27" tabindex="-1"></a>  <span class="fu">distinct</span>(items, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-28"><a href="#cb31-28" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb31-29"><a href="#cb31-29" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb31-30"><a href="#cb31-30" tabindex="-1"></a>    <span class="at">reverse_items =</span> <span class="fu">list</span>(<span class="fu">randomly_choose_items_for_reversion</span>(items))</span>
+<span id="cb31-31"><a href="#cb31-31" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-32"><a href="#cb31-32" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb31-33"><a href="#cb31-33" tabindex="-1"></a><span class="fu">nrow</span>(random_scales)</span></code></pre></div>
+<pre><code>## [1] 200</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="fu">write_rds</span>(random_scales, <span class="at">file =</span> <span class="fu">file.path</span>(data_path, <span class="fu">glue</span>(<span class="st">&quot;data/intermediate/random_scales_rr.rds&quot;</span>)))</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>rr_validation_llm <span class="ot">&lt;-</span> rr_validation_item_pairs <span class="sc">%&gt;%</span></span>
+<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a>  <span class="fu">left_join</span>(mapping_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">variable_1 =</span> variable, <span class="at">InstrumentA =</span> instrument, <span class="at">ScaleA =</span> scale_0, <span class="at">SubscaleA =</span> scale_1)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-6"><a href="#cb33-6" tabindex="-1"></a>  <span class="fu">left_join</span>(mapping_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">variable_2 =</span> variable, <span class="at">InstrumentB =</span> instrument, <span class="at">ScaleB =</span> scale_0, <span class="at">SubscaleB =</span> scale_1))</span></code></pre></div>
+<pre><code>## Joining with `by = join_by(variable_1)`
+## Joining with `by = join_by(variable_2)`</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a>pt_rr_validation_llm <span class="ot">&lt;-</span> pt_rr_validation_item_pairs <span class="sc">%&gt;%</span></span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>  <span class="fu">left_join</span>(mapping_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">variable_1 =</span> variable, <span class="at">InstrumentA =</span> instrument, <span class="at">ScaleA =</span> scale_0, <span class="at">SubscaleA =</span> scale_1)) <span class="sc">%&gt;%</span></span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>  <span class="fu">left_join</span>(mapping_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">variable_2 =</span> variable, <span class="at">InstrumentB =</span> instrument, <span class="at">ScaleB =</span> scale_0, <span class="at">SubscaleB =</span> scale_1))</span></code></pre></div>
+<pre><code>## Joining with `by = join_by(variable_1)`
+## Joining with `by = join_by(variable_2)`</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a>cors_llm <span class="ot">&lt;-</span> rr_validation_item_pairs <span class="sc">%&gt;%</span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">x =</span> variable_1, <span class="at">y =</span> variable_2, <span class="at">r =</span> synthetic_r) <span class="sc">%&gt;%</span></span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a>  igraph<span class="sc">::</span><span class="fu">graph_from_data_frame</span>(<span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb37-5"><a href="#cb37-5" tabindex="-1"></a>  igraph<span class="sc">::</span><span class="fu">as_adjacency_matrix</span>(<span class="at">attr =</span> <span class="st">&quot;r&quot;</span>, <span class="at">sparse =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb37-6"><a href="#cb37-6" tabindex="-1"></a><span class="fu">diag</span>(cors_llm) <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb37-7"><a href="#cb37-7" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="#cb37-8" tabindex="-1"></a>pt_cors_llm <span class="ot">&lt;-</span> pt_rr_validation_item_pairs <span class="sc">%&gt;%</span></span>
+<span id="cb37-9"><a href="#cb37-9" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">x =</span> variable_1, <span class="at">y =</span> variable_2, <span class="at">r =</span> synthetic_r) <span class="sc">%&gt;%</span></span>
+<span id="cb37-10"><a href="#cb37-10" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb37-11"><a href="#cb37-11" tabindex="-1"></a>  igraph<span class="sc">::</span><span class="fu">graph_from_data_frame</span>(<span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb37-12"><a href="#cb37-12" tabindex="-1"></a>  igraph<span class="sc">::</span><span class="fu">as_adjacency_matrix</span>(<span class="at">attr =</span> <span class="st">&quot;r&quot;</span>, <span class="at">sparse =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb37-13"><a href="#cb37-13" tabindex="-1"></a><span class="fu">diag</span>(pt_cors_llm) <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb37-14"><a href="#cb37-14" tabindex="-1"></a></span>
+<span id="cb37-15"><a href="#cb37-15" tabindex="-1"></a>cors_real <span class="ot">&lt;-</span> rr_validation_llm <span class="sc">%&gt;%</span> </span>
+<span id="cb37-16"><a href="#cb37-16" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">x =</span> variable_1, <span class="at">y =</span> variable_2, <span class="at">r =</span> empirical_r) <span class="sc">%&gt;%</span></span>
+<span id="cb37-17"><a href="#cb37-17" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb37-18"><a href="#cb37-18" tabindex="-1"></a>  igraph<span class="sc">::</span><span class="fu">graph_from_data_frame</span>(<span class="at">directed =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb37-19"><a href="#cb37-19" tabindex="-1"></a>  igraph<span class="sc">::</span><span class="fu">as_adjacency_matrix</span>(<span class="at">attr =</span> <span class="st">&quot;r&quot;</span>, <span class="at">sparse =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb37-20"><a href="#cb37-20" tabindex="-1"></a><span class="fu">diag</span>(cors_real) <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb37-21"><a href="#cb37-21" tabindex="-1"></a></span>
+<span id="cb37-22"><a href="#cb37-22" tabindex="-1"></a>real_scales <span class="ot">&lt;-</span> items_by_scale <span class="sc">%&gt;%</span></span>
+<span id="cb37-23"><a href="#cb37-23" tabindex="-1"></a>  <span class="fu">group_by</span>(scale) <span class="sc">%&gt;%</span></span>
+<span id="cb37-24"><a href="#cb37-24" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb37-25"><a href="#cb37-25" tabindex="-1"></a>    <span class="at">items =</span> <span class="fu">list</span>(variable),</span>
+<span id="cb37-26"><a href="#cb37-26" tabindex="-1"></a>    <span class="at">reverse_items =</span> <span class="fu">list</span>(variable[keyed <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>]),</span>
+<span id="cb37-27"><a href="#cb37-27" tabindex="-1"></a>    <span class="at">number_of_items =</span> <span class="fu">n_distinct</span>(variable),</span>
+<span id="cb37-28"><a href="#cb37-28" tabindex="-1"></a>    <span class="at">keyed =</span> <span class="fu">first</span>(keyed),</span>
+<span id="cb37-29"><a href="#cb37-29" tabindex="-1"></a>    <span class="at">lvn =</span> <span class="fu">paste</span>(<span class="fu">first</span>(scale), <span class="st">&quot; =~ &quot;</span>, <span class="fu">paste</span>(variable, <span class="at">collapse =</span> <span class="st">&quot; + &quot;</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb37-30"><a href="#cb37-30" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb37-31"><a href="#cb37-31" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb37-32"><a href="#cb37-32" tabindex="-1"></a></span>
+<span id="cb37-33"><a href="#cb37-33" tabindex="-1"></a>scales <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="at">real =</span> real_scales, <span class="at">random =</span> random_scales, <span class="at">.id =</span> <span class="st">&quot;type&quot;</span>)</span>
+<span id="cb37-34"><a href="#cb37-34" tabindex="-1"></a></span>
+<span id="cb37-35"><a href="#cb37-35" tabindex="-1"></a>rr_validation_human_data <span class="ot">&lt;-</span> rr_validation_human_data <span class="sc">%&gt;%</span> haven<span class="sc">::</span><span class="fu">zap_labels</span>()</span>
+<span id="cb37-36"><a href="#cb37-36" tabindex="-1"></a>scales <span class="ot">&lt;-</span> scales <span class="sc">%&gt;%</span></span>
+<span id="cb37-37"><a href="#cb37-37" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb37-38"><a href="#cb37-38" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pt_r_llm =</span> <span class="fu">list</span>(pt_cors_llm[items, items]),</span>
+<span id="cb37-39"><a href="#cb37-39" tabindex="-1"></a>         <span class="at">r_llm =</span> <span class="fu">list</span>(cors_llm[items, items]),</span>
+<span id="cb37-40"><a href="#cb37-40" tabindex="-1"></a>         <span class="at">r_real =</span> <span class="fu">list</span>(cors_real[items, items]),</span>
+<span id="cb37-41"><a href="#cb37-41" tabindex="-1"></a>         <span class="at">reverse_items_by_1st =</span> <span class="fu">list</span>(<span class="fu">find_reverse_items_by_first_item</span>(r_real, keyed)),</span>
+<span id="cb37-42"><a href="#cb37-42" tabindex="-1"></a>         <span class="at">N_real =</span> rr_validation_item_pairs <span class="sc">%&gt;%</span> </span>
+<span id="cb37-43"><a href="#cb37-43" tabindex="-1"></a>           <span class="fu">filter</span>(variable_1 <span class="sc">%in%</span> items, variable_2 <span class="sc">%in%</span> items) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-44"><a href="#cb37-44" tabindex="-1"></a>           <span class="fu">summarise</span>(<span class="at">min_n=</span><span class="fu">min</span>(pairwise_n)) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(min_n)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-45"><a href="#cb37-45" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb37-46"><a href="#cb37-46" tabindex="-1"></a>    <span class="at">rel_real =</span> <span class="fu">list</span>(psych<span class="sc">::</span><span class="fu">alpha</span>(rr_validation_human_data[, items], <span class="at">keys =</span> reverse_items, <span class="at">n.iter =</span> <span class="dv">1000</span>)),</span>
+<span id="cb37-47"><a href="#cb37-47" tabindex="-1"></a>    <span class="at">rel_llm =</span> <span class="fu">list</span>(psych<span class="sc">::</span><span class="fu">alpha</span>(r_llm, <span class="at">keys =</span> reverse_items, <span class="at">n.obs =</span> N_real)<span class="sc">$</span>feldt),</span>
+<span id="cb37-48"><a href="#cb37-48" tabindex="-1"></a>    <span class="at">rel_pt_llm =</span> <span class="fu">list</span>(psych<span class="sc">::</span><span class="fu">alpha</span>(pt_r_llm, <span class="at">keys =</span> reverse_items, <span class="at">n.obs =</span> N_real)<span class="sc">$</span>feldt)) <span class="sc">%&gt;%</span></span>
+<span id="cb37-49"><a href="#cb37-49" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">empirical_alpha =</span> rel_real<span class="sc">$</span>feldt<span class="sc">$</span>alpha<span class="sc">$</span>raw_alpha,</span>
+<span id="cb37-50"><a href="#cb37-50" tabindex="-1"></a>         <span class="at">synthetic_alpha =</span> rel_llm<span class="sc">$</span>alpha<span class="sc">$</span>raw_alpha,</span>
+<span id="cb37-51"><a href="#cb37-51" tabindex="-1"></a>         <span class="at">pt_synthetic_alpha =</span> rel_pt_llm<span class="sc">$</span>alpha<span class="sc">$</span>raw_alpha) <span class="sc">%&gt;%</span></span>
+<span id="cb37-52"><a href="#cb37-52" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb37-53"><a href="#cb37-53" tabindex="-1"></a>    <span class="at">empirical_alpha_se =</span> <span class="fu">sd</span>(rel_real<span class="sc">$</span>boot[,<span class="st">&quot;raw_alpha&quot;</span>]),</span>
+<span id="cb37-54"><a href="#cb37-54" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## Warning: There were 330 warnings in `mutate()`.
+## The first warning was:
+## ℹ In argument: `rel_real = list(...)`.
+## ℹ In row 81.
+## Caused by warning in `sqrt()`:
+## ! NaNs produced
+## ℹ Run `dplyr::last_dplyr_warnings()` to see the 329 remaining warnings.</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" tabindex="-1"></a><span class="fu">write_rds</span>(scales, <span class="at">file =</span> <span class="fu">file.path</span>(data_path, <span class="fu">glue</span>(<span class="st">&quot;data/intermediate/scales_with_alpha_se_rr.rds&quot;</span>)))</span></code></pre></div>
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVmVjdG9yIHJlcHJlc2VudGF0aW9ucyB0byBjb3NpbmUgc2ltaWxhcml0aWVzIgpvdXRwdXQ6IGh0bWxfZG9jdW1lbnQKZGF0ZTogIjIwMjQtMDItMDkiCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0Usd2FybmluZz1GLG1lc3NhZ2U9Rn0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFLCBlcnJvciA9IFQpCgojIExpYnJhcmllcyBhbmQgU2V0dGluZ3MKCiMgTGlicyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KbGlicmFyeSh0aWR5dmVyc2UpCmxpYnJhcnkoYXJyb3cpCmxpYnJhcnkoZ2x1ZSkKbGlicmFyeShwc3ljaCkKbGlicmFyeShsYXZhYW4pCmxpYnJhcnkoZ2dwbG90MikKbGlicmFyeShwbG90bHkpCmxpYnJhcnkoZ3JpZEV4dHJhKQoKbW9kZWxfbmFtZSA9ICJJdGVtU2ltaWxhcml0eVRyYWluaW5nLTIwMjQwNTAyLXRyaWFsMTIiCiNtb2RlbF9uYW1lID0gIml0ZW0tc2ltaWxhcml0eS0yMDIzMTAxOC0xMjI1MDQiCnByZXRyYWluZWRfbW9kZWxfbmFtZSA9ICJhbGwtbXBuZXQtYmFzZS12MiIKCmRhdGFfcGF0aCA9IGdsdWUoIi4vIikKcHJldHJhaW5lZF9kYXRhX3BhdGggPSBnbHVlKCIuLyIpCgpzZXQuc2VlZCg0MikKc291cmNlKCJnbG9iYWxfZnVuY3Rpb25zLlIiKQpgYGAKCgojIyBMb2FkIGRhdGEKYGBge3J9CnJyX3ZhbGlkYXRpb25fbWFwcGluZ19kYXRhID0gYXJyb3c6OnJlYWRfZmVhdGhlcigKICBmaWxlID0gImh0dHBzOi8vZ2l0aHViLmNvbS9zeW50aC1zY2llbmNlL3N1cnZleWJvdDMwMDAvcmF3L3JlZnMvaGVhZHMvbWFpbi92YWxpZGF0aW9uX3N0dWR5L21hcHBpbmcuZmVhdGhlciIKKQoKaXRlbXMgPC0gcmlvOjppbXBvcnQoImh0dHBzOi8vZG9jcy5nb29nbGUuY29tL3NwcmVhZHNoZWV0cy9kLzE2UWNSTFA1QlVuMUNtdHIwZV9YUmRqcjFXZy1FSFNNU0dtZ1pPMU0zdE5NL2VkaXQ/Z2lkPTAjZ2lkPTAiLCB3aGljaCA9IDIpCgojIGNvbXBhcmUgPC0gcnJfdmFsaWRhdGlvbl9tYXBwaW5nX2RhdGEgJT4lIGZ1bGxfam9pbihpdGVtcyAlPiUgZmlsdGVyKGluX3N1cnZleSkgJT4lIHNlbGVjdChpZCwgc2NhbGUsIHN1YnNjYWxlLCBpdGVtKSwgYnkgPSBjKCJ2YXJpYWJsZSIgPSAiaWQiKSkgJT4lIG11dGF0ZShzdWJzY2FsZSA9IGlmX2Vsc2Uoc3Vic2NhbGUgPT0gIiNOL0EiLCBOQV9jaGFyYWN0ZXJfLCBzdWJzY2FsZSkpCiMgY29tcGFyZSAlPiUgZmlsdGVyKGl0ZW1fdGV4dCAhPSBpdGVtKSAlPiUgVmlldygpCiMgY29tcGFyZSAlPiUgZmlsdGVyKChzY2FsZTAgIT0gc2NhbGUgfCBzY2FsZTEgIT0gc3Vic2NhbGUpKSAlPiUgVmlldygpCiMgY29tcGFyZSAlPiUgZmlsdGVyKChzY2FsZTAgIT0gc2NhbGUgfCBzY2FsZTEgIT0gc3Vic2NhbGUpICYgIShzY2FsZTEgPT0gc2NhbGUgJiBzY2FsZTAgPT0gc3Vic2NhbGUpKSAlPiUgVmlldygpCiMgcnJfdmFsaWRhdGlvbl9tYXBwaW5nX2RhdGEgJT4lIGFudGlfam9pbihpdGVtcywgYnkgPSBjKCJzY2FsZTAiID0gInNjYWxlIiwgInNjYWxlMSIgPSAic3Vic2NhbGUiKSkgJT4lIFZpZXcKCnNjYWxlcyA8LSBycl92YWxpZGF0aW9uX21hcHBpbmdfZGF0YSAlPiUgCiAgc2VsZWN0KC1zY2FsZTAsIC1zY2FsZTEpICU+JSAKICBsZWZ0X2pvaW4oaXRlbXMgJT4lIAogICAgICAgICAgICAgIGZpbHRlcihpbl9zdXJ2ZXkpICU+JSAKICAgICAgICAgICAgICBtdXRhdGUoa2V5ZWQgPSBpZl9lbHNlKHJldmVyc2VkLCAtMSwgMSkpICU+JSAKICAgICAgICAgICAgICBzZWxlY3QoaWQsIGtleWVkLCBzY2FsZSwgc3Vic2NhbGUpLCBieSA9IGMoInZhcmlhYmxlIiA9ICJpZCIpKSAlPiUgCiAgcmVuYW1lKHNjYWxlXzAgPSBzY2FsZSwgc2NhbGVfMSA9IHN1YnNjYWxlKSAlPiUgCiAgbXV0YXRlKHNjYWxlXzEgPSBpZl9lbHNlKHNjYWxlXzEgPT0gIiNOL0EiLCAiIiwgc2NhbGVfMSkpCgpycl92YWxpZGF0aW9uX21hcHBpbmdfZGF0YSA8LSBzY2FsZXMgJT4lIAogIHJlbmFtZShzY2FsZTAgPSBzY2FsZV8wLCBzY2FsZTEgPSBzY2FsZV8xKQoKc2NhbGVzIDwtIGJpbmRfcm93cygKICBzY2FsZXMgJT4lIAogICAgICBtdXRhdGUoCiAgICAgICAgc2NhbGVfMSA9ICIiLAogICAgICAgICBzY2FsZSA9IHN0cl9yZXBsYWNlX2FsbChzdHJfdHJpbShwYXN0ZTAoaW5zdHJ1bWVudCwgIl8iLCBzY2FsZV8wLCBzY2FsZV8xKSksICJbXmEtekEtWl8wLTldIiwgIl8iKQogICkgJT4lIAogICAgZ3JvdXBfYnkoc2NhbGUpICU+JSAKICAgIG11dGF0ZShudW1iZXJfb2ZfaXRlbXMgPSBuKCkpLAogIHNjYWxlcyAlPiUgCiAgICBtdXRhdGUoCiAgICAgIHNjYWxlXzEgPSBjb2FsZXNjZShzY2FsZV8xLCAiIiksCiAgICAgIHNjYWxlID0gc3RyX3JlcGxhY2VfYWxsKHN0cl90cmltKHBhc3RlMChpbnN0cnVtZW50LCAiXyIsIHNjYWxlXzAsIHNjYWxlXzEpKSwgIlteYS16QS1aXzAtOV0iLCAiXyIpKSAlPiUgCiAgICBncm91cF9ieShzY2FsZSkgJT4lIAogICAgbXV0YXRlKG51bWJlcl9vZl9pdGVtcyA9IG4oKSkKICApICU+JSAKICBncm91cF9ieShzY2FsZSkgJT4lIAogIGZpbHRlcihyb3dfbnVtYmVyKCkgPT0gMSkgJT4lIAogIHVuZ3JvdXAoKSAlPiUgCiAgc2VsZWN0KC12YXJpYWJsZSwgLWl0ZW1fdGV4dCkgJT4lIAogIGZpbHRlcihudW1iZXJfb2ZfaXRlbXMgPiAxKQoKYXJyb3c6OndyaXRlX2ZlYXRoZXIoc2NhbGVzLCBzaW5rID0gZmlsZS5wYXRoKGRhdGFfcGF0aCwgZ2x1ZSgie21vZGVsX25hbWV9LnJhdy52YWxpZGF0aW9uLXN0dWR5LTIwMjQtMTEtMDEuc2NhbGVzLmZlYXRoZXIiKSkKKQoKYXJyb3c6OndyaXRlX2ZlYXRoZXIocnJfdmFsaWRhdGlvbl9tYXBwaW5nX2RhdGEsIHNpbmsgPSBmaWxlLnBhdGgoZGF0YV9wYXRoLCBnbHVlKCJ7bW9kZWxfbmFtZX0ucmF3LnZhbGlkYXRpb24tc3R1ZHktMjAyNC0xMS0wMS5tYXBwaW5nMi5mZWF0aGVyIikpCikKCgojIHByZS10cmFpbmVkIG1vZGVsCnB0X3JyX3ZhbGlkYXRpb25fbWFjaGluZV9kYXRhID0gcmlvOjppbXBvcnQoImh0dHBzOi8vZ2l0aHViLmNvbS9zeW50aC1zY2llbmNlL3N1cnZleWJvdDMwMDAvcmF3L3JlZnMvaGVhZHMvbWFpbi92YWxpZGF0aW9uX3N0dWR5L2VtYmVkZGluZ3NfYWxsLW1wbmV0LWJhc2UtdjIuZmVhdGhlciIpCnB0X3JyX3ZhbGlkYXRpb25fbWFjaGluZV9kYXRhIDwtIHB0X3JyX3ZhbGlkYXRpb25fbWFjaGluZV9kYXRhICU+JSAKICByb3d3aXNlKCkgJT4lIAogIG11dGF0ZShlbWJlZF9pZCA9IGxpc3QoMTpsZW5ndGgoZW1iZWRkaW5ncykpKSAlPiUgCiAgdW5uZXN0KGNvbHMgPSBjKGVtYmVkZGluZ3MsIGVtYmVkX2lkKSkgJT4lIAogIHNlbGVjdCgtaXRlbSkgJT4lIAogIHBpdm90X3dpZGVyKG5hbWVzX2Zyb20gPSBpZCwgdmFsdWVzX2Zyb20gPSBlbWJlZGRpbmdzKSAlPiUgCiAgc2VsZWN0KC1lbWJlZF9pZCkKCiMgZmluZS10dW5lZCBtb2RlbApycl92YWxpZGF0aW9uX21hY2hpbmVfZGF0YSA9IHJpbzo6aW1wb3J0KCJodHRwczovL2dpdGh1Yi5jb20vc3ludGgtc2NpZW5jZS9zdXJ2ZXlib3QzMDAwL3Jhdy9yZWZzL2hlYWRzL21haW4vdmFsaWRhdGlvbl9zdHVkeS9lbWJlZGRpbmdzX3N1cnZleWJvdDMwMDAuZmVhdGhlciIpCnJyX3ZhbGlkYXRpb25fbWFjaGluZV9kYXRhIDwtIHJyX3ZhbGlkYXRpb25fbWFjaGluZV9kYXRhICU+JSAKICByb3d3aXNlKCkgJT4lIAogIG11dGF0ZShlbWJlZF9pZCA9IGxpc3QoMTpsZW5ndGgoZW1iZWRkaW5ncykpKSAlPiUgCiAgdW5uZXN0KGNvbHMgPSBjKGVtYmVkZGluZ3MsIGVtYmVkX2lkKSkgJT4lIAogIHNlbGVjdCgtaXRlbSkgJT4lIAogIHBpdm90X3dpZGVyKG5hbWVzX2Zyb20gPSBpZCwgdmFsdWVzX2Zyb20gPSBlbWJlZGRpbmdzKSAlPiUgCiAgc2VsZWN0KC1lbWJlZF9pZCkKICAKbWFpbl9xcyA8LSBjKCJBQUlEIiwgIlBBTkFTIiwgIlBBUSIsICJQU1MiLCAiTkVQUyIsICJVTFMiLCAiRkNWIiwgIkRBUSIsICJDRVNEIiwgIkhFWEFDTyIsICJPQ0lSIiwgIlBUUSIsICJSQUFTIiwgIktTQSIsICJTQVMiLCAiTUZRIiwgIkNRIiwgIk9MQkkiLCAiVVdFUyIsICJXR1MiKQpycl92YWxpZGF0aW9uX2h1bWFuX2RhdGEgPSByaW86OmltcG9ydCgiLi4vc3ludGgtcmVwLWRhdGFzZXQvZGF0YS9wcm9jZXNzZWQvc29zY2lfbGFiZWxsZWRfd2l0aF9leGNsdXNpb25fY3JpdGVyaWEucmRzIikgJT4lIGZpbHRlcihpbmNsdWRlZCkgJT4lIAoJc2VsZWN0KHN0YXJ0c193aXRoKG1haW5fcXMpKSAlPiUgCglzZWxlY3QoLWVuZHNfd2l0aCgiX1IiKSkKCnJpbzo6ZXhwb3J0KHJyX3ZhbGlkYXRpb25faHVtYW5fZGF0YSwgZmlsZSA9IGZpbGUucGF0aChkYXRhX3BhdGgsIGdsdWUoInttb2RlbF9uYW1lfS5yYXcudmFsaWRhdGlvbi1zdHVkeS0yMDI0LTExLTAxLmh1bWFuLmZlYXRoZXIiKSkKKQoKCnNldGRpZmYoY29sbmFtZXMocnJfdmFsaWRhdGlvbl9odW1hbl9kYXRhKSwgcnJfdmFsaWRhdGlvbl9tYXBwaW5nX2RhdGEkdmFyaWFibGUpCnNldGRpZmYocnJfdmFsaWRhdGlvbl9tYXBwaW5nX2RhdGEkdmFyaWFibGUsIGNvbG5hbWVzKHJyX3ZhbGlkYXRpb25faHVtYW5fZGF0YSkpCmBgYAoKIyMgRGVzY3JpcHRpb24KYGBge3J9Cm5yb3cocnJfdmFsaWRhdGlvbl9odW1hbl9kYXRhKSAjIHJlc3BvbmRlbnRzCm5jb2wocnJfdmFsaWRhdGlvbl9odW1hbl9kYXRhKSAjIGl0ZW1zCm5yb3cocnJfdmFsaWRhdGlvbl9tYWNoaW5lX2RhdGEpICMgdmVjdG9yIGRpbWVuc2lvbnMKbmNvbChycl92YWxpZGF0aW9uX21hY2hpbmVfZGF0YSkgIyBpdGVtcwpuX2Rpc3RpbmN0KHJyX3ZhbGlkYXRpb25fbWFwcGluZ19kYXRhJGluc3RydW1lbnQpICMgaW5zdHJ1bWVudHMKbl9kaXN0aW5jdChycl92YWxpZGF0aW9uX21hcHBpbmdfZGF0YSRzY2FsZTApICMgY29uc3RydWN0cwpuX2Rpc3RpbmN0KHJyX3ZhbGlkYXRpb25fbWFwcGluZ19kYXRhJGluc3RydW1lbnQsIHJyX3ZhbGlkYXRpb25fbWFwcGluZ19kYXRhJHNjYWxlMCkgIyBzY2FsZXMKbl9kaXN0aW5jdChzdHJfYyhycl92YWxpZGF0aW9uX21hcHBpbmdfZGF0YSRpbnN0cnVtZW50LCBycl92YWxpZGF0aW9uX21hcHBpbmdfZGF0YSRzY2FsZTAsIHJyX3ZhbGlkYXRpb25fbWFwcGluZ19kYXRhJHNjYWxlMSkpICMgc3Vic2NhbGVzCnNjYWxlcyAlPiUgdGFsbHkoKQpzY2FsZXMgJT4lIGZpbHRlcihudW1iZXJfb2ZfaXRlbXMgPiAyKSAlPiUgdGFsbHkoKQpgYGAKCgojIyBKb2luIHBhaXJ3aXNlIGl0ZW0gY29ycmVsYXRpb25zCmBgYHtyfQpycl92YWxpZGF0aW9uX2l0ZW1fcGFpcnMgPSBqb2luX3BhaXJ3aXNlX2NvcnJlbGF0aW9uKHJyX3ZhbGlkYXRpb25faHVtYW5fZGF0YSwgcnJfdmFsaWRhdGlvbl9tYWNoaW5lX2RhdGEpCgphcnJvdzo6d3JpdGVfZmVhdGhlcihycl92YWxpZGF0aW9uX2l0ZW1fcGFpcnMsIHNpbmsgPSBmaWxlLnBhdGgoZGF0YV9wYXRoLCBnbHVlKCJpZ25vcmUue21vZGVsX25hbWV9LnJhdy52YWxpZGF0aW9uLXN0dWR5LTIwMjQtMTEtMDEuaXRlbV9jb3JyZWxhdGlvbnMuZmVhdGhlciIpKSkKCnB0X3JyX3ZhbGlkYXRpb25faXRlbV9wYWlycyA9IGpvaW5fcGFpcndpc2VfY29ycmVsYXRpb24ocnJfdmFsaWRhdGlvbl9odW1hbl9kYXRhLCBwdF9ycl92YWxpZGF0aW9uX21hY2hpbmVfZGF0YSkKCmFycm93Ojp3cml0ZV9mZWF0aGVyKHB0X3JyX3ZhbGlkYXRpb25faXRlbV9wYWlycywgc2luayA9IGZpbGUucGF0aChkYXRhX3BhdGgsIGdsdWUoImlnbm9yZS57cHJldHJhaW5lZF9tb2RlbF9uYW1lfS5yYXcudmFsaWRhdGlvbi1zdHVkeS0yMDI0LTExLTAxLml0ZW1fY29ycmVsYXRpb25zLmZlYXRoZXIiKSkpCmBgYAoKCiMjIEpvaW4gcGFpcndpc2Ugc2NhbGUgY29ycmVsYXRpb25zCmBgYHtyfQptYW5pZmVzdF9zY29yZXMgPSBwcmVkaWN0X21hbmlmZXN0X3Njb3Jlcyhycl92YWxpZGF0aW9uX2h1bWFuX2RhdGEsIHJyX3ZhbGlkYXRpb25fbWFjaGluZV9kYXRhLCBycl92YWxpZGF0aW9uX21hcHBpbmdfZGF0YSwgc2NhbGVzKQoKYXJyb3c6OndyaXRlX2ZlYXRoZXIobWFuaWZlc3Rfc2NvcmVzLCBzaW5rID0gZmlsZS5wYXRoKGRhdGFfcGF0aCwgZ2x1ZSgiaWdub3JlLnttb2RlbF9uYW1lfS5yYXcudmFsaWRhdGlvbi1zdHVkeS0yMDI0LTExLTAxLnNjYWxlX2NvcnJlbGF0aW9ucy5mZWF0aGVyIikpKQoKcHRfbWFuaWZlc3Rfc2NvcmVzID0gcHJlZGljdF9tYW5pZmVzdF9zY29yZXMocnJfdmFsaWRhdGlvbl9odW1hbl9kYXRhLCBwdF9ycl92YWxpZGF0aW9uX21hY2hpbmVfZGF0YSwgcnJfdmFsaWRhdGlvbl9tYXBwaW5nX2RhdGEsIHNjYWxlcykKCmFycm93Ojp3cml0ZV9mZWF0aGVyKHB0X21hbmlmZXN0X3Njb3Jlcywgc2luayA9IGZpbGUucGF0aChkYXRhX3BhdGgsIGdsdWUoImlnbm9yZS57cHJldHJhaW5lZF9tb2RlbF9uYW1lfS5yYXcudmFsaWRhdGlvbi1zdHVkeS0yMDI0LTExLTAxLnNjYWxlX2NvcnJlbGF0aW9ucy5mZWF0aGVyIikpKQpgYGAKCgojIyBDcmVhdGUgcmFuZG9tIHNjYWxlcwpgYGB7cn0KbWFwcGluZ19kYXRhIDwtIHJyX3ZhbGlkYXRpb25fbWFwcGluZ19kYXRhICU+JQogIHJlbmFtZShzY2FsZV8wID0gc2NhbGUwLAogICAgICAgICBzY2FsZV8xID0gc2NhbGUxKQoKaXRlbXNfYnlfc2NhbGUgPC0gYmluZF9yb3dzKAogIHNjYWxlcyAlPiUgc2VsZWN0KC1rZXllZCkgJT4lIGZpbHRlcihzY2FsZV8xID09ICIiKSAlPiUgbGVmdF9qb2luKG1hcHBpbmdfZGF0YSAlPiUgc2VsZWN0KC1zY2FsZV8xKSwgYnkgPSBjKCJpbnN0cnVtZW50IiwgInNjYWxlXzAiKSksCiAgc2NhbGVzICU+JSBzZWxlY3QoLWtleWVkKSAlPiUgZmlsdGVyKHNjYWxlXzEgIT0gIiIpICU+JSBsZWZ0X2pvaW4obWFwcGluZ19kYXRhLCBieSA9IGMoImluc3RydW1lbnQiLCAic2NhbGVfMCIsICJzY2FsZV8xIikpCikKCnJhbmRvbV9zY2FsZXMgPC0gbGlzdCgpCmZvcihpIGluIDE6MjAwKSB7CiAgbl9pdGVtcyA8LSBycG9pcygxLCA2KQogIG5faXRlbXMgPC0gaWZfZWxzZShuX2l0ZW1zIDwgMywgMywgbl9pdGVtcykKICByYW5kb21fc2NhbGVzW1tpXV0gPC0gcnJfdmFsaWRhdGlvbl9tYXBwaW5nX2RhdGEgJT4lCiAgICBzYW1wbGVfbihuX2l0ZW1zKSAlPiUKICAgIG11dGF0ZShzY2FsZSA9IHBhc3RlMCgicmFuZG9tIiwgaSkpICU+JQogICAgZ3JvdXBfYnkoc2NhbGUpICU+JQogICAgc3VtbWFyaXNlKAogICAgICBpdGVtcyA9IGxpc3QodmFyaWFibGUpLAogICAgICBudW1iZXJfb2ZfaXRlbXMgPSBuX2Rpc3RpbmN0KHZhcmlhYmxlKSwKICAgICAgbHZuID0gcGFzdGUoZmlyc3Qoc2NhbGUpLCAiID1+ICIsIHBhc3RlKHZhcmlhYmxlLCBjb2xsYXBzZSA9ICIgKyAiKSkpICU+JQogICAgZHJvcF9uYSgpICU+JSAKICAgIG11dGF0ZShrZXllZCA9IDEpCn0KCnJhbmRvbV9zY2FsZXMgPC0gYmluZF9yb3dzKHJhbmRvbV9zY2FsZXMpICU+JSAKICBkaXN0aW5jdChpdGVtcywgLmtlZXBfYWxsID0gVFJVRSkgJT4lIAogIHJvd3dpc2UoKSAlPiUgCiAgbXV0YXRlKAogICAgcmV2ZXJzZV9pdGVtcyA9IGxpc3QocmFuZG9tbHlfY2hvb3NlX2l0ZW1zX2Zvcl9yZXZlcnNpb24oaXRlbXMpKQogICAgKSAlPiUgCiAgdW5ncm91cCgpCm5yb3cocmFuZG9tX3NjYWxlcykKd3JpdGVfcmRzKHJhbmRvbV9zY2FsZXMsIGZpbGUgPSBmaWxlLnBhdGgoZGF0YV9wYXRoLCBnbHVlKCJpZ25vcmUucmFuZG9tX3NjYWxlc19yci5yZHMiKSkpCgoKcnJfdmFsaWRhdGlvbl9sbG0gPC0gcnJfdmFsaWRhdGlvbl9pdGVtX3BhaXJzICU+JQogIGxlZnRfam9pbihtYXBwaW5nX2RhdGEgJT4lIHNlbGVjdCh2YXJpYWJsZV8xID0gdmFyaWFibGUsIEluc3RydW1lbnRBID0gaW5zdHJ1bWVudCwgU2NhbGVBID0gc2NhbGVfMCwgU3Vic2NhbGVBID0gc2NhbGVfMSkpICU+JQogIGxlZnRfam9pbihtYXBwaW5nX2RhdGEgJT4lIHNlbGVjdCh2YXJpYWJsZV8yID0gdmFyaWFibGUsIEluc3RydW1lbnRCID0gaW5zdHJ1bWVudCwgU2NhbGVCID0gc2NhbGVfMCwgU3Vic2NhbGVCID0gc2NhbGVfMSkpCgpwdF9ycl92YWxpZGF0aW9uX2xsbSA8LSBwdF9ycl92YWxpZGF0aW9uX2l0ZW1fcGFpcnMgJT4lCiAgbGVmdF9qb2luKG1hcHBpbmdfZGF0YSAlPiUgc2VsZWN0KHZhcmlhYmxlXzEgPSB2YXJpYWJsZSwgSW5zdHJ1bWVudEEgPSBpbnN0cnVtZW50LCBTY2FsZUEgPSBzY2FsZV8wLCBTdWJzY2FsZUEgPSBzY2FsZV8xKSkgJT4lCiAgbGVmdF9qb2luKG1hcHBpbmdfZGF0YSAlPiUgc2VsZWN0KHZhcmlhYmxlXzIgPSB2YXJpYWJsZSwgSW5zdHJ1bWVudEIgPSBpbnN0cnVtZW50LCBTY2FsZUIgPSBzY2FsZV8wLCBTdWJzY2FsZUIgPSBzY2FsZV8xKSkKCmNvcnNfbGxtIDwtIHJyX3ZhbGlkYXRpb25faXRlbV9wYWlycyAlPiUKICBzZWxlY3QoeCA9IHZhcmlhYmxlXzEsIHkgPSB2YXJpYWJsZV8yLCByID0gc3ludGhldGljX3IpICU+JQogIGFzLmRhdGEuZnJhbWUoKSB8PgogIGlncmFwaDo6Z3JhcGhfZnJvbV9kYXRhX2ZyYW1lKGRpcmVjdGVkID0gRkFMU0UpIHw+CiAgaWdyYXBoOjphc19hZGphY2VuY3lfbWF0cml4KGF0dHIgPSAiciIsIHNwYXJzZSA9IEZBTFNFKQpkaWFnKGNvcnNfbGxtKSA8LSAxCgpwdF9jb3JzX2xsbSA8LSBwdF9ycl92YWxpZGF0aW9uX2l0ZW1fcGFpcnMgJT4lCiAgc2VsZWN0KHggPSB2YXJpYWJsZV8xLCB5ID0gdmFyaWFibGVfMiwgciA9IHN5bnRoZXRpY19yKSAlPiUKICBhcy5kYXRhLmZyYW1lKCkgfD4KICBpZ3JhcGg6OmdyYXBoX2Zyb21fZGF0YV9mcmFtZShkaXJlY3RlZCA9IEZBTFNFKSB8PgogIGlncmFwaDo6YXNfYWRqYWNlbmN5X21hdHJpeChhdHRyID0gInIiLCBzcGFyc2UgPSBGQUxTRSkKZGlhZyhwdF9jb3JzX2xsbSkgPC0gMQoKY29yc19yZWFsIDwtIHJyX3ZhbGlkYXRpb25fbGxtICU+JSAKICBzZWxlY3QoeCA9IHZhcmlhYmxlXzEsIHkgPSB2YXJpYWJsZV8yLCByID0gZW1waXJpY2FsX3IpICU+JQogIGFzLmRhdGEuZnJhbWUoKSB8PgogIGlncmFwaDo6Z3JhcGhfZnJvbV9kYXRhX2ZyYW1lKGRpcmVjdGVkID0gRkFMU0UpIHw+CiAgaWdyYXBoOjphc19hZGphY2VuY3lfbWF0cml4KGF0dHIgPSAiciIsIHNwYXJzZSA9IEZBTFNFKQpkaWFnKGNvcnNfcmVhbCkgPC0gMQoKcmVhbF9zY2FsZXMgPC0gaXRlbXNfYnlfc2NhbGUgJT4lCiAgZ3JvdXBfYnkoc2NhbGUpICU+JQogIHN1bW1hcmlzZSgKICAgIGl0ZW1zID0gbGlzdCh2YXJpYWJsZSksCiAgICByZXZlcnNlX2l0ZW1zID0gbGlzdCh2YXJpYWJsZVtrZXllZCA9PSAtMV0pLAogICAgbnVtYmVyX29mX2l0ZW1zID0gbl9kaXN0aW5jdCh2YXJpYWJsZSksCiAgICBrZXllZCA9IGZpcnN0KGtleWVkKSwKICAgIGx2biA9IHBhc3RlKGZpcnN0KHNjYWxlKSwgIiA9fiAiLCBwYXN0ZSh2YXJpYWJsZSwgY29sbGFwc2UgPSAiICsgIikpKSAlPiUKICBkcm9wX25hKCkgJT4lIAogIHVuZ3JvdXAoKQoKc2NhbGVzIDwtIGJpbmRfcm93cyhyZWFsID0gcmVhbF9zY2FsZXMsIHJhbmRvbSA9IHJhbmRvbV9zY2FsZXMsIC5pZCA9ICJ0eXBlIikKCnJyX3ZhbGlkYXRpb25faHVtYW5fZGF0YSA8LSBycl92YWxpZGF0aW9uX2h1bWFuX2RhdGEgJT4lIGhhdmVuOjp6YXBfbGFiZWxzKCkKc2NhbGVzIDwtIHNjYWxlcyAlPiUKICByb3d3aXNlKCkgJT4lCiAgbXV0YXRlKHB0X3JfbGxtID0gbGlzdChwdF9jb3JzX2xsbVtpdGVtcywgaXRlbXNdKSwKICAgICAgICAgcl9sbG0gPSBsaXN0KGNvcnNfbGxtW2l0ZW1zLCBpdGVtc10pLAogICAgICAgICByX3JlYWwgPSBsaXN0KGNvcnNfcmVhbFtpdGVtcywgaXRlbXNdKSwKICAgICAgICAgcmV2ZXJzZV9pdGVtc19ieV8xc3QgPSBsaXN0KGZpbmRfcmV2ZXJzZV9pdGVtc19ieV9maXJzdF9pdGVtKHJfcmVhbCwga2V5ZWQpKSwKICAgICAgICAgTl9yZWFsID0gcnJfdmFsaWRhdGlvbl9pdGVtX3BhaXJzICU+JSAKICAgICAgICAgICBmaWx0ZXIodmFyaWFibGVfMSAlaW4lIGl0ZW1zLCB2YXJpYWJsZV8yICVpbiUgaXRlbXMpICU+JSAKICAgICAgICAgICBzdW1tYXJpc2UobWluX249bWluKHBhaXJ3aXNlX24pKSAlPiUgcHVsbChtaW5fbikpICU+JQogIG11dGF0ZSgKICAgIHJlbF9yZWFsID0gbGlzdChwc3ljaDo6YWxwaGEocnJfdmFsaWRhdGlvbl9odW1hbl9kYXRhWywgaXRlbXNdLCBrZXlzID0gcmV2ZXJzZV9pdGVtcywgbi5pdGVyID0gMTAwMCkpLAogICAgcmVsX2xsbSA9IGxpc3QocHN5Y2g6OmFscGhhKHJfbGxtLCBrZXlzID0gcmV2ZXJzZV9pdGVtcywgbi5vYnMgPSBOX3JlYWwpJGZlbGR0KSwKICAgIHJlbF9wdF9sbG0gPSBsaXN0KHBzeWNoOjphbHBoYShwdF9yX2xsbSwga2V5cyA9IHJldmVyc2VfaXRlbXMsIG4ub2JzID0gTl9yZWFsKSRmZWxkdCkpICU+JQogIG11dGF0ZShlbXBpcmljYWxfYWxwaGEgPSByZWxfcmVhbCRmZWxkdCRhbHBoYSRyYXdfYWxwaGEsCiAgICAgICAgIHN5bnRoZXRpY19hbHBoYSA9IHJlbF9sbG0kYWxwaGEkcmF3X2FscGhhLAogICAgICAgICBwdF9zeW50aGV0aWNfYWxwaGEgPSByZWxfcHRfbGxtJGFscGhhJHJhd19hbHBoYSkgJT4lCiAgbXV0YXRlKAogICAgZW1waXJpY2FsX2FscGhhX3NlID0gc2QocmVsX3JlYWwkYm9vdFssInJhd19hbHBoYSJdKSwKICApCgp3cml0ZV9yZHMoc2NhbGVzLCBmaWxlID0gZmlsZS5wYXRoKGRhdGFfcGF0aCwgZ2x1ZSgiaWdub3JlLnNjYWxlc193aXRoX2FscGhhX3NlX3JyLnJkcyIpKSkKYGBgCgo=</div>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("1_import_validation_study.Rmd");
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
