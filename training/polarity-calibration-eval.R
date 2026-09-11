@@ -10,6 +10,50 @@ this_dir = dirname(base_path)
 df = arrow::read_feather(
   file = file.path(this_dir, "polarity-calibration-eval.feather")
 )
+
+compare_model_accuracy = function(df_polarity) {
+  paired_validity = df_polarity %>%
+    dplyr::filter(model %in% c("A", "B")) %>%
+    dplyr::select(
+      genre,
+      sentence_a,
+      sentence_b,
+      true_polarity,
+      model,
+      is_valid
+    ) %>%
+    tidyr::pivot_wider(
+      names_from = model,
+      values_from = is_valid
+    )
+  
+  paired_table = matrix(
+    c(
+      sum(!paired_validity$A & !paired_validity$B),
+      sum(paired_validity$A & !paired_validity$B),
+      sum(!paired_validity$A & paired_validity$B),
+      sum(paired_validity$A & paired_validity$B)
+    ),
+    nrow = 2,
+    dimnames = list(
+      "Model A" = c("incorrect", "correct"),
+      "Model B" = c("incorrect", "correct")
+    )
+  )
+  
+  print(paired_table)
+  print(stats::mcnemar.test(paired_table))
+  
+  discordant = paired_table["incorrect", "correct"] +
+    paired_table["correct", "incorrect"]
+  if (discordant <= 25) {
+    print(stats::binom.test(
+      paired_table["incorrect", "correct"],
+      discordant,
+      p = 0.5
+    ))
+  }
+}
   
 validation_summary_negatives = df %>% 
   dplyr::filter(true_polarity == -1) %>% 
@@ -21,10 +65,9 @@ validation_summary_negatives = df %>%
   ) %>% 
   print()
 
-validation_summary_negatives[2:3, 3:4] %>% 
-  unlist() %>% 
-  chisq.test() %>% 
-  print()
+df %>%
+  dplyr::filter(true_polarity == -1) %>%
+  compare_model_accuracy()
 
 validation_summary_positives = df %>% 
   dplyr::filter(true_polarity == 1) %>% 
@@ -36,7 +79,6 @@ validation_summary_positives = df %>%
   ) %>% 
   print()
 
-validation_summary_positives[2:3, 3:4] %>% 
-  unlist() %>% 
-  chisq.test() %>% 
-  print()
+df %>%
+  dplyr::filter(true_polarity == 1) %>%
+  compare_model_accuracy()
